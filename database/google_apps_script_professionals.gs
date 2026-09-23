@@ -14,6 +14,7 @@
 // ── CONFIGURATION ─────────────────────────────────────────────────────────────
 var SPREADSHEET_ID = "YOUR_PROFESSIONAL_SHEET_ID_HERE"; // ← your Sheet ID from the URL
 var SHEET_NAME     = "Professional registration";        // ← your tab name
+var NOTIFICATION_EMAIL = "thaalamtsc@gmail.com";         // ← admin alert email
 // ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -156,6 +157,38 @@ function doPost(e) {
     }
 
     sheet.appendRow(row);
+
+    // Send email alert to admin
+    try {
+      if (NOTIFICATION_EMAIL) {
+        var profName = normMap["fullname"] || data["Full Name"] || "New Professional";
+        var title    = normMap["professionaltitle"] || data["Professional Title"] || "-";
+        var email    = normMap["emailaddress"] || normMap["email"] || data["Email Address"] || "-";
+        var phone    = normMap["mobilenumber"] || normMap["phone"] || data["Mobile Number"] || "-";
+        var category = normMap["category"] || data["Category"] || "-";
+        var city     = normMap["city"] || data["City"] || "-";
+
+        var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+        var emailSubject = "New Professional Registration: " + profName;
+        var emailBody = "New Professional Registration Received on Thaalam Platform:\n\n" +
+          "• Full Name: " + profName + "\n" +
+          "• Professional Title: " + title + "\n" +
+          "• Email Address: " + email + "\n" +
+          "• Mobile Number: " + phone + "\n" +
+          "• Category: " + category + "\n" +
+          "• City: " + city + "\n" +
+          "• Submission Time: " + new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + "\n\n" +
+          "View full details in the Google Sheet: " + ss.getUrl();
+
+        MailApp.sendEmail({
+          to: NOTIFICATION_EMAIL,
+          subject: emailSubject,
+          body: emailBody
+        });
+      }
+    } catch (mailErr) {
+      Logger.log("Email notification error: " + mailErr.toString());
+    }
 
     return jsonResponse({ status: "success", message: "Professional registered successfully" });
 
