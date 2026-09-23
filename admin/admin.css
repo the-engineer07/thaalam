@@ -546,7 +546,7 @@ body {
    2. ADMIN MAIN LAYOUT & SIDEBAR
    ============================================================================== */
 .admin-layout {
-    display: flex;
+    display: none;
     min-height: 100vh;
 }
 
