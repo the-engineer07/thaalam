@@ -1,0 +1,25 @@
+{
+  "name": "thalam-platform",
+  "version": "1.0.0",
+  "description": "Thalam Platform - Business Directory & Professional Hub",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "compression": "1.7.4",
+    "express": "4.19.2",
+    "helmet": "7.1.0"
+  },
+  "keywords": [
+    "thalam",
+    "business-directory",
+    "supabase"
+  ],
+  "author": "Thalam Team",
+  "license": "ISC"
+}

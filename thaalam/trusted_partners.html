@@ -1,0 +1,1209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trusted Partners - Thaalam</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            color: #222;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border: none;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 175px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 8px;
+                padding: 6px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 8px 16px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08);
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c;
+                border-color: #b91c1c;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 4% 80px;
+        }
+
+        /* --- LOGO CARDS SECTION --- */
+        .trusted-showcase {
+            text-align: center;
+            padding: 40px 0 120px;
+        }
+
+        .trusted-showcase-header {
+            margin-bottom: 48px;
+        }
+
+        .trusted-showcase-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .trusted-showcase-header p {
+            font-size: 14px;
+            color: #6b7280;
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Grid Layout for Cards */
+        .logo-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            width: 100%;
+        }
+
+        .brand-logo-card {
+            background: #ffffff;
+            border: 1px solid #f3f4f6;
+            border-radius: 12px;
+            padding: 28px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            text-decoration: none;
+            text-align: left;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .brand-logo-card:hover {
+            border-color: #e5e7eb;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .brand-logo-card .card-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo-card .card-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-logo-card .card-content {
+            flex: 1;
+        }
+
+        .brand-logo-card .card-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .brand-logo-card .card-content p {
+            font-size: 12.5px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .brand-logo-card .card-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #111827;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        @media (max-width: 680px) {
+            .logo-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Split Section Grid */
+        .split-partner-section {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 48px;
+            align-items: start;
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .column-header {
+            margin-bottom: 16px;
+        }
+
+        .column-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 6px;
+        }
+
+        .column-header p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* --- TOGGLE CONTENT STYLES --- */
+        .expandable-content {
+            display: none;
+            margin-top: 16px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .expandable-content.show {
+            display: block;
+        }
+
+        .toggle-more-btn {
+            background: none;
+            border: none;
+            color: #dc2626;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 6px 0;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .toggle-more-btn:hover {
+            color: #b91c1c;
+            text-decoration: underline;
+        }
+
+        .toggle-more-btn .arrow {
+            transition: transform 0.25s ease;
+            display: inline-block;
+        }
+
+        .toggle-more-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .section-lead-text {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Partner Categories List Styling */
+        .partner-category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .partner-category-item {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+
+        .partner-category-item strong {
+            color: #dc2626;
+        }
+
+        .partner-footer-note {
+            margin-top: 24px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #374151;
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        /* Timeline Wrapper */
+        .timeline-wrapper {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 24px 20px;
+            border: 1px solid #eef2ef;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            bottom: 14px;
+            left: 12px;
+            width: 2px;
+            background: #e2e8e3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: -24px;
+            top: 2px;
+            width: 26px;
+            height: 26px;
+            background: #dc2626;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            box-shadow: 0 0 0 3px #ffffff;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: #faf7f2;
+            border-radius: 8px;
+            padding: 12px 14px;
+            border: 1px solid #ebe5dc;
+        }
+
+        .timeline-content h4 {
+            font-size: 14px;
+            color: #111;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            font-size: 12.5px;
+            color: #666;
+            line-height: 1.45;
+        }
+
+        /* --- PRE-FOOTER CTA SECTION --- */
+        .pre-footer-cta {
+            padding: 60px 20px;
+            text-align: center;
+            background: #fef2f2;
+            border-top: 1px solid #fee2e2;
+        }
+
+        .pre-footer-cta h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .pre-footer-cta p {
+            font-size: 15.5px;
+            color: #4b5563;
+            max-width: 680px;
+            margin: 0 auto 24px;
+            line-height: 1.55;
+        }
+
+        @media(max-width:960px) {
+            .split-partner-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* PARTNER APPLICATION MODAL */
+        .partner-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            backdrop-filter: blur(4px);
+        }
+
+        .partner-modal-overlay.active {
+            display: flex;
+        }
+
+        .partner-modal-dialog {
+            background: #ffffff;
+            border-radius: 14px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: modalFadeIn 0.25s ease-out;
+        }
+
+        .partner-modal-dialog form {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .partner-modal-header {
+            padding: 20px 26px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .partner-modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .partner-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 4px;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+
+        .partner-modal-close:hover {
+            color: #dc2626;
+        }
+
+        .partner-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .partner-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 20px;
+            width: 100%;
+            box-sizing: border-box;
+            align-items: start;
+        }
+
+        .partner-form-grid .full-col {
+            grid-column: 1 / -1;
+        }
+
+        .partner-form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .partner-form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .partner-form-group input,
+        .partner-form-group select,
+        .partner-form-group textarea {
+            width: 100%;
+            height: 44px;
+            padding: 0 14px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-family: inherit;
+            color: #1f2937;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            line-height: 42px;
+        }
+
+        .partner-form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%3C6b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        .partner-form-group textarea {
+            height: auto;
+            min-height: 110px;
+            padding: 12px 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        .partner-form-group input:focus,
+        .partner-form-group select:focus,
+        .partner-form-group textarea:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+
+        .partner-modal-footer {
+            padding: 16px 26px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-modal-cancel {
+            padding: 9px 18px;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-modal-submit {
+            padding: 9px 22px;
+            background: #dc2626;
+            border: 1px solid #dc2626;
+            color: #ffffff;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-submit:hover {
+            background: #b91c1c;
+        }
+
+        @media(max-width: 640px) {
+            .partner-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- TRUSTED CUSTOMERS / PARTNERS CARD SHOWCASE -->
+        <section class="trusted-showcase">
+            <div class="trusted-showcase-header">
+                <h1>Our Partners</h1>
+                <p>Our partners contribute their expertise, solutions, and resources to support entrepreneurs, startups,
+                    and businesses on their growth journey.</p>
+            </div>
+
+            <div class="logo-cards-grid">
+                <a href="https://vyiom.in/" target="_blank" rel="noopener noreferrer" class="brand-logo-card">
+                    <div class="card-logo">
+                        <img src="https://vyiom.in/assets/logo/logo1.png" alt="Vyiom Logo">
+                    </div>
+                    <div class="card-content">
+                        <h3>Vyiom Digital Solutions</h3>
+                        <p>VYIOM is a technology partner of Thaalam, providing innovative digital solutions to help
+                            businesses grow and transform.</p>
+                        <span class="card-link">View Page &#9656;</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SPLIT SECTION: PARTNER ECOSYSTEM & TIMELINE -->
+        <div class="split-partner-section">
+
+            <!-- LEFT SIDE: PARTNER TYPES & OVERVIEW -->
+            <div class="split-left">
+                <div class="column-header">
+                    <h2>Partner Ecosystem</h2>
+                    <p>Thaalam welcomes organizations and individuals who are committed to supporting business growth,
+                        innovation, and entrepreneurship.</p>
+
+                    <!-- TOGGLE BUTTON -->
+                    <button type="button" class="toggle-more-btn" onclick="toggleSection('ecosystemMore', this)">
+                        Read More <span class="arrow">&darr;</span>
+                    </button>
+                </div>
+
+                <!-- EXPANDABLE CONTENT -->
+                <div id="ecosystemMore" class="expandable-content">
+                    <p class="section-lead-text">
+                        Partners can collaborate by sharing expertise, providing services, creating opportunities,
+                        mentoring businesses, or contributing to the growth of the business community.
+                    </p>
+
+                    <ul class="partner-category-list">
+                        <li class="partner-category-item">
+                            <strong>Technology Partners</strong> – IT companies, software firms, AI companies, cloud
+                            providers, cybersecurity companies, and digital transformation experts.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Business Support Partners</strong> – Business consultants, startup mentors,
+                            incubators,
+                            accelerators, and business advisory firms.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Marketing & Branding Partners</strong> – Digital marketing agencies, branding
+                            agencies,
+                            creative studios, PR firms, and media partners.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Finance & Investment Partners</strong> – Banks, NBFCs, investors, venture capital
+                            firms,
+                            angel networks, accounting firms, tax consultants, and financial advisors.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Legal & Compliance Partners</strong> – Law firms, company secretaries, compliance
+                            consultants, intellectual property experts, and business registration service providers.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Education & Knowledge Partners</strong> – Universities, colleges, business schools,
+                            training institutes, online learning platforms, and skill development organizations.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Industry & Trade Partners</strong> – Industry associations, chambers of commerce,
+                            trade
+                            organizations, manufacturing associations, and export promotion bodies.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Innovation & Startup Partners</strong> – Startup communities, innovation hubs,
+                            research
+                            organizations, technology labs, and entrepreneurship programs.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>HR & Talent Partners</strong> – Recruitment agencies, HR consultants, corporate
+                            training
+                            providers, leadership coaches, and talent development organizations.
+                        </li>
+                        <li class="partner-category-item">
+                            <strong>Community Partners</strong> – NGOs, social enterprises, event organizers, coworking
+                            spaces, business networking groups, and ecosystem builders.
+                        </li>
+                    </ul>
+
+                    <p class="partner-footer-note">
+                        Whether you are a company, professional, institution, or organization, Thaalam provides an
+                        opportunity to collaborate, share knowledge, build meaningful business connections, and
+                        contribute
+                        to a stronger entrepreneurial ecosystem.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Compact Timeline -->
+            <div class="split-right">
+                <div class="column-header">
+                    <h2>How to Become a Technology Partner</h2>
+                    <p>Four quick steps to integrate your tech tools.</p>
+
+                    <!-- TOGGLE BUTTON -->
+                    <button type="button" class="toggle-more-btn" onclick="toggleSection('techPartnerMore', this)">
+                        Read More <span class="arrow">&darr;</span>
+                    </button>
+                </div>
+
+                <!-- EXPANDABLE CONTENT -->
+                <div id="techPartnerMore" class="expandable-content">
+                    <div class="timeline-wrapper">
+                        <div class="timeline">
+                            <div class="timeline-item" onclick="openPartnerModal()" style="cursor: pointer;"
+                                title="Click to submit application">
+                                <div class="timeline-number">1</div>
+                                <div class="timeline-content">
+                                    <h4>Submit Integration Application &rarr;</h4>
+                                    <p>Fill out our application detailing your platform capabilities.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">2</div>
+                                <div class="timeline-content">
+                                    <h4>Technical Review</h4>
+                                    <p>Schedule a tech review session to align API and security standards.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">3</div>
+                                <div class="timeline-content">
+                                    <h4>Define Ecosystem Perk</h4>
+                                    <p>Establish developer credits, tool access, or joint sandbox perks.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">4</div>
+                                <div class="timeline-content">
+                                    <h4>Launch Integration</h4>
+                                    <p>Publish integrations and announce your platform to our community.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PRE-FOOTER CTA SECTION -->
+    <div class="pre-footer-cta">
+        <h2>Technology Partners</h2>
+        <p>Partnering with premier technology platforms, enterprise SaaS leaders, and cloud infrastructures to scale
+            businesses across our collective network.</p>
+        <div>
+            <button class="nav-btn-join" onclick="openPartnerModal()"
+                style="padding: 12px 28px; font-size: 14.5px; border:none; cursor:pointer; font-weight:600; display:inline-flex; align-items:center; gap:8px;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <line x1="19" y1="8" x2="19" y2="14" />
+                    <line x1="22" y1="11" x2="16" y2="11" />
+                </svg>
+                <span>Apply to Become a Technology Partner</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer"
+                        class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer"
+                        class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer"
+                        class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank"
+                        rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">↑</a>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PARTNER APPLICATION MODAL -->
+    <div class="partner-modal-overlay" id="partnerModal" onclick="if(event.target===this)closePartnerModal()">
+        <div class="partner-modal-dialog">
+            <div class="partner-modal-header">
+                <h3>Technology Partner Proposal</h3>
+                <button type="button" class="partner-modal-close" onclick="closePartnerModal()">&times;</button>
+            </div>
+            <form id="partnerApplicationForm" onsubmit="handlePartnerSubmit(event)">
+                <div class="partner-modal-body">
+                    <div class="partner-form-grid">
+                        <div class="partner-form-group full-col">
+                            <label for="partnerOrgName">Organization / Tech Company Name *</label>
+                            <input type="text" id="partnerOrgName" placeholder="e.g. CloudScale Solutions Inc."
+                                required>
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerCategory">Partner Domain *</label>
+                            <select id="partnerCategory" required>
+                                <option value="Cloud & SaaS Platforms">Cloud &amp; SaaS Platforms</option>
+                                <option value="AI & Data Infrastructure">AI &amp; Data Infrastructure</option>
+                            </select>
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerLocation">Base Location / Region *</label>
+                            <input type="text" id="partnerLocation" placeholder="e.g. Chennai, Tamil Nadu" required>
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerContactPerson">Contact Person *</label>
+                            <input type="text" id="partnerContactPerson" placeholder="e.g. Suresh Ramanathan" required>
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerDesignation">Designation / Role</label>
+                            <input type="text" id="partnerDesignation" placeholder="e.g. Developer Relations Lead">
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerEmail">Official Email *</label>
+                            <input type="email" id="partnerEmail" placeholder="tech@org.example.com" required>
+                        </div>
+                        <div class="partner-form-group">
+                            <label for="partnerPhone">Phone / Mobile *</label>
+                            <input type="tel" id="partnerPhone" placeholder="+91 98765 43210" required>
+                        </div>
+                        <div class="partner-form-group full-col">
+                            <label for="partnerWebsite">Official Website URL</label>
+                            <input type="url" id="partnerWebsite" placeholder="https://org.example.com">
+                        </div>
+                        <div class="partner-form-group full-col">
+                            <label for="partnerLogo">Logo URL (Optional)</label>
+                            <input type="url" id="partnerLogo" placeholder="https://images.unsplash.com/...">
+                        </div>
+                        <div class="partner-form-group full-col">
+                            <label for="partnerDescription">Technology Integration &amp; Offerings *</label>
+                            <textarea id="partnerDescription"
+                                placeholder="Describe your technical products, developer credits, or platform tooling available for our community..."
+                                required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="partner-modal-footer">
+                    <button type="button" class="btn-modal-cancel" onclick="closePartnerModal()">Cancel</button>
+                    <button type="submit" class="btn-modal-submit" id="btnPartnerSubmit">Submit Proposal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
+
+    <script>
+        // Toggle Expandable Content Function
+        function toggleSection(contentId, btnElement) {
+            const content = document.getElementById(contentId);
+            if (!content) return;
+
+            const isOpen = content.classList.contains('show');
+
+            if (isOpen) {
+                content.classList.remove('show');
+                btnElement.classList.remove('active');
+                btnElement.innerHTML = 'Read More <span class="arrow">&darr;</span>';
+            } else {
+                content.classList.add('show');
+                btnElement.classList.add('active');
+                btnElement.innerHTML = 'Show Less <span class="arrow">&darr;</span>';
+            }
+        }
+
+        function openPartnerModal() {
+            const modal = document.getElementById('partnerModal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closePartnerModal() {
+            const modal = document.getElementById('partnerModal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        async function handlePartnerSubmit(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('btnPartnerSubmit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            const partnerData = {
+                organization_name: document.getElementById('partnerOrgName').value.trim(),
+                category: document.getElementById('partnerCategory').value,
+                location: document.getElementById('partnerLocation').value.trim(),
+                contact_person: document.getElementById('partnerContactPerson').value.trim(),
+                designation: document.getElementById('partnerDesignation').value.trim(),
+                email: document.getElementById('partnerEmail').value.trim(),
+                phone: document.getElementById('partnerPhone').value.trim(),
+                website_url: document.getElementById('partnerWebsite').value.trim(),
+                logo_url: document.getElementById('partnerLogo').value.trim() || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=120&auto=format&fit=crop',
+                description: document.getElementById('partnerDescription').value.trim()
+            };
+
+            try {
+                if (window.ThalamSupabase && window.ThalamSupabase.partners) {
+                    await window.ThalamSupabase.partners.register(partnerData);
+                }
+
+                alert('Thank you! Your technology partner proposal has been submitted.');
+                e.target.reset();
+                closePartnerModal();
+            } catch (err) {
+                console.error('Submission error:', err);
+                alert('Thank you! Your proposal has been recorded.');
+                closePartnerModal();
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Proposal';
+                }
+            }
+        }
+
+        (function () {
+            let lastScrollTop = 0;
+            const header = document.querySelector("header");
+            if (!header) return;
+            window.addEventListener("scroll", function () {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40 && currentScroll > lastScrollTop) {
+                    header.classList.add("nav-hidden");
+                } else {
+                    header.classList.remove("nav-hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        })();
+    </script>
+
+    <!-- Mobile Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

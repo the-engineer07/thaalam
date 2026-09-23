@@ -1,0 +1,1392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/logo2.png">
+    <meta name="description" content="Thaalam Support & Solutions. Submit your business support request for technology, consulting, legal, finance, and more.">
+    <title>Support & Assistance - Thaalam</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #222;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 34px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a,
+        .dropdown-btn {
+            text-decoration: none;
+            color: #2b2b2b;
+            font-weight: 500;
+            font-size: 13.5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s ease;
+        }
+
+        nav a:hover,
+        .dropdown:hover .dropdown-btn {
+            color: #dc2626;
+        }
+
+        /* Active Nav item */
+        nav a.active-link {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 185px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eeeeee;
+            border-radius: 8px;
+            padding: 6px 0;
+            z-index: 1001;
+        }
+
+        .dropdown-menu a {
+            color: #444;
+            padding: 8px 16px;
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .arrow-down {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: rotate(45deg);
+            margin-top: -3px;
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown:hover .arrow-down {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .nav-btn-contact {
+            background-color: transparent;
+            color: #dc2626;
+            padding: 8px 18px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+            border: 1.5px solid #dc2626;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .nav-btn-contact:hover {
+            background: rgba(220, 38, 38, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn-join {
+            background-color: #dc2626;
+            color: #ffffff !important;
+            padding: 8px 18px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+            border: 1.5px solid #dc2626;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .nav-btn-join:hover {
+            background-color: #b91c1c;
+            border-color: #b91c1c;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 55px 20px 30px;
+            text-align: center;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #111111;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 15.5px;
+            color: #555555;
+            line-height: 1.65;
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .main-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 10px 20px 80px;
+        }
+
+        /* Support Filter / Quick Category Pills */
+        .service-pills-wrap {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .service-pills-wrap h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .pills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .service-pill-btn {
+            background: #ffffff;
+            border: 1px solid #e2d9cf;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-pill-btn:hover {
+            border-color: #dc2626;
+            color: #dc2626;
+            background: #fef2f2;
+            transform: translateY(-2px);
+        }
+
+        .service-pill-btn.active {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+        }
+
+        /* Two-Column Layout */
+        .support-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* Support Form Card */
+        .support-form-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e8e2d8;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .section-legend {
+            font-size: 18px;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #faf7f2;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Dynamic Company Fields Styling */
+        .company-field-wrap {
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .company-field-wrap.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #222;
+        }
+
+        label span.required {
+            color: #c92a2a;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dcd5ca;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #222;
+            background: #ffffff;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        .btn-submit-support {
+            width: 100%;
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
+            padding: 15px 24px;
+            font-size: 15.5px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-submit-support:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(220, 38, 38, 0.35);
+        }
+
+        /* Sidebar / Help Cards */
+        .support-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .sidebar-card {
+            background: #ffffff;
+            border: 1px solid #e8e2d8;
+            border-radius: 14px;
+            padding: 24px 22px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .sidebar-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-card p {
+            font-size: 13.5px;
+            color: #666;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+
+        .sidebar-channels-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sidebar-channels-list li {
+            font-size: 13px;
+            color: #444;
+        }
+
+        .sidebar-channels-list a {
+            color: #dc2626;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sidebar-channels-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Flowchart Styling & Animations */
+        .flowchart-container {
+            position: relative;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .flowchart-container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 31px;
+            width: 2px;
+            background: linear-gradient(180deg, #dc2626 0%, rgba(220, 38, 38, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .flow-step {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateX(-15px);
+            animation: flowSlideIn 0.5s ease forwards;
+        }
+
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-step:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .flow-step:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .flow-step:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .flow-step:nth-child(4) {
+            animation-delay: 0.55s;
+        }
+
+        .flow-step:nth-child(5) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes flowSlideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .flow-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px #ffffff;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .flow-content {
+            background: #faf7f2;
+            border: 1px solid #e8e2d8;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #333;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .flow-step:hover .flow-badge {
+            background: #dc2626;
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+        .flow-step:hover .flow-content {
+            background: #ffffff;
+            border-color: #dc2626;
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive FAQ Accordion Section */
+        .faq-section {
+            margin-top: 70px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .faq-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .faq-header p {
+            font-size: 14.5px;
+            color: #666;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #e8e2d8;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .faq-item.active {
+            border-color: #dc2626;
+        }
+
+        .faq-toggle-btn {
+            width: 100%;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 700;
+            color: #111;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-toggle-btn:hover {
+            color: #dc2626;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.35s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 300px;
+            padding: 0 24px 20px 24px;
+        }
+
+        .faq-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Modal Confirmation */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            max-width: 520px;
+            width: 100%;
+            padding: 36px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-success-icon {
+            width: 60px;
+            height: 60px;
+            background: #fef2f2;
+            color: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 18px;
+            border: 2px solid #dc2626;
+        }
+
+        .modal-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .modal-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .ticket-box {
+            background: #faf7f2;
+            border: 1px dashed #dcd5ca;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 24px;
+        }
+
+        .btn-modal-close {
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
+            padding: 11px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-modal-close:hover {
+            background: #b91c1c;
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .support-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top,
+            .footer-middle {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .support-form-card {
+                padding: 24px 18px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="css/mobile-nav.css">
+    <link rel="stylesheet" href="css/responsive-pages.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="index.html" class="logo">
+            <img src="images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="thaalam/about.html">About</a>
+                    <a href="thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="companies/Business_Directory.html">Find Businesses</a>
+                    <a href="companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="support.html" class="nav-btn-contact">Connect</a>
+            <a href="join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Solutions to Business &amp; Support Request</h1>
+        <p>Thaalam provides practical, end-to-end solutions to business challenges—from company incorporation and legal
+            IP filing to tax compliance, digital transformation, custom software development, and market expansion.
+            Select your required solution and submit your request below.</p>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+
+        <!-- Quick Category Select Pills -->
+        <div class="service-pills-wrap">
+            <h3>Select a Support Category</h3>
+            <div class="pills-grid">
+                <button type="button" class="service-pill-btn active"
+                    data-service="Technology & Digital Solutions">Technology & Digital Solutions</button>
+                <button type="button" class="service-pill-btn" data-service="Business Consulting & Advisory">Business
+                    Consulting & Advisory</button>
+                <button type="button" class="service-pill-btn" data-service="Marketing & Branding">Marketing &
+                    Branding</button>
+                <button type="button" class="service-pill-btn" data-service="Finance & Accounting">Finance &
+                    Accounting</button>
+                <button type="button" class="service-pill-btn" data-service="Legal & Compliance">Legal &
+                    Compliance</button>
+                <button type="button" class="service-pill-btn" data-service="HR & Talent Solutions">HR & Talent
+                    Solutions</button>
+                <button type="button" class="service-pill-btn"
+                    data-service="Manufacturing & Industrial Solutions">Manufacturing & Industrial</button>
+                <button type="button" class="service-pill-btn" data-service="Partnership & Collaboration">Partnership &
+                    Collaboration</button>
+            </div>
+        </div>
+
+        <!-- Layout: Form + Sidebar Assistance -->
+        <div class="support-layout">
+
+            <!-- Form Card -->
+            <div class="support-form-card">
+                <form id="serviceSupportForm" onsubmit="handleSupportSubmit(event)">
+
+                    <div class="section-legend">Applicant &amp; Organization Details</div>
+
+                    <div class="form-group">
+                        <label for="userType">User Type <span class="required">*</span></label>
+                        <select id="userType" required onchange="toggleCompanyField(this.value)">
+                            <option value="Individual">Individual</option>
+                            <option value="Company">Company</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" placeholder="e.g. Anand Kumar" required>
+                    </div>
+
+                    <!-- Dynamic Fields for Company (Company Name & Designation / Role) -->
+                    <div class="company-field-wrap" id="companyFieldGroup">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="companyName">Company Name <span class="required">*</span></label>
+                                <input type="text" id="companyName" placeholder="e.g. Apex Tech Solutions">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="designation">Designation / Role <span class="required">*</span></label>
+                                <input type="text" id="designation"
+                                    placeholder="e.g. Founder / Director / Operations Manager">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="supportEmail">Email <span class="required">*</span></label>
+                            <input type="email" id="supportEmail" placeholder="e.g. anand@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supportPhone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="supportPhone" placeholder="e.g. +91 98765 43210" required>
+                        </div>
+                    </div>
+
+                    <!-- Location Fields: State, District, City -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">State <span class="required">*</span></label>
+                            <input type="text" id="state" placeholder="e.g. Tamil Nadu" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="district">District <span class="required">*</span></label>
+                            <input type="text" id="district" placeholder="e.g. Chennai" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City <span class="required">*</span></label>
+                            <input type="text" id="city" placeholder="e.g. Chennai" required>
+                        </div>
+                    </div>
+
+                    <div class="section-legend" style="margin-top: 25px;">Requirement Details</div>
+
+                    <div class="form-group">
+                        <label for="serviceCategory">Primary Support Category <span class="required">*</span></label>
+                        <select id="serviceCategory" required onchange="syncCategoryPills(this.value)">
+                            <option value="Technology & Digital Solutions">Technology & Digital Solutions</option>
+                            <option value="Business Consulting & Advisory">Business Consulting & Advisory</option>
+                            <option value="Marketing & Branding">Marketing & Branding</option>
+                            <option value="Finance & Accounting">Finance & Accounting</option>
+                            <option value="Legal & Compliance">Legal & Compliance</option>
+                            <option value="HR & Talent Solutions">HR & Talent Solutions</option>
+                            <option value="Design & Creative Services">Design & Creative Services</option>
+                            <option value="Sales & Business Growth">Sales & Business Growth</option>
+                            <option value="Training & Education">Training & Education</option>
+                            <option value="Manufacturing & Industrial Solutions">Manufacturing & Industrial Solutions
+                            </option>
+                            <option value="Engineering Services">Engineering Services</option>
+                            <option value="Construction & Real Estate">Construction & Real Estate</option>
+                            <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
+                            <option value="Retail & Consumer Solutions">Retail & Consumer Solutions</option>
+                            <option value="Agriculture & Food Solutions">Agriculture & Food Solutions</option>
+                            <option value="Partnership & Collaboration">Partnership & Collaboration</option>
+                            <option value="Other Supports">Other Supports</option>
+                        </select>
+                    </div>
+
+                    <!-- Estimated Budget Field -->
+                    <div class="form-group" id="budgetFieldGroup">
+                        <label for="estimatedBudget">Estimated Budget (Optional)</label>
+                        <select id="estimatedBudget">
+                            <option value="">Select Estimated Budget Range</option>
+                            <option value="Under ₹50,000">Under ₹50,000</option>
+                            <option value="₹50,000 - ₹1,50,000">₹50,000 - ₹1,50,000</option>
+                            <option value="₹1,50,000 - ₹5,00,000">₹1,50,000 - ₹5,00,000</option>
+                            <option value="₹5,00,000 - ₹10,00,000">₹5,00,000 - ₹10,00,000</option>
+                            <option value="Above ₹10,00,000">Above ₹10,00,000</option>
+                            <option value="Flexible / To be discussed">Flexible / To be discussed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceDetails">Requirement Details & Description Message <span
+                                class="required">*</span></label>
+                        <textarea id="serviceDetails"
+                            placeholder="Please describe your requirements or message in detail..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-support">
+                        <span>Submit</span> &rarr;
+                    </button>
+                </form>
+            </div>
+
+            <!-- Sidebar Assistance -->
+            <div class="support-sidebar">
+
+                <!-- Card 1: Fast Response Desk -->
+                <div class="sidebar-card">
+                    <h4>Dedicated Support Desk</h4>
+                    <p>Our ecosystem coordinators review support inquiries daily to pair members with certified
+                        providers and advisors.</p>
+                    <ul class="sidebar-channels-list">
+                        <li>
+                            <div>
+                                <strong>Email Support:</strong><br>
+                                <a href="mailto:support@thaalam.org">support@thaalam.org</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Direct Helpline:</strong><br>
+                                <a href="tel:+914440008425">+91 (044) 4000-8425</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Hours of Operation:</strong><br>
+                                Mon - Sat: 9:30 AM – 6:30 PM IST
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: What Happens Next? (Animated Flowchart) -->
+                <div class="sidebar-card">
+                    <h4>What Happens Next?</h4>
+                    <div class="flowchart-container">
+                        <div class="flow-step">
+                            <div class="flow-badge">1</div>
+                            <div class="flow-content">Request ticket generated instantly</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-badge">2</div>
+                            <div class="flow-content">Expert match within 24 business hours</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-badge">3</div>
+                            <div class="flow-content">Free discovery consultation call</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-badge">4</div>
+                            <div class="flow-content">Scope, cost estimation & milestones</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-badge">5</div>
+                            <div class="flow-content">Ecosystem verified quality guarantee</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Interactive FAQ Accordion Section -->
+        <div class="faq-section">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our support process.</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button type="button" class="faq-toggle-btn" onclick="toggleFaq(this)">
+                        <span>Is there any fee to submit a support request?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>No. Submitting a support request and having an initial discovery call with our coordinator is
+                            completely free for all community members.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-toggle-btn" onclick="toggleFaq(this)">
+                        <span>How quickly will someone reach out to me?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Our support desk reviews every form promptly. You will receive an initial email confirmation
+                            followed by direct outreach within 24 business hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-toggle-btn" onclick="toggleFaq(this)">
+                        <span>Are support providers verified by Thaalam?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes. All professionals and agencies in our ecosystem are vetted for credential authenticity,
+                            past portfolio performance, and business compliance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-toggle-btn" onclick="toggleFaq(this)">
+                        <span>Can I modify or cancel my support inquiry?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes. You can reply directly to your confirmation email or message our support desk with your
+                            Ticket Reference ID to adjust your scope.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Confirmation Modal Popup -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+            <div class="modal-success-icon">✓</div>
+            <h3>Support Request Submitted!</h3>
+            <p>Thank you, <strong id="resName">Valued Member</strong>. Your support request has been registered in the
+                Thaalam Ecosystem desk.</p>
+
+            <div class="ticket-box">
+                Ticket Reference: <span id="resTicket">THAL-SRV-9821</span>
+            </div>
+
+            <p style="font-size: 13px; color: #777;">A copy of your submission details has been sent to <span
+                    id="resEmail" style="color: #111; font-weight: 600;"></span>. Our specialist will connect with you
+                via your preferred channel within 24 hours.</p>
+
+            <button class="btn-modal-close" onclick="closeSuccessModal()">Done & Return</button>
+        </div>
+    </div>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="index.html">Homepage</a>
+                    <a href="resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="thaalam/about.html">About Us</a>
+                    <a href="companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="support.html">Contacts</a>
+                    <a href="resources/Register.html">Register as Professional</a>
+                    <a href="companies/Business_Directory.html">Business Directory</a>
+                    <a href="join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Auto-hide navigation on scroll down
+        (function () {
+            const header = document.getElementById("siteHeader");
+            let lastScrollTop = 0;
+            window.addEventListener("scroll", function () {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40 && currentScroll > lastScrollTop) {
+                    header.classList.add("nav-hidden");
+                } else {
+                    header.classList.remove("nav-hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        })();
+
+        // User Type Conditional Display for Company Name & Designation
+        function toggleCompanyField(val) {
+            const companyWrap = document.getElementById('companyFieldGroup');
+            const companyInput = document.getElementById('companyName');
+            const designationInput = document.getElementById('designation');
+
+            if (val === 'Company') {
+                companyWrap.classList.add('active');
+                companyInput.setAttribute('required', 'true');
+                designationInput.setAttribute('required', 'true');
+            } else {
+                companyWrap.classList.remove('active');
+                companyInput.removeAttribute('required');
+                designationInput.removeAttribute('required');
+                companyInput.value = '';
+                designationInput.value = '';
+            }
+        }
+
+        // Category Pills Click Handling & Budget Toggle
+        const pillButtons = document.querySelectorAll('.service-pill-btn');
+        const categorySelect = document.getElementById('serviceCategory');
+
+        pillButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                pillButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const chosenService = this.getAttribute('data-service');
+                for (let i = 0; i < categorySelect.options.length; i++) {
+                    if (categorySelect.options[i].value === chosenService) {
+                        categorySelect.selectedIndex = i;
+                        break;
+                    }
+                }
+
+                syncCategoryPills(chosenService);
+                document.getElementById('serviceSupportForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        function syncCategoryPills(val) {
+            pillButtons.forEach(btn => {
+                if (btn.getAttribute('data-service') === val) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Hide/Show Estimated Budget field if Partnership & Collaboration is selected
+            const budgetGroup = document.getElementById('budgetFieldGroup');
+            const budgetSelect = document.getElementById('estimatedBudget');
+
+            if (val === 'Partnership & Collaboration') {
+                budgetGroup.style.display = 'none';
+                budgetSelect.value = '';
+            } else {
+                budgetGroup.style.display = 'block';
+            }
+        }
+
+        // FAQ Interactive Accordion
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const isOpen = item.classList.contains('active');
+
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+
+            // Toggle selected item
+            if (!isOpen) {
+                item.classList.add('active');
+            }
+        }
+
+        // Secure Form Submission Handler with Google Apps Script Integration
+        function handleSupportSubmit(e) {
+            e.preventDefault();
+
+            // Gather form values safely
+            const formData = {
+                userType: document.getElementById('userType').value,
+                fullName: document.getElementById('fullName').value.trim(),
+                companyName: document.getElementById('companyName').value.trim(),
+                designation: document.getElementById('designation').value.trim(),
+                supportEmail: document.getElementById('supportEmail').value.trim(),
+                supportPhone: document.getElementById('supportPhone').value.trim(),
+                state: document.getElementById('state').value.trim(),
+                district: document.getElementById('district').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                serviceCategory: document.getElementById('serviceCategory').value,
+                estimatedBudget: document.getElementById('estimatedBudget').value,
+                serviceDetails: document.getElementById('serviceDetails').value.trim()
+            };
+
+            const fallbackTicket = "THAL-SRV-" + Math.floor(1000 + Math.random() * 9000);
+
+            // Auto-sync into Thaalam Admin Inquiries Queue
+            try {
+                const existingInquiries = JSON.parse(localStorage.getItem('thalam_admin_inquiries') || '[]');
+                const newInquiry = {
+                    id: fallbackTicket,
+                    type: formData.userType === 'Company' ? 'Company Support' : (formData.userType === 'Professional' ? 'Professional Support' : 'Service Support'),
+                    client_name: formData.fullName,
+                    company: formData.companyName || (formData.userType === 'Company' ? formData.fullName : 'Individual Applicant'),
+                    email: formData.supportEmail,
+                    phone: formData.supportPhone,
+                    category: formData.serviceCategory,
+                    budget: formData.estimatedBudget || 'Flexible / To be discussed',
+                    status: 'New Lead',
+                    location: [formData.city, formData.district, formData.state].filter(Boolean).join(', '),
+                    message: formData.serviceDetails,
+                    created_at: new Date().toISOString()
+                };
+                existingInquiries.unshift(newInquiry);
+                localStorage.setItem('thalam_admin_inquiries', JSON.stringify(existingInquiries));
+            } catch (err) {
+                console.warn('Storage sync warning:', err);
+            }
+
+            // Replace with your deployed Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzgu0xGYCgtf_G-ojbGYpn19y6DVGkAZaxEdGV2qPIrPrbNqjrDGKHcjkp4hBUIPUHi/exec';
+
+            // Send data securely via POST
+            const paramsPayload = new URLSearchParams();
+            for (const k in formData) {
+                if (formData[k] !== undefined && formData[k] !== null) {
+                    paramsPayload.append(k, formData[k]);
+                }
+            }
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: paramsPayload.toString()
+            })
+                .then(() => {
+                    document.getElementById('resName').innerText = formData.fullName;
+                    document.getElementById('resEmail').innerText = formData.supportEmail;
+                    document.getElementById('resTicket').innerText = fallbackTicket;
+                    document.getElementById('successModal').classList.add('active');
+                })
+                .catch(error => {
+                    console.info('Submission completed locally:', error.message);
+                    document.getElementById('resName').innerText = formData.fullName;
+                    document.getElementById('resEmail').innerText = formData.supportEmail;
+                    document.getElementById('resTicket').innerText = fallbackTicket;
+                    document.getElementById('successModal').classList.add('active');
+                });
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.getElementById('serviceSupportForm').reset();
+            toggleCompanyField('Individual');
+            syncCategoryPills(categorySelect.value);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="js/mobile-nav.js"></script>
+</body>
+
+</html>

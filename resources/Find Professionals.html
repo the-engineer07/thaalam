@@ -1,0 +1,2010 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Professionals - Thaalam</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            color: #222;
+            background: #ffffff;
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 2%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 175px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 8px;
+                padding: 6px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 8px 16px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08);
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c;
+                border-color: #b91c1c;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Header Banner / Title Section */
+        .page-header {
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #333;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .page-header p a {
+            color: #111;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* Main Directory Layout */
+        .directory-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 20px 80px;
+        }
+
+        /* Integrated Search Box & Filter Wrapper */
+        .search-box-wrap {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 4px 6px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box-wrap:focus-within {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+        }
+
+        .btn-toggle-filters {
+            background: transparent;
+            color: #dc2626;
+            border: none;
+            border-right: 1px solid #e0e0e0;
+            padding: 8px 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            white-space: nowrap;
+        }
+
+        .btn-toggle-filters:hover {
+            background: rgba(220, 38, 38, 0.08);
+            border-radius: 6px 0 0 6px;
+        }
+
+        .search-box-wrap input {
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            background: transparent;
+            margin-bottom: 0;
+        }
+
+        /* Left Sidebar Drawer Styling */
+        .filters-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .filters-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filters-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 340px;
+            max-width: 85%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2000;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filters-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            font-size: 18px;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .drawer-close-btn {
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .drawer-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Checkbox Accordion Sections & Dropdown Styles */
+        .checkbox-accordion {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .checkbox-accordion summary {
+            padding: 12px 14px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #dc2626;
+            cursor: pointer;
+            background: #fdfaf9;
+            user-select: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .checkbox-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .checkbox-accordion summary::after {
+            content: '▲';
+            font-size: 10px;
+            transition: transform 0.25s ease;
+            transform: rotate(90deg);
+            color: #dc2626;
+        }
+
+        .checkbox-accordion[open]>summary::after {
+            transform: rotate(180deg);
+        }
+
+        .checkbox-group-list {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 380px;
+            overflow-y: auto;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        /* Nested Accordion Sub-Dropdown Styles */
+        .category-nested-accordion {
+            border: 1px solid #fecaca;
+            border-radius: 4px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            background: #fffdfd;
+        }
+
+        .category-nested-accordion summary {
+            font-weight: 700;
+            font-size: 12px;
+            color: #dc2626;
+            padding: 8px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #fef2f2;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .category-nested-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .category-nested-accordion summary::after {
+            content: '▲';
+            font-size: 9px;
+            transition: transform 0.25s ease;
+            transform: rotate(90deg);
+            color: #dc2626;
+        }
+
+        .category-nested-accordion[open]>summary::after {
+            transform: rotate(180deg);
+        }
+
+        .nested-checkbox-list {
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #ffffff;
+            border-top: 1px solid #cad5ca;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #dc2626;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item .badge-count {
+            margin-left: auto;
+            background: #fef2f2;
+            color: #dc2626;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 1px 6px;
+            border-radius: 10px;
+        }
+
+        .expand-all-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #fef2f2;
+            border: 1px dashed #dc2626;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #dc2626;
+            cursor: pointer;
+        }
+
+        .expand-all-wrap input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #dc2626;
+            cursor: pointer;
+        }
+
+        .btn-reset-filters {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .btn-reset-filters:hover {
+            background: #dc2626;
+            color: #fff;
+            border-color: #dc2626;
+        }
+
+        .controls-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .results-counter {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .results-counter span {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .sort-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .sort-wrapper select {
+            padding: 7px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            outline: none;
+            font-size: 13.5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Cards Grid Layout */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            align-items: start;
+        }
+
+        /* Profile Card Styling */
+        .profile-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #e8e8e6;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            height: auto;
+        }
+
+        .profile-card:hover {
+            border-color: #d0d0ce;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .profile-main {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-info h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            line-height: 1.25;
+        }
+
+        .profession {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #555;
+            margin-top: 4px;
+            line-height: 1.35;
+        }
+
+        /* Card Actions */
+        .card-actions {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #f2f2f0;
+            margin-top: 16px;
+        }
+
+        .profile-socials {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f4f4f2;
+            border: 1px solid #e0e0dc;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .profile-socials a svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            display: block;
+        }
+
+        .profile-socials a.soc-website:hover {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+
+        .profile-socials a.soc-youtube:hover {
+            background: #FF0000;
+            color: white;
+            border-color: #FF0000;
+        }
+
+        .profile-socials a.soc-linkedin:hover {
+            background: #0A66C2;
+            color: white;
+            border-color: #0A66C2;
+        }
+
+        .profile-socials a.soc-instagram:hover {
+            background: #E4405F;
+            color: white;
+            border-color: #E4405F;
+        }
+
+        .toggle-details-btn {
+            background: transparent;
+            border: none;
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 0;
+            line-height: 1;
+        }
+
+        .toggle-details-btn:hover {
+            text-decoration: underline;
+        }
+
+        .arrow-icon {
+            font-size: 9px;
+            transition: transform 0.2s ease;
+        }
+
+        /* Expandable Details Drawer */
+        .expanded-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+            background: #fafaf8;
+            border-radius: 8px;
+            margin-top: 0;
+            padding: 0 16px;
+        }
+
+        .profile-card.active .expanded-details {
+            max-height: 900px;
+            overflow-y: auto;
+            margin-top: 18px;
+            margin-bottom: 16px;
+            padding: 14px 16px;
+            border: 1px solid #e8eae8;
+            background: #fdfdfc;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .profile-card.active .card-actions {
+            display: flex;
+        }
+
+        .card-specialization {
+            display: none;
+        }
+
+        .profile-card.active .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+        .expanded-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .expanded-details li {
+            font-size: 13px;
+            line-height: 1.5;
+            padding: 8px 10px;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            align-items: baseline;
+            gap: 16px;
+            border-bottom: 1px solid #f0f0ee;
+            border-radius: 4px;
+            transition: background 0.15s ease;
+        }
+
+        .expanded-details li:hover {
+            background: rgba(59, 77, 60, 0.03);
+        }
+
+        .expanded-details li span {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            line-height: 1.5;
+        }
+
+        .expanded-details li strong {
+            font-size: 13.5px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-align: left;
+            line-height: 1.5;
+            word-break: normal;
+        }
+
+        .expanded-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive adjustments for cards and expanded drawer */
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 580px) {
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .expanded-details li {
+                grid-template-columns: 1fr;
+                gap: 4px;
+                padding: 8px 6px;
+            }
+
+            .expanded-details li span {
+                font-size: 11px;
+                color: #dc2626;
+            }
+        }
+
+
+
+        @media(max-width:850px) {
+            .directory-content {
+                flex-direction: column;
+            }
+
+            .filter-sidebar {
+                width: 100%;
+                max-height: none;
+            }
+        }
+
+
+
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 18px;
+            grid-column: 1 / -1;
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- Page Header Banner -->
+    <div class="page-header">
+        <h1>Professional Directory</h1>
+        <p>Connect directly with verified independent lawyers, accountants, tech experts, and business consultants. To
+            register your services, visit <a href="Register.html">Register as Professional</a>.</p>
+    </div>
+
+    <!-- Left Filter Drawer Overlay & Drawer Container -->
+    <div class="filters-drawer-overlay" id="filtersOverlay" onclick="toggleDrawer(false)"></div>
+    <div class="filters-drawer" id="filtersDrawer">
+        <div class="drawer-header">
+            <h3>Filter Professionals</h3>
+            <button class="drawer-close-btn" onclick="toggleDrawer(false)">&times;</button>
+        </div>
+        <div class="drawer-body">
+            <!-- Expand All / Collapse All Checkbox -->
+            <label class="expand-all-wrap">
+                <input type="checkbox" id="expandAllToggle" onchange="toggleExpandAll(this.checked)">
+                Expand All Filter Accordions
+            </label>
+
+            <!-- Filter Section: Experience -->
+            <details class="checkbox-accordion" id="expAccordion">
+                <summary>Experience</summary>
+                <div class="checkbox-group-list">
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="prof-filter-cb" value="exp-10+" onchange="filterProfessionals()">
+                        <span>10+ Years</span>
+                        <span class="badge-count">1</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="prof-filter-cb" value="exp-5-10" onchange="filterProfessionals()">
+                        <span>5 - 10 Years</span>
+                        <span class="badge-count">3</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="prof-filter-cb" value="exp-1-5" onchange="filterProfessionals()">
+                        <span>1 - 5 Years</span>
+                        <span class="badge-count">0</span>
+                    </label>
+                </div>
+            </details>
+
+            <!-- Filter Section: Location -->
+            <details class="checkbox-accordion" id="locAccordion">
+                <summary>Location</summary>
+                <div class="checkbox-group-list">
+                    <!-- Tamil Nadu Nested Selection -->
+                    <details class="category-nested-accordion" id="tnDistricts">
+                        <summary>Tamil Nadu (All Districts)</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-ariyalur"
+                                    onchange="filterProfessionals()">
+                                <span>Ariyalur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-chengalpattu"
+                                    onchange="filterProfessionals()">
+                                <span>Chengalpattu</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-chennai"
+                                    onchange="filterProfessionals()">
+                                <span>Chennai</span>
+                                <span class="badge-count">2</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-coimbatore"
+                                    onchange="filterProfessionals()">
+                                <span>Coimbatore</span>
+                                <span class="badge-count">1</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-cuddalore"
+                                    onchange="filterProfessionals()">
+                                <span>Cuddalore</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-dharmapuri"
+                                    onchange="filterProfessionals()">
+                                <span>Dharmapuri</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-dindigul"
+                                    onchange="filterProfessionals()">
+                                <span>Dindigul</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-erode"
+                                    onchange="filterProfessionals()">
+                                <span>Erode</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-kallakurichi"
+                                    onchange="filterProfessionals()">
+                                <span>Kallakurichi</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-kancheepuram"
+                                    onchange="filterProfessionals()">
+                                <span>Kancheepuram</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-kanniyakumari"
+                                    onchange="filterProfessionals()">
+                                <span>Kanniyakumari</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-karur"
+                                    onchange="filterProfessionals()">
+                                <span>Karur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-krishnagiri"
+                                    onchange="filterProfessionals()">
+                                <span>Krishnagiri</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-madurai"
+                                    onchange="filterProfessionals()">
+                                <span>Madurai</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-mayiladuthurai"
+                                    onchange="filterProfessionals()">
+                                <span>Mayiladuthurai</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-nagapattinam"
+                                    onchange="filterProfessionals()">
+                                <span>Nagapattinam</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-namakkal"
+                                    onchange="filterProfessionals()">
+                                <span>Namakkal</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-perambalur"
+                                    onchange="filterProfessionals()">
+                                <span>Perambalur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-pudukkottai"
+                                    onchange="filterProfessionals()">
+                                <span>Pudukkottai</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-ramanathapuram"
+                                    onchange="filterProfessionals()">
+                                <span>Ramanathapuram</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-ranipet"
+                                    onchange="filterProfessionals()">
+                                <span>Ranipet</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-salem"
+                                    onchange="filterProfessionals()">
+                                <span>Salem</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-sivagangai"
+                                    onchange="filterProfessionals()">
+                                <span>Sivagangai</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-tenkasi"
+                                    onchange="filterProfessionals()">
+                                <span>Tenkasi</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-thanjavur"
+                                    onchange="filterProfessionals()">
+                                <span>Thanjavur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-theni"
+                                    onchange="filterProfessionals()">
+                                <span>Theni</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-thiruvallur"
+                                    onchange="filterProfessionals()">
+                                <span>Thiruvallur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-thiruvarur"
+                                    onchange="filterProfessionals()">
+                                <span>Thiruvarur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-thoothukudi"
+                                    onchange="filterProfessionals()">
+                                <span>Thoothukudi</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-trichy"
+                                    onchange="filterProfessionals()">
+                                <span>Tiruchirappalli</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-tirunelveli"
+                                    onchange="filterProfessionals()">
+                                <span>Tirunelveli</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-tirupattur"
+                                    onchange="filterProfessionals()">
+                                <span>Tirupattur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-tiruppur"
+                                    onchange="filterProfessionals()">
+                                <span>Tiruppur</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-tiruvannamalai"
+                                    onchange="filterProfessionals()">
+                                <span>Tiruvannamalai</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-the-nilgiris"
+                                    onchange="filterProfessionals()">
+                                <span>The Nilgiris</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-vellore"
+                                    onchange="filterProfessionals()">
+                                <span>Vellore</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-viluppuram"
+                                    onchange="filterProfessionals()">
+                                <span>Viluppuram</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="prof-filter-cb" value="loc-virudhunagar"
+                                    onchange="filterProfessionals()">
+                                <span>Virudhunagar</span>
+                                <span class="badge-count">0</span>
+                            </label>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- Filter Section: Domain of Expertise Categories -->
+            <details class="checkbox-accordion" id="domainAccordion">
+                <summary>Domain of Expertise</summary>
+                <div class="checkbox-group-list">
+
+                    <!-- 1. Business & Management -->
+                    <details class="category-nested-accordion">
+                        <summary>Business & Management</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-business-consultant" onchange="filterProfessionals()"><span>Business
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-startup-consultant" onchange="filterProfessionals()"><span>Startup
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-business-coach" onchange="filterProfessionals()"><span>Business
+                                    Coach</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-management-consultant" onchange="filterProfessionals()"><span>Management
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-strategy-consultant" onchange="filterProfessionals()"><span>Strategy
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-operations-consultant" onchange="filterProfessionals()"><span>Operations
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-franchise-consultant" onchange="filterProfessionals()"><span>Franchise
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 2. Finance & Accounting -->
+                    <details class="category-nested-accordion">
+                        <summary>Finance & Accounting</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb" value="spec-ca"
+                                    onchange="filterProfessionals()"><span>Chartered Accountant (CA)</span><span
+                                    class="badge-count">1</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-auditor" onchange="filterProfessionals()"><span>Auditor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-tax-consultant" onchange="filterProfessionals()"><span>Tax
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-gst-consultant" onchange="filterProfessionals()"><span>GST
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-financial-advisor" onchange="filterProfessionals()"><span>Financial
+                                    Advisor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-investment-advisor" onchange="filterProfessionals()"><span>Investment
+                                    Advisor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-insurance-advisor" onchange="filterProfessionals()"><span>Insurance
+                                    Advisor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-loan-consultant" onchange="filterProfessionals()"><span>Loan
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-payroll-specialist" onchange="filterProfessionals()"><span>Payroll
+                                    Specialist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-bookkeeper"
+                                    onchange="filterProfessionals()"><span>Bookkeeper</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 3. Legal Services -->
+                    <details class="category-nested-accordion">
+                        <summary>Legal Services</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-advocate-lawyer" onchange="filterProfessionals()"><span>Advocate /
+                                    Lawyer</span><span class="badge-count">1</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-legal-consultant" onchange="filterProfessionals()"><span>Legal
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-company-secretary" onchange="filterProfessionals()"><span>Company
+                                    Secretary (CS)</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-trademark-consultant" onchange="filterProfessionals()"><span>Trademark
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-patent-consultant" onchange="filterProfessionals()"><span>Patent
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-compliance-consultant" onchange="filterProfessionals()"><span>Compliance
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-contract-specialist" onchange="filterProfessionals()"><span>Contract
+                                    Specialist</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 4. Marketing & Branding -->
+                    <details class="category-nested-accordion">
+                        <summary>Marketing & Branding</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-digital-marketer" onchange="filterProfessionals()"><span>Digital
+                                    Marketing Specialist</span><span class="badge-count">1</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-seo-specialist" onchange="filterProfessionals()"><span>SEO
+                                    Specialist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-sem-ppc" onchange="filterProfessionals()"><span>SEM/PPC
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb" value="spec-smm"
+                                    onchange="filterProfessionals()"><span>Social Media Manager</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-content-marketer" onchange="filterProfessionals()"><span>Content
+                                    Marketer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-brand-strategist" onchange="filterProfessionals()"><span>Brand
+                                    Strategist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-mktg-consultant" onchange="filterProfessionals()"><span>Marketing
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-pr-consultant" onchange="filterProfessionals()"><span>PR
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-copywriter"
+                                    onchange="filterProfessionals()"><span>Ad & Brand Copywriter</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 5. Creative & Design -->
+                    <details class="category-nested-accordion">
+                        <summary>Creative & Design</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-graphic-designer" onchange="filterProfessionals()"><span>Graphic
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-uiux-designer" onchange="filterProfessionals()"><span>UI/UX
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-web-designer" onchange="filterProfessionals()"><span>Web
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-logo-designer" onchange="filterProfessionals()"><span>Logo
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-brand-designer" onchange="filterProfessionals()"><span>Brand
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-motion-graphics" onchange="filterProfessionals()"><span>Motion Graphics
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-video-editor" onchange="filterProfessionals()"><span>Video
+                                    Editor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-photographer"
+                                    onchange="filterProfessionals()"><span>Photographer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-videographer"
+                                    onchange="filterProfessionals()"><span>Videographer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-illustrator"
+                                    onchange="filterProfessionals()"><span>Illustrator</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-animator" onchange="filterProfessionals()"><span>Animator</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 6. Technology & IT -->
+                    <details class="category-nested-accordion">
+                        <summary>Technology & IT</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-software-dev" onchange="filterProfessionals()"><span>Software
+                                    Developer</span><span class="badge-count">1</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-fullstack" onchange="filterProfessionals()"><span>Full Stack
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-frontend" onchange="filterProfessionals()"><span>Frontend
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-backend" onchange="filterProfessionals()"><span>Backend
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-mobile-app" onchange="filterProfessionals()"><span>Mobile App
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb" value="spec-aiml"
+                                    onchange="filterProfessionals()"><span>AI/ML Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-data-analyst" onchange="filterProfessionals()"><span>Data
+                                    Analyst</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-data-scientist" onchange="filterProfessionals()"><span>Data
+                                    Scientist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-devops" onchange="filterProfessionals()"><span>DevOps
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-cloud-eng" onchange="filterProfessionals()"><span>Cloud
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-cybersecurity" onchange="filterProfessionals()"><span>Cybersecurity
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-blockchain" onchange="filterProfessionals()"><span>Blockchain
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-qa-tester" onchange="filterProfessionals()"><span>QA
+                                    Tester</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-it-consultant" onchange="filterProfessionals()"><span>IT
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-network-eng" onchange="filterProfessionals()"><span>Network
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-sys-admin" onchange="filterProfessionals()"><span>System
+                                    Administrator</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 7. Web & Digital -->
+                    <details class="category-nested-accordion">
+                        <summary>Web & Digital</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-wordpress" onchange="filterProfessionals()"><span>WordPress
+                                    Developer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-shopify" onchange="filterProfessionals()"><span>Shopify
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-ecom-consultant" onchange="filterProfessionals()"><span>E-commerce
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-web-maint" onchange="filterProfessionals()"><span>Website
+                                    Maintenance</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-crm-spec" onchange="filterProfessionals()"><span>CRM
+                                    Specialist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-erp-consultant" onchange="filterProfessionals()"><span>ERP
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 8. Sales -->
+                    <details class="category-nested-accordion">
+                        <summary>Sales</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-sales-consultant" onchange="filterProfessionals()"><span>Sales
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb" value="spec-bde"
+                                    onchange="filterProfessionals()"><span>Business Development Executive</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-sales-trainer" onchange="filterProfessionals()"><span>Sales
+                                    Trainer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-lead-gen" onchange="filterProfessionals()"><span>Lead Generation
+                                    Specialist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-crm-consultant" onchange="filterProfessionals()"><span>CRM
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 9. Human Resources -->
+                    <details class="category-nested-accordion">
+                        <summary>Human Resources</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-hr-consultant" onchange="filterProfessionals()"><span>HR
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-recruiter"
+                                    onchange="filterProfessionals()"><span>Recruiter</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-talent-acq" onchange="filterProfessionals()"><span>Talent Acquisition
+                                    Specialist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-career-coach" onchange="filterProfessionals()"><span>Career
+                                    Coach</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-resume-writer" onchange="filterProfessionals()"><span>Resume
+                                    Writer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-interview-coach" onchange="filterProfessionals()"><span>Interview
+                                    Coach</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-corp-trainer-hr" onchange="filterProfessionals()"><span>Corporate HR & Leadership Trainer</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 10. Education & Training -->
+                    <details class="category-nested-accordion">
+                        <summary>Education & Training</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-corp-trainer-edu" onchange="filterProfessionals()"><span>Professional & Skills Trainer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-biz-mentor" onchange="filterProfessionals()"><span>Business
+                                    Mentor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-leadership-coach" onchange="filterProfessionals()"><span>Leadership
+                                    Coach</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-soft-skills" onchange="filterProfessionals()"><span>Soft Skills
+                                    Trainer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-tech-trainer" onchange="filterProfessionals()"><span>Technical
+                                    Trainer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-lang-trainer" onchange="filterProfessionals()"><span>Language
+                                    Trainer</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 11. Media & Communication -->
+                    <details class="category-nested-accordion">
+                        <summary>Media & Communication</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-content-writer" onchange="filterProfessionals()"><span>Content
+                                    Writer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-tech-writer" onchange="filterProfessionals()"><span>Technical
+                                    Writer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-copywriter-media"
+                                    onchange="filterProfessionals()"><span>Editorial & Publication Writer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-blogger" onchange="filterProfessionals()"><span>Blogger</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-journalist"
+                                    onchange="filterProfessionals()"><span>Journalist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-public-speaker" onchange="filterProfessionals()"><span>Public
+                                    Speaker</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-voiceover" onchange="filterProfessionals()"><span>Voice-over
+                                    Artist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-translator"
+                                    onchange="filterProfessionals()"><span>Translator</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 12. Engineering -->
+                    <details class="category-nested-accordion">
+                        <summary>Engineering</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-civil-eng" onchange="filterProfessionals()"><span>Civil
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-mech-eng" onchange="filterProfessionals()"><span>Mechanical
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-elec-eng" onchange="filterProfessionals()"><span>Electrical
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-ece-eng" onchange="filterProfessionals()"><span>Electronics
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-ind-eng" onchange="filterProfessionals()"><span>Industrial
+                                    Engineer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-auto-eng" onchange="filterProfessionals()"><span>Automation
+                                    Engineer</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 13. Architecture & Construction -->
+                    <details class="category-nested-accordion">
+                        <summary>Architecture & Construction</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-architect"
+                                    onchange="filterProfessionals()"><span>Architect</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-interior-designer" onchange="filterProfessionals()"><span>Interior
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-landscape-designer" onchange="filterProfessionals()"><span>Landscape
+                                    Designer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-structural-consultant" onchange="filterProfessionals()"><span>Structural
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-quantity-surveyor" onchange="filterProfessionals()"><span>Quantity
+                                    Surveyor</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 14. Manufacturing -->
+                    <details class="category-nested-accordion">
+                        <summary>Manufacturing</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-prod-consultant" onchange="filterProfessionals()"><span>Production
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-quality-consultant" onchange="filterProfessionals()"><span>Quality
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-scm-consultant" onchange="filterProfessionals()"><span>Supply Chain
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-procurement-spec" onchange="filterProfessionals()"><span>Procurement
+                                    Specialist</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 15. Healthcare -->
+                    <details class="category-nested-accordion">
+                        <summary>Healthcare</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-doctor" onchange="filterProfessionals()"><span>Doctor</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-dentist" onchange="filterProfessionals()"><span>Dentist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-physio"
+                                    onchange="filterProfessionals()"><span>Physiotherapist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-nutritionist"
+                                    onchange="filterProfessionals()"><span>Nutritionist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-psychologist"
+                                    onchange="filterProfessionals()"><span>Psychologist</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-health-consultant" onchange="filterProfessionals()"><span>Healthcare
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 16. Real Estate -->
+                    <details class="category-nested-accordion">
+                        <summary>Real Estate</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-re-agent" onchange="filterProfessionals()"><span>Real Estate
+                                    Agent</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-prop-consultant" onchange="filterProfessionals()"><span>Property
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-valuation-expert" onchange="filterProfessionals()"><span>Valuation
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-prop-legal" onchange="filterProfessionals()"><span>Property Legal
+                                    Advisor</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 17. Logistics -->
+                    <details class="category-nested-accordion">
+                        <summary>Logistics</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-logistics-consultant" onchange="filterProfessionals()"><span>Logistics
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-scm-expert" onchange="filterProfessionals()"><span>Supply Chain
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-import-export" onchange="filterProfessionals()"><span>Import Export
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-customs-consultant" onchange="filterProfessionals()"><span>Customs
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 18. Agriculture -->
+                    <details class="category-nested-accordion">
+                        <summary>Agriculture</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-agri-consultant" onchange="filterProfessionals()"><span>Agriculture
+                                    Consultant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-organic-farming" onchange="filterProfessionals()"><span>Organic Farming
+                                    Expert</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-agri-biz" onchange="filterProfessionals()"><span>Agri Business
+                                    Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 19. Event & Hospitality -->
+                    <details class="category-nested-accordion">
+                        <summary>Event & Hospitality</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-event-planner" onchange="filterProfessionals()"><span>Event
+                                    Planner</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-wedding-planner" onchange="filterProfessionals()"><span>Wedding
+                                    Planner</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-corp-event-mgr" onchange="filterProfessionals()"><span>Corporate Event
+                                    Manager</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-hospitality-consultant"
+                                    onchange="filterProfessionals()"><span>Hospitality Consultant</span></label>
+                        </div>
+                    </details>
+
+                    <!-- 20. Freelance Professionals -->
+                    <details class="category-nested-accordion">
+                        <summary>Freelance Professionals</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb" value="spec-va"
+                                    onchange="filterProfessionals()"><span>Virtual Assistant</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-freelancer"
+                                    onchange="filterProfessionals()"><span>Freelancer</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-project-mgr" onchange="filterProfessionals()"><span>Project
+                                    Manager</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-research-analyst" onchange="filterProfessionals()"><span>Research
+                                    Analyst</span></label>
+                            <label class="checkbox-item"><input type="checkbox" class="prof-filter-cb"
+                                    value="spec-admin-assistant" onchange="filterProfessionals()"><span>Administrative
+                                    Assistant</span></label>
+                        </div>
+                    </details>
+
+                </div>
+            </details>
+
+            <!-- Reset Filters Button -->
+            <button class="btn-reset-filters" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+    </div>
+
+    <!-- Main Directory Layout -->
+    <section class="directory-layout">
+        <!-- Integrated Search Box & Filter Wrapper -->
+        <div class="search-box-wrap">
+            <button class="btn-toggle-filters" onclick="toggleDrawer(true)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <circle cx="8" cy="6" r="3" fill="#ffffff"></circle>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <circle cx="16" cy="12" r="3" fill="#ffffff"></circle>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                    <circle cx="9" cy="18" r="3" fill="#ffffff"></circle>
+                </svg>
+                Filter
+            </button>
+            <input type="text" id="profSearch" placeholder="Search by name, expertise, location, domain..."
+                oninput="filterProfessionals()">
+        </div>
+
+        <div class="controls-meta-bar">
+            <div class="results-counter">
+                Showing <span id="recordCount">0</span> verified professionals
+            </div>
+            <div class="sort-wrapper">
+                <label for="profSort">Sort by</label>
+                <select id="profSort" onchange="filterProfessionals()">
+                    <option value="default">Default</option>
+                    <option value="experience">Experience (High to Low)</option>
+                    <option value="name">Name (A-Z)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="cards" id="featuredCards">
+            <div id="emptyStateCard" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; border: 1px dashed #cbd5e1; border-radius: 12px; background: #f8fafc; color: #64748b;">
+                <div style="font-size: 16px; font-weight: 600; color: #334155; margin-bottom: 6px;">No registered professionals yet</div>
+                <div style="font-size: 13.5px;">Register your profile via <a href="Register.html" style="color: #dc2626; font-weight: 600; text-decoration: underline;">Professional Registration</a> or Admin Panel to populate this showcase.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Width Red Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Filtering, Drawer, and Details Toggle -->
+    <script>
+        // Toggle Filter Drawer
+        function toggleDrawer(show) {
+            const drawer = document.getElementById('filtersDrawer');
+            const overlay = document.getElementById('filtersOverlay');
+            if (show) {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+            } else {
+                drawer.classList.remove('open');
+                overlay.classList.remove('open');
+            }
+        }
+
+        // Expand/Collapse All Filter Accordions
+        function toggleExpandAll(isExpanded) {
+            const accordions = document.querySelectorAll('.checkbox-accordion, .category-nested-accordion');
+            accordions.forEach(acc => {
+                if (isExpanded) {
+                    acc.setAttribute('open', 'true');
+                } else {
+                    acc.removeAttribute('open');
+                }
+            });
+        }
+
+        // Card Toggle Details Functionality
+        function toggleCardDetails(cardElement, event) {
+            cardElement.classList.toggle('active');
+        }
+
+        // Reset All Filters
+        function resetFilters() {
+            document.querySelectorAll('.prof-filter-cb').forEach(cb => cb.checked = false);
+            document.getElementById('profSearch').value = '';
+            document.getElementById('profSort').value = 'default';
+            filterProfessionals();
+        }
+
+        // Filter and Sort Functionality
+        function filterProfessionals() {
+            const searchValue = document.getElementById('profSearch').value.toLowerCase().trim();
+            const checkedBoxes = Array.from(document.querySelectorAll('.prof-filter-cb:checked'));
+            const sortVal = document.getElementById('profSort').value;
+            const cards = Array.from(document.querySelectorAll('.item-card'));
+            const container = document.getElementById('featuredCards');
+            const normalize = value => String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+            const getFilterLabel = checkbox => checkbox.closest('label')?.querySelector('span')?.textContent || '';
+
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                const name = (card.getAttribute('data-name') || '').toLowerCase();
+                const years = parseInt(card.getAttribute('data-years') || '0', 10);
+                const normalizedKeywords = normalize(keywords);
+
+                // Search Match
+                const matchesSearch = !searchValue || keywords.includes(searchValue) || name.includes(searchValue);
+
+                // Filter Categories Check
+                const expFilters = checkedBoxes.filter(box => box.value.startsWith('exp-'));
+                const locFilters = checkedBoxes.filter(box => box.value.startsWith('loc-'));
+                const specFilters = checkedBoxes.filter(box => box.value.startsWith('spec-'));
+
+                const matchesExp = expFilters.length === 0 || expFilters.some(box => {
+                    if (box.value === 'exp-10+') return years >= 10;
+                    if (box.value === 'exp-5-10') return years >= 5 && years < 10;
+                    return years >= 1 && years < 5;
+                });
+                const matchesLoc = locFilters.length === 0 || locFilters.some(box => {
+                    const label = normalize(getFilterLabel(box));
+                    return label && normalizedKeywords.includes(label);
+                });
+                const matchesSpec = specFilters.length === 0 || specFilters.some(box => {
+                    const label = normalize(getFilterLabel(box));
+                    return label && normalizedKeywords.includes(label);
+                });
+
+                if (matchesSearch && matchesExp && matchesLoc && matchesSpec) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update Counter
+            document.getElementById('recordCount').textContent = visibleCount;
+
+            // Display No Results Message
+            const noResults = document.getElementById('noResultsMsg');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+
+            // Sorting Cards
+            if (sortVal === 'experience') {
+                cards.sort((a, b) => parseInt(b.getAttribute('data-years')) - parseInt(a.getAttribute('data-years')));
+            } else if (sortVal === 'name') {
+                cards.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
+            }
+
+            cards.forEach(card => container.appendChild(card));
+            cleanEmptySocialsAndLinks();
+        }
+
+        // Auto-hide empty or placeholder social and website links
+        function cleanEmptySocialsAndLinks() {
+            document.querySelectorAll('.profile-socials a').forEach(link => {
+                const href = (link.getAttribute('href') || '').trim();
+                if (!href || href === '#' || href.toLowerCase() === 'n/a' || href.toLowerCase() === 'null') {
+                    link.style.display = 'none';
+                }
+            });
+            document.querySelectorAll('.profile-socials').forEach(box => {
+                const visibleLinks = Array.from(box.querySelectorAll('a')).filter(a => a.style.display !== 'none');
+                if (visibleLinks.length === 0) {
+                    box.style.display = 'none';
+                } else {
+                    box.style.display = 'inline-flex';
+                }
+            });
+        }
+    </script>
+
+    <!-- Supabase SDK & Thalam Database Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            cleanEmptySocialsAndLinks();
+            if (window.ThalamSupabase && window.ThalamSupabase.professionals) {
+                const loaded = await window.ThalamSupabase.professionals.loadIntoCards('featuredCards');
+                if (loaded && typeof filterProfessionals === 'function') {
+                    filterProfessionals();
+                }
+            }
+            cleanEmptySocialsAndLinks();
+        });
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

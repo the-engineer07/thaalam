@@ -1,0 +1,992 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji C - Founder & CEO | Thaalam & VYIOM</title>
+
+    <!-- Google Fonts: Montserrat & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+
+    <style>
+        :root {
+            --red-bg: #e61c24;
+            --dark-bg: #111111;
+            --white-bg: #ffffff;
+            --text-dark: #111111;
+            --text-gray: #666666;
+            --text-light-gray: #999999;
+            --font-main: 'Montserrat', sans-serif;
+            --font-quote: 'Playfair Display', Georgia, serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: var(--text-dark);
+            background: var(--white-bg);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.modal-active {
+            overflow: hidden;
+        }
+
+        /* ---------------- Access Gate Modal ---------------- */
+        .split-container {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background: #ffffff;
+        }
+
+        .split-left {
+            flex: 1;
+            background: var(--red-bg);
+            position: relative;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .brand-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-logo img {
+            max-height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-quote-box {
+            position: relative;
+            z-index: 2;
+            max-width: 480px;
+        }
+
+        .hero-quote {
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+        }
+
+        .split-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 24px;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .top-nav-link {
+            position: absolute;
+            top: 40px;
+            right: 48px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 13.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .mobile-form-logo {
+            display: none;
+            margin: 0 auto 20px;
+            max-height: 38px;
+            width: auto;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-header p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 0px;
+            font-family: var(--font-main);
+            font-size: 13px;
+            background: #ffffff;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--red-bg);
+        }
+
+        .primary-btn {
+            width: 100%;
+            background: var(--red-bg);
+            color: #ffffff;
+            border: none;
+            padding: 13px;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .primary-btn:hover {
+            background: #cc1118;
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .terms-text {
+            font-size: 11px;
+            color: var(--text-gray);
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .terms-text a {
+            color: var(--text-dark);
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: var(--red-bg);
+            font-size: 11.5px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .restricted-content {
+            display: none;
+        }
+
+        /* ---------------- Editorial Style Page Layout ---------------- */
+
+        /* Section 1: Red Hero Banner */
+        .editorial-hero {
+            background-color: var(--red-bg);
+            color: #ffffff;
+            min-height: 85vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 0 60px 0;
+            overflow: hidden;
+        }
+
+        /* Fixed Top Navigation Overlay */
+        .editorial-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 32px;
+            padding: 30px 60px;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .editorial-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: opacity 0.2s;
+        }
+
+        .editorial-nav a:hover {
+            opacity: 0.7;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 18vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.12);
+            line-height: 0.8;
+            text-transform: uppercase;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: -2px;
+            z-index: 1;
+        }
+
+        .hero-main-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: flex-end;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 40px;
+        }
+
+        .hero-portrait-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .hero-portrait-wrap img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            filter: grayscale(100%) contrast(110%);
+            display: block;
+            mix-blend-mode: luminosity;
+        }
+
+        .hero-text-wrap {
+            padding-bottom: 40px;
+            padding-left: 20px;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-quote);
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 480px;
+            margin-bottom: 24px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero-desc {
+            font-size: 12px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 440px;
+            margin-bottom: 20px;
+            text-transform: none;
+        }
+
+        .learn-more-link {
+            display: inline-block;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: underline;
+        }
+
+        /* Section 2: White Background - About Section */
+        .editorial-section-white {
+            background-color: var(--white-bg);
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .two-col-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-text-col {
+            padding-right: 20px;
+        }
+
+        .section-vertical-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-light-gray);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .section-headline {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-body p {
+            font-size: 13px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .social-follow-bar {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-bg);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: background 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--red-bg);
+        }
+
+        /* Section 3: High Contrast Quote & Story */
+        .editorial-section-middle {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 100px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .middle-portrait-col img {
+            width: 100%;
+            max-width: 440px;
+            filter: grayscale(100%);
+            display: block;
+        }
+
+        .middle-text-col {
+            padding-left: 20px;
+        }
+
+        .giant-quote-title {
+            font-size: 32px;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .giant-quote-title span {
+            color: var(--text-light-gray);
+            font-size: 48px;
+            line-height: 0;
+            vertical-align: -10px;
+        }
+
+        /* Focus Areas Tags Grid */
+        .expertise-container {
+            margin-top: 30px;
+        }
+
+        .expertise-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .expertise-tag {
+            border: 1px solid #111;
+            padding: 6px 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        /* Section 4: Red Block Filmography / Ecosystem Block */
+        .editorial-bottom-block {
+            background-color: #f5f5f5;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+        }
+
+        .bottom-left-red {
+            background-color: var(--red-bg);
+            color: #ffffff;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bottom-left-red .section-headline {
+            color: #ffffff;
+        }
+
+        .vision-card {
+            margin-top: 20px;
+        }
+
+        .vision-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .vision-card p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .bottom-right-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #000;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 380px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(120%);
+            opacity: 0.85;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .gallery-caption h5 {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .gallery-caption p {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Simple Footer */
+        .editorial-footer {
+            background: #ffffff;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            font-size: 11px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .editorial-footer a {
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero-main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-portrait-wrap {
+                order: 2;
+                margin-top: 30px;
+            }
+
+            .hero-text-wrap {
+                order: 1;
+                padding-left: 0;
+            }
+
+            .hero-title {
+                font-size: 52px;
+            }
+
+            .two-col-layout,
+            .editorial-section-middle,
+            .editorial-bottom-block {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .bottom-right-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .split-left {
+                display: none;
+            }
+
+            .mobile-form-logo {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body class="modal-active">
+
+    <!-- Split Layout Access Gate Modal -->
+    <div class="split-container" id="accessModal">
+        <div class="split-left">
+            <div class="brand-logo-group">
+                <a href="../index.html" class="brand-logo">
+                    <img src="../images/4.png" alt="Thaalam Logo">
+                </a>
+            </div>
+            <div class="hero-quote-box">
+                <p class="hero-quote">
+                    “Building a business is not only about growth; it is about creating connections, solving problems,
+                    and building a future together.”
+                </p>
+            </div>
+        </div>
+
+        <div class="split-right">
+            <a href="../index.html" class="top-nav-link">Home</a>
+
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <img src="../images/logo2.png" alt="Logo" class="mobile-form-logo">
+                    <h2>Meet Our Founder</h2>
+                    <p>Enter your details below to view the founder portfolio.</p>
+                </div>
+
+                <form id="accessForm">
+                    <div class="form-group">
+                        <label for="userName">Full Name *</label>
+                        <input type="text" id="userName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedinUrl">LinkedIn Profile URL *</label>
+                        <input type="text" id="linkedinUrl" required
+                            placeholder="https://www.linkedin.com/in/balaji-c-980922280/">
+                    </div>
+                    <button type="submit" class="primary-btn">View Founder Profile &rarr;</button>
+
+                    <div class="error-message" id="errorMessage"></div>
+                </form>
+
+                <p class="terms-text">
+                    By clicking continue, you agree to our <a href="../terms.html">Terms of Service</a> and <a href="../privacy.html">Privacy
+                        Policy</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Restricted Editorial Content -->
+    <div class="restricted-content" id="restrictedContent">
+
+        <!-- SECTION 1: RED HERO BANNER (Top Poster Style) -->
+        <section class="editorial-hero">
+            <nav class="editorial-nav">
+                <a href="../index.html">Home</a>
+                <a href="../thaalam/about.html">About</a>
+                <a href="../companies/Business_Directory.html">Companies</a>
+                <a href="../resources/Find%20Professionals.html">Resources</a>
+            </nav>
+
+            <div class="hero-watermark">Balaji C</div>
+
+            <div class="hero-main-content">
+                <div class="hero-portrait-wrap">
+                    <img src="../images/founder/IMG_02091.jpg" alt="Balaji C - Founder">
+                </div>
+                <div class="hero-text-wrap">
+                    <h1 class="hero-title">Balaji C</h1>
+                    <p class="hero-subtitle">"Building a business is not only about growth; it is about creating
+                        connections, solving problems, and building a future together."</p>
+                    <p class="hero-desc">Founder & CEO of Thaalam and VYIOM Digital Solutions. Innovator, mechatronics
+                        engineer, and
+                        ecosystem builder bringing technology solutions and business strategy together.</p>
+                    <a href="#about-section" class="learn-more-link">Explore Story &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: WHITE SECTION (About) -->
+        <section class="editorial-section-white" id="about-section">
+            <div class="two-col-layout">
+                <div class="about-text-col">
+
+                    <h2 class="section-headline">About Balaji C</h2>
+
+                    <div class="about-body">
+                        <p>Balaji C is the Founder & CEO of Thaalam and VYIOM Digital Solutions. Holding a degree in BE
+                            - Mechatronics
+                            Engineering, he combines technical precision with a vision for strategic
+                            entrepreneurship.</p>
+                        <p>Driven by a passion to solve systemic challenges for growing businesses, Balaji created
+                            Thaalam and VYIOM Digital Solutions to serve as bridges between emerging enterprises and the
+                            essential tools,
+                            digital technologies, expertise, and connections they need to scale.</p>
+                    </div>
+
+                    <div class="social-follow-bar">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="social-btn">LinkedIn Profile &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MIDDLE SECTION (Quote Headline & Founder Story) -->
+        <section class="editorial-section-middle">
+            <div class="middle-portrait-col">
+                <img src="../images/founder/IMG_020912.jpg" alt="Balaji C Thinking">
+            </div>
+
+            <div class="middle-text-col">
+                <div class="giant-quote-title">
+                    <span>" </span>Thaalam is built on the belief that every business
+                    deserves access to technology,
+                    knowledge, connections, and opportunities.<span> "</span>
+                </div>
+                <div class="about-body">
+                    <p>Many entrepreneurs and businesses have great ideas, products, and services, but they often
+                        struggle with finding the right technology, business knowledge, and connections needed to
+                        grow.</p>
+                    <p>MSMEs, SMEs, and startups face challenges in adopting modern technologies, building a strong
+                        digital presence, understanding business strategies, and connecting with the right professionals
+                        and opportunities. These challenges can slow down growth and make it difficult for
+                        businesses to compete in a rapidly changing world.</p>
+                    <p>The founder identified the need for a platform that brings everything businesses need into one
+                        connected ecosystem. Thaalam was created to help businesses become
+                        smarter by providing
+                        access to technology solutions, business knowledge, professional connections, and growth
+                        opportunities.</p>
+                </div>
+
+                <!-- Expertise Tags Section -->
+                <div class="expertise-container">
+                    <span class="section-vertical-label">Expertise</span>
+                    <div class="expertise-grid">
+                        <span class="expertise-tag">Artificial Intelligence & Automation</span>
+                        <span class="expertise-tag">Digital Transformation</span>
+                        <span class="expertise-tag">Business Solutions</span>
+                        <span class="expertise-tag">Product Development</span>
+                        <span class="expertise-tag">Robotics & Automation</span>
+                        <span class="expertise-tag">Product Design</span>
+                        <span class="expertise-tag">System Architecture</span>
+                        <span class="expertise-tag">Entrepreneurship</span>
+                        <span class="expertise-tag">Marketing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: RED & DARK BOTTOM ECOSYSTEM BLOCK -->
+        <section class="editorial-bottom-block">
+            <div class="bottom-left-red">
+
+                <h2 class="section-headline">Founder Vision</h2>
+                <div class="vision-card">
+                    <h4>Building The Ecosystem</h4>
+                    <p>Thaalam is to build one of the most trusted
+                        business ecosystems where
+                        entrepreneurs, startups, MSMEs, SMEs, and professionals can access the knowledge, technology,
+                        connections, and opportunities they need to grow.</p>
+                </div>
+            </div>
+
+            <div class="bottom-right-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                        alt="Collaboration">
+                    <div class="gallery-caption">
+                        <h5>Collaborative Growth</h5>
+                        <p>Connecting startups with industry experts</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+                        alt="Technology">
+                    <div class="gallery-caption">
+                        <h5>Technology & Innovation</h5>
+                        <p>Empowering MSMEs through digital transformation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Width Red Community Footer -->
+        <footer class="community-footer">
+            <div class="custom-footer-card">
+                <!-- Top Social Section -->
+                <div class="footer-community-section">
+                    <h2>Join Our Community</h2>
+                    <div class="social-circles-grid">
+                        <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer"
+                            class="social-circle-item">
+                            <div class="circle-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                </svg>
+                            </div>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer"
+                            class="social-circle-item">
+                            <div class="circle-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                                </svg>
+                            </div>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer"
+                            class="social-circle-item">
+                            <div class="circle-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                                </svg>
+                            </div>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer"
+                            class="social-circle-item">
+                            <div class="circle-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </div>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <hr class="footer-card-divider">
+
+                <!-- Middle Navigation Section -->
+                <div class="footer-main-content">
+                    <div class="footer-brand-info">
+                        <div class="footer-brand-header">
+                            <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                            <strong style="font-size: 16px;">Thaalam</strong>
+                        </div>
+                        <div class="footer-brand-text">
+                            <p>The Sangam Collective</p>
+                            <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                        </div>
+                    </div>
+
+                    <div class="footer-nav-links">
+                        <a href="../index.html">Homepage</a>
+                        <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                        <a href="../thaalam/about.html">About Us</a>
+                        <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                        <a href="../support.html">Contacts</a>
+                        <a href="../resources/Register.html">Register as Professional</a>
+                        <a href="../companies/Business_Directory.html">Business Directory</a>
+                        <a href="../join.html#contact">Join Community</a>
+                    </div>
+
+                    <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                        ↑
+                    </a>
+                </div>
+
+                <!-- Bottom Bar Section -->
+                <div class="footer-bottom-bar">
+                    <span>© All rights reserved</span>
+                    <div class="footer-legal-links">
+                        <a href="../privacy.html">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="../terms.html">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Access Gate JS Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("teamAccessGranted") === "true") {
+                unlockContent();
+            }
+        });
+
+        document.getElementById("accessForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const nameInput = document.getElementById("userName");
+            const linkedinInput = document.getElementById("linkedinUrl");
+            const submitBtn = document.querySelector(".primary-btn");
+            const errorMessage = document.getElementById("errorMessage");
+
+            const name = nameInput.value.trim();
+            let linkedin = linkedinInput.value.trim();
+            if (linkedin && !/^https?:\/\//i.test(linkedin)) {
+                linkedin = 'https://' + linkedin;
+            }
+            const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_\-%]+(\/.*)?$/i;
+
+            if (name.length > 1 && linkedinRegex.test(linkedin)) {
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbzUaJ0TC6MTLQvscs3ijTy6aP220Gc67S9VS_gYe4Xn5OFbRFyvzMLi3pq7d9MSkik-/exec';
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Unlocking...";
+                errorMessage.style.display = "none";
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify({ name: name, linkedin: linkedin })
+                })
+                    .then(() => {
+                        localStorage.setItem("teamAccessGranted", "true");
+                        unlockContent();
+                    })
+                    .catch(error => {
+                        console.error('Submission Error:', error);
+                        errorMessage.style.display = "block";
+                        errorMessage.textContent = "Network error. Please try again.";
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = "View Founder Profile \u2192";
+                    });
+
+            } else {
+                errorMessage.style.display = "block";
+                errorMessage.textContent = "Please enter a valid Full Name and LinkedIn URL.";
+            }
+        });
+
+        function unlockContent() {
+            const modal = document.getElementById("accessModal");
+            const content = document.getElementById("restrictedContent");
+            if (modal) modal.style.display = "none";
+            if (content) content.style.display = "block";
+            document.body.classList.remove("modal-active");
+        }
+    </script>
+
+    <!-- Mobile Navigation JS -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

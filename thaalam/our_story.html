@@ -1,0 +1,950 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story & Timeline - Thaalam</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            color: #222;
+            background: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- CINEMATIC SPLASH SCREEN STYLES --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #111c12;
+            background-image: linear-gradient(180deg, rgba(14, 23, 16, 0.3) 0%, rgba(9, 16, 11, 0.65) 100%),
+                url('../images/splash_bg.png');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 99999;
+            cursor: pointer;
+            overflow: hidden;
+            user-select: none;
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s ease;
+        }
+
+        #splash-screen.splash-hidden {
+            opacity: 0;
+            transform: scale(1.03);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            color: #ffffff;
+            padding: 30px 20px;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Centered Title & Directory Divider */
+        .splash-title {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .splash-divider {
+            font-weight: 300;
+            opacity: 0.6;
+            font-size: 0.85em;
+        }
+
+        .splash-subtitle {
+            font-size: 0.55em;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.95;
+        }
+
+        /* Sub-Tagline */
+        .splash-tagline {
+            font-size: clamp(13px, 1.8vw, 15px);
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 175px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 8px;
+                padding: 6px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 8px 16px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08);
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c;
+                border-color: #b91c1c;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Section Layouts */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #dc2626;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Origin Story Section */
+        .origin-section {
+            padding: 90px 8%;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .origin-container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .origin-subtitle {
+            font-size: 22px;
+            color: #dc2626;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .origin-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: #991b1b;
+            margin-bottom: 45px;
+            line-height: 1.25;
+        }
+
+        .origin-text {
+            color: #2b2b2b;
+            font-size: 17px;
+            line-height: 1.85;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .origin-quote {
+            color: #dc2626;
+            font-size: 18.5px;
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.75;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Timeline Section */
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #d1fae5;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: 50%;
+            top: 15px;
+            transform: translateX(-50%) scale(0);
+            width: 32px;
+            height: 32px;
+            background: #dc2626;
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px #fee2e2;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s ease,
+                background 0.4s ease;
+        }
+
+        .timeline-item.animate-in .timeline-badge {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .timeline-item:hover .timeline-badge {
+            background: #b91c1c;
+            transform: translateX(-50%) scale(1.3);
+            box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.25);
+        }
+
+        /* --- SLOW SLIDING ANIMATED CARDS --- */
+        .timeline-card {
+            width: 44%;
+            background: white;
+            padding: 26px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+            position: relative;
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
+            will-change: transform, opacity;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card {
+            transform: translateX(-80px) translateY(20px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-card {
+            transform: translateX(80px) translateY(20px);
+        }
+
+        .timeline-item.animate-in .timeline-card {
+            opacity: 1;
+            transform: translateX(0) translateY(0) !important;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-8px) scale(1.02) !important;
+            box-shadow: 0 18px 35px rgba(59, 77, 60, 0.12), 0 5px 15px rgba(0, 0, 0, 0.04);
+            border-color: #cad5ca;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #fef2f2;
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .timeline-card:hover .timeline-date {
+            background: #dc2626;
+            color: #ffffff;
+        }
+
+        .timeline-card h3 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 10px;
+            transition: color 0.4s ease;
+        }
+
+        .timeline-card:hover h3 {
+            color: #dc2626;
+        }
+
+        .timeline-card p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .timeline-footer-quote {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto 0;
+            padding: 30px;
+            background: #f8faf9;
+            border-radius: 16px;
+            border: 1px solid #e0f2fe;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s ease;
+        }
+
+        .timeline-footer-quote.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-footer-quote:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .timeline-footer-quote h3 {
+            font-size: 24px;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .timeline-footer-quote p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+
+
+        @media (max-width: 850px) {
+            .origin-section {
+                padding: 60px 5%;
+            }
+
+            .origin-title {
+                font-size: clamp(24px, 6vw, 34px);
+                margin-bottom: 30px;
+            }
+
+            .origin-text br,
+            .origin-quote br {
+                display: none;
+            }
+
+            .origin-text {
+                font-size: 15.5px;
+                margin-bottom: 22px;
+            }
+
+            .timeline-container {
+                padding: 10px 0;
+            }
+
+            .timeline-container::before {
+                left: 20px;
+                width: 3px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                margin-left: 45px;
+                margin-bottom: 40px;
+            }
+
+            .timeline-badge {
+                left: -36.5px;
+                top: 18px;
+                width: 26px;
+                height: 26px;
+                border-width: 3px;
+                transform: scale(0);
+            }
+
+            .timeline-item.animate-in .timeline-badge {
+                transform: scale(1);
+            }
+
+            .timeline-item:hover .timeline-badge {
+                transform: scale(1.2);
+            }
+
+            .timeline-card {
+                width: 100%;
+                padding: 22px 18px;
+                transform: translateY(30px) !important;
+                opacity: 0;
+            }
+
+            .timeline-item.animate-in .timeline-card {
+                transform: translateY(0) !important;
+                opacity: 1;
+            }
+
+            .timeline-footer-quote {
+                margin: 40px 10px 0;
+                padding: 24px 18px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .social-circle {
+                width: 58px;
+                height: 58px;
+                font-size: 20px;
+            }
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+</head>
+
+<body>
+
+    <!-- Fullscreen Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <h1 class="splash-title">
+                thaalam
+            </h1>
+            <p class="splash-tagline">Built From the Ground Up to Empower Builders</p>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- Origin Story Section (Centered Image Layout) -->
+    <section id="origin" class="origin-section">
+        <div class="origin-container">
+            <div class="origin-subtitle">Built From the Ground Up to Empower Builders</div>
+
+            <p class="origin-text">
+                Every great business begins with an idea, but executing that idea requires an entire network of
+                support—<br>
+                access to market visibility, reliable mentors, technology tools, legal counsel, and kindred<br>
+                founders facing identical challenges.
+            </p>
+
+            <p class="origin-text">
+                Too often, early-stage entrepreneurs, small & medium enterprises (SMEs), and local businesses find<br>
+                themselves isolated. Knowledge is fragmented, high-end consulting is inaccessible,<br>
+                and authentic networking is hard to find.
+            </p>
+
+            <p class="origin-text">
+                Thaalam was created to solve this fundamental gap: a purpose-driven community where businesses of
+                all<br>
+                sizes can gain discovery, share hard-earned wisdom, find verified service partners,<br>
+                and scale collaboratively.
+            </p>
+
+            <p class="origin-quote">
+                "Our rhythm is your momentum. Thaalam is where curiosity meets enterprise,<br>
+                transforming individual ambitions into collective community success."
+            </p>
+        </div>
+    </section>
+
+    <!-- Milestones Timeline -->
+    <section id="timeline">
+        <div class="section-title">
+            <h2>The Thaalam Journey</h2>
+            <p>From Vision to a Connected Business Ecosystem. Starting with a simple idea of helping businesses access
+                knowledge, connections, and opportunities, Thaalam is building a complete business ecosystem that
+                supports entrepreneurs, professionals, and organizations at every stage of growth.</p>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2026</span>
+                    <h3>Building the Foundation</h3>
+                    <p>Thaalam begins its journey by creating a business-focused community that provides valuable
+                        knowledge, insights, and direction for entrepreneurs and businesses. The initial focus is on
+                        sharing business news, technology updates, learning resources, business growth insights, and
+                        practical guidance to help businesses understand challenges and discover better opportunities.
+                        Along with knowledge sharing, Thaalam aims to support businesses by connecting them with
+                        suitable solutions and resources.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2027</span>
+                    <h3>Connecting Tamil Nadu Businesses</h3>
+                    <p>Thaalam expands its community by bringing together businesses across Tamil Nadu and creating a
+                        stronger network of entrepreneurs, professionals, and organizations. During this phase, the
+                        focus is on building meaningful business connections, enabling collaborations, connecting
+                        businesses with professionals, and developing products and solutions designed to support
+                        business growth.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2027 • Second Half</span>
+                    <h3>Supporting Farmers and Rural Businesses</h3>
+                    <p>Thaalam extends its ecosystem by welcoming farmers and rural businesses into the platform. The
+                        goal is to help them access better opportunities, business support, market connections, and
+                        resources that can improve their growth. By connecting agriculture and business communities,
+                        Thaalam aims to create a more inclusive ecosystem where every type of business can participate
+                        and benefit.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2028</span>
+                    <h3>Creating Real-World Business Opportunities</h3>
+                    <p>Thaalam moves beyond digital connections by creating opportunities for businesses to meet,
+                        collaborate, and grow through real-world interactions. This phase focuses on conducting business
+                        events, entrepreneur meetups, networking opportunities, and creating platforms where businesses
+                        can discover partnerships, investments, and growth opportunities.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2028 • Second Half</span>
+                    <h3>Building Business Commerce Infrastructure</h3>
+                    <p>Thaalam expands towards creating a complete business support infrastructure that helps businesses
+                        connect for buying, selling, and trading opportunities. This phase focuses on building solutions
+                        around business products, logistics support, supply chain connections, and creating a network
+                        that connects manufacturers, suppliers, and buyers.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2029</span>
+                    <h3>Expanding Across India</h3>
+                    <p>After establishing a strong foundation in Tamil Nadu, Thaalam plans to expand its ecosystem
+                        across India. The focus will be on connecting businesses from different regions, creating wider
+                        professional networks, supporting multiple industries, and building a nationwide platform where
+                        businesses can discover knowledge, connections, and opportunities.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-badge"></div>
+                <div class="timeline-card">
+                    <span class="timeline-date">2030</span>
+                    <h3>Building a Global Business Ecosystem</h3>
+                    <p>Thaalam's long-term vision is to become a global business ecosystem that connects entrepreneurs,
+                        companies, professionals, and opportunities across the world. By enabling international
+                        connections, collaborations, and knowledge exchange, Thaalam aims to build a platform where
+                        businesses can grow beyond boundaries.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-footer-quote">
+            <h3>The Future We Are Building</h3>
+            <p>Thaalam is not just building a platform; it is building a connected ecosystem where businesses can learn,
+                collaborate, and grow together. From a business community to a global network, our journey is focused on
+                creating meaningful connections that shape the future of business.</p>
+        </div>
+    </section>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const splash = document.getElementById('splash-screen');
+
+            if (splash) {
+                function hideSplash() {
+                    if (!splash.classList.contains('splash-hidden')) {
+                        splash.classList.add('splash-hidden');
+                        window.removeEventListener('scroll', hideSplash);
+                        window.removeEventListener('keydown', hideSplash);
+                        splash.removeEventListener('click', hideSplash);
+                    }
+                }
+
+                // Dismiss triggers: click/tap, scroll, keydown, or 2.8s timer
+                splash.addEventListener('click', hideSplash);
+                window.addEventListener('scroll', hideSplash, { passive: true });
+                window.addEventListener('keydown', hideSplash);
+                setTimeout(hideSplash, 2800);
+            }
+
+            // Intersection Observer for Timeline Elements
+            const items = document.querySelectorAll('.timeline-item, .timeline-footer-quote');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver(function (entries, observer) {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            items.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

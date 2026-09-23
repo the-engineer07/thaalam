@@ -1,0 +1,1076 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Thaalam - Connect, Grow, Learn</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        blockquote {
+            font-family: 'Poppins', sans-serif !important;
+        }
+
+        body {
+            color: #222;
+            background: #ffffff;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navbar Styling (No background, border, or shadow) */
+        header,
+        header nav {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 4%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none !important;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .logo img {
+            height: 26px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13px;
+                background: transparent !important;
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626 !important;
+                background: transparent !important;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+                background: transparent !important;
+                border: none !important;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 160px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 6px;
+                padding: 4px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 6px 14px;
+                display: block;
+                font-size: 12.5px;
+                font-weight: 400;
+                margin: 0;
+                background: transparent !important;
+                border: none !important;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2 !important;
+                color: #dc2626 !important;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 5px;
+                height: 5px;
+                border-right: 1.5px solid currentColor !important;
+                border-bottom: 1.5px solid currentColor !important;
+                transform: rotate(45deg);
+                margin-left: 4px;
+                margin-bottom: 2px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent !important;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626 !important;
+                border-radius: 0;
+                padding: 5px 14px;
+                font-size: 12.5px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08) !important;
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626 !important;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626 !important;
+                border-radius: 0;
+                padding: 5px 14px;
+                font-size: 12.5px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c !important;
+                border-color: #b91c1c !important;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Section Container with Sticky Fullscreen Image Title */
+        .section-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Sticky Full-Screen Hero Screen (Title Only over Image) */
+        .hero-title-screen {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+
+        /* Dark overlay over image for title contrast */
+        .hero-title-screen::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+
+        .hero-title-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-title-content h1,
+        .hero-title-content h2 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Solid Content Block (Slides over image and hides it) */
+        .section-details-block {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 80px 6%;
+            box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Background Colors for Content Cards */
+        .bg-light-cream {
+            background-color: #faf7f2;
+        }
+
+        .bg-white {
+            background-color: #ffffff;
+        }
+
+        .bg-soft-red {
+            background-color: #fcf5f5;
+        }
+
+        .bg-dark-theme {
+            background-color: #0e1013;
+            color: #ffffff;
+        }
+
+        /* Section Specific Images */
+        #about-wrapper .hero-title-screen {
+            background-image: url('../images/splash_bg.png');
+        }
+
+        #mission-wrapper .hero-title-screen {
+            background-image: url('../images/stocks/345.png');
+        }
+
+        #vision-wrapper .hero-title-screen {
+            background-image: url('../images/stocks/bhju.png');
+        }
+
+        #purpose-wrapper .hero-title-screen {
+            background-image: url('../images/stocks/sxss.png');
+        }
+
+        #offerings-wrapper .hero-title-screen {
+            background-image: url('../images/stocks/tyi.png');
+        }
+
+        /* Typography Inside Details Blocks */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .about-subtitle {
+            font-size: 16px;
+            color: #555555;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #444444;
+            margin-bottom: 14px;
+        }
+
+        .banner-description {
+            font-size: clamp(16px, 1.8vw, 20px);
+            line-height: 1.6;
+            color: #333333;
+            max-width: 850px;
+            font-weight: 400;
+        }
+
+        /* Dark Theme Offerings Accordion Styling */
+        .offerings-header {
+            margin-bottom: 32px;
+        }
+
+        .bg-dark-theme .offerings-heading {
+            font-size: clamp(24px, 3.2vw, 36px);
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .bg-dark-theme .offerings-intro {
+            font-size: 15px;
+            color: #9ca3af;
+            line-height: 1.6;
+            max-width: 850px;
+        }
+
+        /* Accordion Container */
+        .accordion-container {
+            display: flex;
+            gap: 8px;
+            height: 480px;
+            width: 100%;
+            margin-top: 36px;
+            margin-bottom: 36px;
+        }
+
+        .accordion-panel {
+            flex: 0.8;
+            min-width: 50px;
+            position: relative;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 24px;
+        }
+
+        .accordion-panel.active {
+            flex: 6;
+        }
+
+        /* Collapsed View (Vertical Label) */
+        .panel-collapsed-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .accordion-panel.active .panel-collapsed-view {
+            opacity: 0;
+        }
+
+        .panel-vertical-title {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Expanded View Content */
+        .panel-expanded-view {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease 0.1s, visibility 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .accordion-panel.active .panel-expanded-view {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .panel-expanded-view h4 {
+            font-size: clamp(22px, 2.4vw, 30px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .panel-subtitle {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .panel-quote {
+            font-size: 15px;
+            line-height: 1.65;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(4px);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid rgba(255, 255, 255, 0.6);
+            margin-top: auto;
+        }
+
+        .bg-dark-theme .offerings-outro {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            color: #d1d5db;
+            margin-top: 30px;
+            padding: 22px;
+            background: #181b20;
+            border: 1px dashed #374151;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        /* Mobile & Tablet Responsive Rules */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 4%;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-details-block {
+                padding: 50px 5%;
+            }
+
+            /* Responsive Mobile Accordion Layout */
+            .accordion-container {
+                flex-direction: column;
+                height: auto;
+                gap: 12px;
+            }
+
+            .accordion-panel {
+                min-height: 70px;
+                height: auto;
+                flex: none !important;
+                padding: 18px 20px;
+                transition: all 0.35s ease;
+            }
+
+            .panel-collapsed-view {
+                display: none !important;
+            }
+
+            .accordion-panel:not(.active) .panel-expanded-view {
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .accordion-panel:not(.active) .panel-expanded-view h4 {
+                font-size: 18px;
+                margin-bottom: 2px;
+            }
+
+            .accordion-panel:not(.active) .panel-expanded-view .panel-subtitle {
+                margin-bottom: 0;
+                font-size: 11px;
+            }
+
+            .accordion-panel:not(.active) .panel-quote {
+                display: none;
+            }
+
+            .accordion-panel.active {
+                padding: 24px 20px;
+            }
+
+            .accordion-panel.active .panel-expanded-view h4 {
+                font-size: 22px;
+            }
+
+            .accordion-panel.active .panel-quote {
+                display: block;
+                margin-top: 16px;
+                padding: 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 40px 16px;
+            }
+
+            .footer-community-container h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .social-links-grid {
+                gap: 16px;
+            }
+
+            .social-icon-circle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .social-icon-circle svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- 1. ABOUT THAALAM SECTION -->
+    <div class="section-wrapper" id="about-wrapper">
+        <div class="hero-title-screen">
+            <div class="hero-title-content">
+                <h1>About</h1>
+            </div>
+        </div>
+        <div class="section-details-block bg-light-cream">
+            <div class="section-content">
+                <div class="about-grid">
+                    <div>
+                        <p class="about-subtitle">
+                            Thaalam is a business-focused community built to help entrepreneurs, startups,
+                            professionals, MSMEs, and organizations learn, connect, and grow together.
+                        </p>
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Starting and growing a business requires more than just a great idea. It requires
+                            knowledge, trusted connections, access to the right professionals, business opportunities,
+                            and continuous learning. Thaalam brings these essential elements together on one platform,
+                            creating an ecosystem where businesses can find the support they need at every stage of
+                            their journey.
+                        </p>
+                        <p>
+                            Our platform enables members to discover valuable business insights, explore emerging
+                            technologies, connect with industry experts, build meaningful professional relationships,
+                            and stay informed about market trends.
+                        </p>
+                        <p>
+                            We believe that business success grows through collaboration. By connecting
+                            entrepreneurs, professionals, service providers, investors, mentors, and organizations, we
+                            aim to strengthen the business ecosystem and encourage innovation across industries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MISSION SECTION -->
+    <div class="section-wrapper" id="mission-wrapper">
+        <div class="hero-title-screen">
+            <div class="hero-title-content">
+                <h2>Mission</h2>
+            </div>
+        </div>
+        <div class="section-details-block bg-white">
+            <div class="section-content">
+                <p class="banner-description">
+                    To build a trusted business community that empowers entrepreneurs and professionals through
+                    knowledge sharing, meaningful connections, collaboration, technology, and business
+                    opportunities.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. VISION SECTION -->
+    <div class="section-wrapper" id="vision-wrapper">
+        <div class="hero-title-screen">
+            <div class="hero-title-content">
+                <h2>Vision</h2>
+            </div>
+        </div>
+        <div class="section-details-block bg-soft-red">
+            <div class="section-content">
+                <p class="banner-description">
+                    To become one of the most trusted business ecosystems where entrepreneurs, startups, MSMEs,
+                    professionals, and organizations collaborate, innovate, and grow together while creating lasting
+                    value for the business community.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. PURPOSE SECTION -->
+    <div class="section-wrapper" id="purpose-wrapper">
+        <div class="hero-title-screen">
+            <div class="hero-title-content">
+                <h2>Purpose</h2>
+            </div>
+        </div>
+        <div class="section-details-block bg-light-cream">
+            <div class="section-content">
+                <p class="banner-description">
+                    Our purpose is to create an environment where businesses do more than simply connect. We
+                    help people discover knowledge, build trusted relationships, access professional support, explore
+                    new opportunities, and grow together. By bringing the business community into one
+                    collaborative platform, Thaalam aims to contribute to a stronger, smarter, and more connected
+                    business ecosystem for the future.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. WHAT WE OFFER SECTION (Accordion Deck) -->
+    <div class="section-wrapper" id="offerings-wrapper">
+        <div class="hero-title-screen">
+            <div class="hero-title-content">
+                <h2>What We Offer</h2>
+            </div>
+        </div>
+        <div class="section-details-block bg-dark-theme">
+            <div class="section-content">
+                <div class="offerings-header">
+                    <h3 class="offerings-heading">Everything Businesses Need to Connect, Learn, and Grow</h3>
+                    <p class="offerings-intro">
+                        Thaalam provides a complete business ecosystem designed to support entrepreneurs, startups,
+                        SMEs,
+                        professionals, and organizations with the resources, connections, and solutions they need to
+                        build
+                        and scale successful businesses.
+                    </p>
+                </div>
+
+                <!-- Accordion Deck -->
+                <div class="accordion-container">
+                    <!-- Card 1: Community -->
+                    <div class="accordion-panel active" style="--panel-bg: #e04f33;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Community</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Business Community</h4>
+                                <p class="panel-subtitle">Network & Exchange</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Connect with entrepreneurs, founders, professionals, and business leaders. Share
+                                experiences, exchange ideas, learn from real-world journeys, and build meaningful
+                                business relationships."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Solutions -->
+                    <div class="accordion-panel" style="--panel-bg: #2563eb;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Solutions</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Business Solutions</h4>
+                                <p class="panel-subtitle">Practical Support</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Find practical support for your business challenges through trusted professionals
+                                across technology, marketing, finance, legal, branding, operations, and growth."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Directory -->
+                    <div class="accordion-panel" style="--panel-bg: #1f2937;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Directory</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Professional Directory</h4>
+                                <p class="panel-subtitle">Expert Search</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Discover and connect with experts, consultants, freelancers, and service providers who
+                                can support your business needs and provide specialized knowledge."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Visibility -->
+                    <div class="accordion-panel" style="--panel-bg: #d97706;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Visibility</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Company Listing</h4>
+                                <p class="panel-subtitle">Brand Exposure</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Showcase your company, products, services, achievements, and expertise. Improve your
+                                business presence so potential customers and partners discover you."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Knowledge -->
+                    <div class="accordion-panel" style="--panel-bg: #059669;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Learning</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Business Knowledge</h4>
+                                <p class="panel-subtitle">Insights & Growth</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Access valuable insights, resources, industry updates, business strategies, and
+                                practical knowledge to improve decision-making and business growth."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Networking -->
+                    <div class="accordion-panel" style="--panel-bg: #7c3aed;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Opportunities</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Networking</h4>
+                                <p class="panel-subtitle">Partnerships</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Build connections, explore partnerships, discover collaborations, participate in
+                                events, and find opportunities that help businesses expand."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Tech & AI -->
+                    <div class="accordion-panel" style="--panel-bg: #0891b2;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Tech & AI</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Technology & AI</h4>
+                                <p class="panel-subtitle">Digital Transformation</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Stay updated with modern technology, AI tools, automation solutions, and digital
+                                transformation strategies that help businesses adapt to the future."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Marketing -->
+                    <div class="accordion-panel" style="--panel-bg: #e11d48;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Marketing</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Marketing Support</h4>
+                                <p class="panel-subtitle">Scale Brand</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Get guidance and resources for branding, digital marketing, customer engagement, online
+                                visibility, and strategic business growth."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Startups -->
+                    <div class="accordion-panel" style="--panel-bg: #4d7c0f;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Startups</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Startup & MSME</h4>
+                                <p class="panel-subtitle">Early-Stage Support</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Support for early-stage entrepreneurs and growing businesses through learning
+                                resources, connections, and access to the right ecosystem."
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Events -->
+                    <div class="accordion-panel" style="--panel-bg: #4b5563;">
+                        <div class="panel-collapsed-view">
+                            <span class="panel-vertical-title">Events</span>
+                        </div>
+                        <div class="panel-expanded-view">
+                            <div>
+                                <h4>Events & Activities</h4>
+                                <p class="panel-subtitle">Workshops & Webinars</p>
+                            </div>
+                            <blockquote class="panel-quote">
+                                "Participate in workshops, webinars, networking events, and community activities
+                                designed to encourage learning and active collaboration."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offerings-outro">
+                    Thaalam brings businesses, professionals, knowledge, and opportunities together — creating a
+                    stronger ecosystem where everyone can connect, grow, and succeed.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer"
+                        class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Header scroll interaction script -->
+    <script>
+        (function () {
+            let lastScrollTop = 0;
+            const header = document.querySelector("header");
+            if (!header) return;
+            window.addEventListener("scroll", function () {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40 && currentScroll > lastScrollTop) {
+                    header.classList.add("nav-hidden");
+                } else {
+                    header.classList.remove("nav-hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        })();
+    </script>
+
+    <!-- Accordion Interactive Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const panels = document.querySelectorAll(".accordion-panel");
+
+            panels.forEach((panel) => {
+                panel.addEventListener("mouseenter", function () {
+                    panels.forEach((p) => p.classList.remove("active"));
+                    this.classList.add("active");
+                });
+
+                panel.addEventListener("click", function () {
+                    panels.forEach((p) => p.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+        });
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

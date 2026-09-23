@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Registration - Thaalam</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --yc-orange: #dc2626;
+            --yc-bg: #ffffff;
+            --yc-text: #222222;
+            --yc-subtext: #828282;
+            --yc-border: #e2e2da;
+            --yc-card-bg: #ffffff;
+            --yc-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--yc-bg);
+            color: var(--yc-text);
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8b1e1e;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #8b1e1e;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 175px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 8px;
+                padding: 6px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 8px 16px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fdf2f2;
+                color: #8b1e1e;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #8b1e1e !important;
+                border: 1.5px solid #8b1e1e;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(139, 30, 30, 0.08);
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #8b1e1e;
+                color: #ffffff !important;
+                border: 1.5px solid #8b1e1e;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #6e1717;
+                border-color: #6e1717;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Container Layout */
+        .main-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* Page Header / Hero Section */
+        .page-header {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 32px 28px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--yc-text);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 15px;
+            color: #555555;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        /* Split Section: Info & Form */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* Left Side: Why Register */
+        .why-card {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 24px;
+            position: sticky;
+            top: 60px;
+        }
+
+        .why-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--yc-orange);
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--yc-bg);
+            padding-bottom: 8px;
+        }
+
+        .why-register-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .why-register-item h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .why-register-item p {
+            font-size: 13px;
+            color: var(--yc-subtext);
+            line-height: 1.4;
+        }
+
+        /* Form Main Area */
+        .form-card {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 28px;
+        }
+
+        .form-category-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            margin: 24px 0 14px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--yc-border);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-category-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 4px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--yc-border);
+            border-radius: 3px;
+            font-size: 13.5px;
+            outline: none;
+            background: #fafafa;
+            color: #222;
+            transition: all 0.15s ease;
+        }
+
+        input[type="file"] {
+            padding: 6px 10px;
+            background: #ffffff;
+            font-size: 12px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: #ffffff;
+            border-color: var(--yc-orange);
+            box-shadow: 0 0 0 2px rgba(139, 30, 30, 0.15);
+        }
+
+        optgroup {
+            font-weight: 700;
+            color: var(--yc-orange);
+            background: #ffffff;
+        }
+
+        option {
+            font-weight: 400;
+            color: #222222;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-top: 3px;
+        }
+
+        .checkbox-group label {
+            font-size: 12.5px;
+            color: #555;
+            line-height: 1.4;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: var(--yc-orange);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background: #6e1717;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 32px 28px;
+            margin-top: 20px;
+        }
+
+        .how-it-works-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .how-it-works-subtitle {
+            font-size: 13.5px;
+            color: var(--yc-subtext);
+            margin-bottom: 24px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .step-card {
+            background: var(--yc-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 18px 14px;
+            text-align: left;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--yc-orange);
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .step-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .step-card p {
+            font-size: 12.5px;
+            color: #555555;
+            line-height: 1.4;
+        }
+
+        /* Full Width Red Footer */
+        footer {
+            background-color: #8b1e1e;
+            padding: 60px 4% 40px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .custom-footer-card {
+            color: #ffffff;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-community-section {
+            text-align: center;
+            padding-bottom: 50px;
+        }
+
+        .footer-community-section h2 {
+            font-size: 38px;
+            font-weight: 600;
+            margin-bottom: 35px;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .social-circles-grid {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .social-circle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.85);
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .social-circle-item:hover {
+            transform: translateY(-4px);
+            color: #ffffff;
+        }
+
+        .circle-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+        }
+
+        .social-circle-item:hover .circle-icon {
+            border-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .circle-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .social-circle-item span {
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .footer-card-divider {
+            border: none;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 0 40px 0;
+        }
+
+        .footer-main-content {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr 48px;
+            gap: 40px;
+            align-items: start;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-brand-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ffffff;
+            padding: 2px;
+        }
+
+        .footer-brand-text p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-nav-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 40px;
+        }
+
+        .footer-nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .back-to-top-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .back-to-top-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #ffffff;
+        }
+
+        .footer-bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-legal-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card {
+                position: static;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top-btn {
+                position: absolute;
+                right: 5%;
+                bottom: 80px;
+            }
+
+            .footer-bottom-bar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                background: #f8f8f8;
+                padding: 4px 0;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Page Header Banner -->
+        <div class="page-header">
+            <h1>Register as a Professional</h1>
+            <p>Create your profile, showcase your expertise, and connect with verified entrepreneurs and businesses
+                across
+                the Thaalam network.</p>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-grid">
+
+            <!-- Left Side Title & "Why Register?" Content -->
+            <div class="why-card">
+                <h2>Why Register?</h2>
+                <div class="why-register-list">
+                    <div class="why-register-item">
+                        <h3>Increase Your Professional Visibility</h3>
+                        <p>Create a verified professional profile that helps founders, growing companies, and partners
+                            discover your expertise.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Connect with Ambitious Founders</h3>
+                        <p>Collaborate with emerging businesses, startups, SMEs, and industry peers across the Thaalam
+                            ecosystem.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Offer Specialized Services</h3>
+                        <p>Provide domain consulting, advisory, and professional services to high-growth ventures.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Build Community Credibility</h3>
+                        <p>Gain recognition and trust as a verified domain specialist within our curated network.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="form-card" id="register-form">
+                <form onsubmit="handleRegisterSubmit(event)">
+
+                    <!-- Professional Profile -->
+                    <div class="form-category-title">Professional Profile</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" placeholder="e.g. Adv. Rajesh Kumar" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profile_photo">Profile Photo URL (Optional)</label>
+                            <input type="url" id="profile_photo" placeholder="https://drive.google.com/... or https://yoursite.com/photo.jpg">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="professional_title">Professional Title *</label>
+                            <input type="text" id="professional_title" placeholder="e.g. Senior Corporate Consultant"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <input type="text" id="location" placeholder="e.g. Chennai, India" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="category">Domain of Expertise *</label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected>Select Domain of Expertise</option>
+                                <optgroup label="Business & Management">
+                                    <option value="Business Consultant">Business Consultant</option>
+                                    <option value="Startup Consultant">Startup Consultant</option>
+                                    <option value="Business Coach">Business Coach</option>
+                                    <option value="Management Consultant">Management Consultant</option>
+                                    <option value="Strategy Consultant">Strategy Consultant</option>
+                                    <option value="Operations Consultant">Operations Consultant</option>
+                                    <option value="Franchise Consultant">Franchise Consultant</option>
+                                </optgroup>
+                                <optgroup label="Finance & Accounting">
+                                    <option value="Chartered Accountant (CA)">Chartered Accountant (CA)</option>
+                                    <option value="Auditor">Auditor</option>
+                                    <option value="Tax Consultant">Tax Consultant</option>
+                                    <option value="GST Consultant">GST Consultant</option>
+                                    <option value="Financial Advisor">Financial Advisor</option>
+                                    <option value="Investment Advisor">Investment Advisor</option>
+                                    <option value="Insurance Advisor">Insurance Advisor</option>
+                                    <option value="Loan Consultant">Loan Consultant</option>
+                                    <option value="Payroll Specialist">Payroll Specialist</option>
+                                    <option value="Bookkeeper">Bookkeeper</option>
+                                </optgroup>
+                                <optgroup label="Legal Services">
+                                    <option value="Advocate / Lawyer">Advocate / Lawyer</option>
+                                    <option value="Legal Consultant">Legal Consultant</option>
+                                    <option value="Company Secretary (CS)">Company Secretary (CS)</option>
+                                    <option value="Trademark Consultant">Trademark Consultant</option>
+                                    <option value="Patent Consultant">Patent Consultant</option>
+                                    <option value="Compliance Consultant">Compliance Consultant</option>
+                                    <option value="Contract Specialist">Contract Specialist</option>
+                                </optgroup>
+                                <optgroup label="Marketing & Branding">
+                                    <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
+                                    <option value="SEO Specialist">SEO Specialist</option>
+                                    <option value="SEM/PPC Expert">SEM/PPC Expert</option>
+                                    <option value="Social Media Manager">Social Media Manager</option>
+                                    <option value="Content Marketer">Content Marketer</option>
+                                    <option value="Brand Strategist">Brand Strategist</option>
+                                    <option value="Marketing Consultant">Marketing Consultant</option>
+                                    <option value="PR Consultant">PR Consultant</option>
+                                    <option value="Copywriter">Copywriter</option>
+                                </optgroup>
+                                <optgroup label="Creative & Design">
+                                    <option value="Graphic Designer">Graphic Designer</option>
+                                    <option value="UI/UX Designer">UI/UX Designer</option>
+                                    <option value="Web Designer">Web Designer</option>
+                                    <option value="Logo Designer">Logo Designer</option>
+                                    <option value="Brand Designer">Brand Designer</option>
+                                    <option value="Motion Graphics Designer">Motion Graphics Designer</option>
+                                    <option value="Video Editor">Video Editor</option>
+                                    <option value="Photographer">Photographer</option>
+                                    <option value="Videographer">Videographer</option>
+                                    <option value="Illustrator">Illustrator</option>
+                                    <option value="Animator">Animator</option>
+                                </optgroup>
+                                <optgroup label="Technology & IT">
+                                    <option value="Software Developer">Software Developer</option>
+                                    <option value="Full Stack Developer">Full Stack Developer</option>
+                                    <option value="Frontend Developer">Frontend Developer</option>
+                                    <option value="Backend Developer">Backend Developer</option>
+                                    <option value="Mobile App Developer">Mobile App Developer</option>
+                                    <option value="AI/ML Engineer">AI/ML Engineer</option>
+                                    <option value="Data Analyst">Data Analyst</option>
+                                    <option value="Data Scientist">Data Scientist</option>
+                                    <option value="DevOps Engineer">DevOps Engineer</option>
+                                    <option value="Cloud Engineer">Cloud Engineer</option>
+                                    <option value="Cybersecurity Expert">Cybersecurity Expert</option>
+                                    <option value="Blockchain Developer">Blockchain Developer</option>
+                                    <option value="QA Tester">QA Tester</option>
+                                    <option value="IT Consultant">IT Consultant</option>
+                                    <option value="Network Engineer">Network Engineer</option>
+                                    <option value="System Administrator">System Administrator</option>
+                                </optgroup>
+                                <optgroup label="Web & Digital">
+                                    <option value="WordPress Developer">WordPress Developer</option>
+                                    <option value="Shopify Expert">Shopify Expert</option>
+                                    <option value="E-commerce Consultant">E-commerce Consultant</option>
+                                    <option value="Website Maintenance">Website Maintenance</option>
+                                    <option value="CRM Specialist">CRM Specialist</option>
+                                    <option value="ERP Consultant">ERP Consultant</option>
+                                </optgroup>
+                                <optgroup label="Sales">
+                                    <option value="Sales Consultant">Sales Consultant</option>
+                                    <option value="Business Development Executive">Business Development Executive
+                                    </option>
+                                    <option value="Sales Trainer">Sales Trainer</option>
+                                    <option value="Lead Generation Specialist">Lead Generation Specialist</option>
+                                    <option value="CRM Consultant">CRM Consultant</option>
+                                </optgroup>
+                                <optgroup label="Human Resources">
+                                    <option value="HR Consultant">HR Consultant</option>
+                                    <option value="Recruiter">Recruiter</option>
+                                    <option value="Talent Acquisition Specialist">Talent Acquisition Specialist</option>
+                                    <option value="Career Coach">Career Coach</option>
+                                    <option value="Resume Writer">Resume Writer</option>
+                                    <option value="Interview Coach">Interview Coach</option>
+                                    <option value="Corporate Trainer">Corporate Trainer</option>
+                                </optgroup>
+                                <optgroup label="Education & Training">
+                                    <option value="Corporate Trainer">Corporate Trainer</option>
+                                    <option value="Business Mentor">Business Mentor</option>
+                                    <option value="Leadership Coach">Leadership Coach</option>
+                                    <option value="Soft Skills Trainer">Soft Skills Trainer</option>
+                                    <option value="Technical Trainer">Technical Trainer</option>
+                                    <option value="Language Trainer">Language Trainer</option>
+                                </optgroup>
+                                <optgroup label="Media & Communication">
+                                    <option value="Content Writer">Content Writer</option>
+                                    <option value="Technical Writer">Technical Writer</option>
+                                    <option value="Copywriter">Copywriter</option>
+                                    <option value="Blogger">Blogger</option>
+                                    <option value="Journalist">Journalist</option>
+                                    <option value="Public Speaker">Public Speaker</option>
+                                    <option value="Voice-over Artist">Voice-over Artist</option>
+                                    <option value="Translator">Translator</option>
+                                </optgroup>
+                                <optgroup label="Engineering">
+                                    <option value="Civil Engineer">Civil Engineer</option>
+                                    <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                    <option value="Electrical Engineer">Electrical Engineer</option>
+                                    <option value="Electronics Engineer">Electronics Engineer</option>
+                                    <option value="Industrial Engineer">Industrial Engineer</option>
+                                    <option value="Automation Engineer">Automation Engineer</option>
+                                </optgroup>
+                                <optgroup label="Architecture & Construction">
+                                    <option value="Architect">Architect</option>
+                                    <option value="Interior Designer">Interior Designer</option>
+                                    <option value="Landscape Designer">Landscape Designer</option>
+                                    <option value="Structural Consultant">Structural Consultant</option>
+                                    <option value="Quantity Surveyor">Quantity Surveyor</option>
+                                </optgroup>
+                                <optgroup label="Manufacturing">
+                                    <option value="Production Consultant">Production Consultant</option>
+                                    <option value="Quality Consultant">Quality Consultant</option>
+                                    <option value="Supply Chain Consultant">Supply Chain Consultant</option>
+                                    <option value="Procurement Specialist">Procurement Specialist</option>
+                                </optgroup>
+                                <optgroup label="Healthcare">
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Dentist">Dentist</option>
+                                    <option value="Physiotherapist">Physiotherapist</option>
+                                    <option value="Nutritionist">Nutritionist</option>
+                                    <option value="Psychologist">Psychologist</option>
+                                    <option value="Healthcare Consultant">Healthcare Consultant</option>
+                                </optgroup>
+                                <optgroup label="Real Estate">
+                                    <option value="Real Estate Agent">Real Estate Agent</option>
+                                    <option value="Property Consultant">Property Consultant</option>
+                                    <option value="Valuation Expert">Valuation Expert</option>
+                                    <option value="Property Legal Advisor">Property Legal Advisor</option>
+                                </optgroup>
+                                <optgroup label="Logistics">
+                                    <option value="Logistics Consultant">Logistics Consultant</option>
+                                    <option value="Supply Chain Expert">Supply Chain Expert</option>
+                                    <option value="Import Export Consultant">Import Export Consultant</option>
+                                    <option value="Customs Consultant">Customs Consultant</option>
+                                </optgroup>
+                                <optgroup label="Agriculture">
+                                    <option value="Agriculture Consultant">Agriculture Consultant</option>
+                                    <option value="Organic Farming Expert">Organic Farming Expert</option>
+                                    <option value="Agri Business Consultant">Agri Business Consultant</option>
+                                </optgroup>
+                                <optgroup label="Event & Hospitality">
+                                    <option value="Event Planner">Event Planner</option>
+                                    <option value="Wedding Planner">Wedding Planner</option>
+                                    <option value="Corporate Event Manager">Corporate Event Manager</option>
+                                    <option value="Hospitality Consultant">Hospitality Consultant</option>
+                                </optgroup>
+                                <optgroup label="Freelance Professionals">
+                                    <option value="Virtual Assistant">Virtual Assistant</option>
+                                    <option value="Freelancer">Freelancer</option>
+                                    <option value="Project Manager">Project Manager</option>
+                                    <option value="Research Analyst">Research Analyst</option>
+                                    <option value="Administrative Assistant">Administrative Assistant</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="specialization">Specialization *</label>
+                            <input type="text" id="specialization"
+                                placeholder="e.g. Intellectual Property Law & Corporate Governance" required>
+                        </div>
+                    </div>
+
+                    <!-- Work & Experience -->
+                    <div class="form-category-title">Work & Experience</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="industry_experience">Industry Experience *</label>
+                            <input type="text" id="industry_experience" placeholder="e.g. Legal Services, FinTech, SaaS"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Years of Experience *</label>
+                            <input type="number" id="experience" min="0" max="100" placeholder="e.g. 5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="current_organization">Current Organization (Optional)</label>
+                            <input type="text" id="current_organization"
+                                placeholder="e.g. Apex Legal Associates / Self-Employed">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="designation">Designation (Optional)</label>
+                            <input type="text" id="designation"
+                                placeholder="e.g. Managing Partner / Principal Consultant">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="skills">Skills *</label>
+                            <input type="text" id="skills"
+                                placeholder="e.g. Contract Negotiation, Risk Management, Corporate Strategy" required>
+                        </div>
+                    </div>
+
+                    <!-- Education & Other Details -->
+                    <div class="form-category-title">Education & Other Details</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="qualification">Qualification *</label>
+                            <input type="text" id="qualification" placeholder="e.g. B.A. LL.B (Hons.), LL.M" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="languages">Languages Known *</label>
+                            <input type="text" id="languages" placeholder="e.g. English, Tamil, Hindi" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="availability">Availability *</label>
+                            <select id="availability" required>
+                                <option value="">Select Availability</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Consulting / Advisory">Consulting / Advisory</option>
+                                <option value="Freelance / Contract">Freelance / Contract</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Social Links -->
+                    <div class="form-category-title">Contact &amp; Social Links</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="name@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website">Portfolio / Personal Website</label>
+                            <input type="url" id="website" placeholder="https://yourwebsite.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile URL</label>
+                            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instagram">Instagram Profile URL</label>
+                            <input type="url" id="instagram" placeholder="https://instagram.com/username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="twitter">Twitter / X Profile URL</label>
+                            <input type="url" id="twitter" placeholder="https://x.com/username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="youtube">YouTube Channel URL</label>
+                            <input type="url" id="youtube" placeholder="https://youtube.com/@channel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="portfolio">GitHub / Behance / Portfolio</label>
+                            <input type="url" id="portfolio" placeholder="https://github.com/username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="social_media">Facebook / Other Social Media</label>
+                            <input type="url" id="social_media" placeholder="https://facebook.com/username">
+                        </div>
+                    </div>
+
+                    <!-- Terms and Submit -->
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I verify that the above information is accurate and agree to the <a
+                                href="../terms.html" target="_blank">Terms & Conditions</a>.</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Register Profile</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="how-it-works-section">
+            <h2 class="how-it-works-title">How It Works</h2>
+            <p class="how-it-works-subtitle">Get your professional profile listed and connected with founders and
+                businesses in four simple steps.</p>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">STEP 1</span>
+                    <h3>Submit Details</h3>
+                    <p>Fill out the professional registration form with your credentials, contact information, and core
+                        competencies.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 2</span>
+                    <h3>Verification</h3>
+                    <p>Our onboarding team reviews and authenticates your qualifications and professional credentials
+                        within 24 hours.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 3</span>
+                    <h3>Profile Listing</h3>
+                    <p>Once verified, your profile goes live on the Thaalam Professional Directory for immediate
+                        discovery.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 4</span>
+                    <h3>Connect & Consult</h3>
+                    <p>Receive direct inquiries from entrepreneurs, startups, and clients seeking your domain expertise.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Width Red Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase SDK & Thalam Database Client — loaded BEFORE inline script -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
+
+    <script>
+        // Auto-hide Navbar on Scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+        if (header) {
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40 && currentScroll > lastScrollTop) {
+                    header.classList.add("nav-hidden");
+                } else {
+                    header.classList.remove("nav-hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        }
+
+        async function handleRegisterSubmit(e) {
+            e.preventDefault();
+
+            // Collect form data into an object
+            const formData = {
+                fullname: document.getElementById('fullname')?.value.trim() || '',
+                profile_photo: document.getElementById('profile_photo')?.value.trim() || '',
+                professional_title: document.getElementById('professional_title')?.value.trim() || '',
+                location: document.getElementById('location')?.value.trim() || '',
+                category: document.getElementById('category')?.value || '',
+                specialization: document.getElementById('specialization')?.value.trim() || '',
+                industry_experience: document.getElementById('industry_experience')?.value.trim() || '',
+                experience: document.getElementById('experience')?.value || '',
+                current_organization: document.getElementById('current_organization')?.value.trim() || '',
+                designation: document.getElementById('designation')?.value.trim() || '',
+                skills: document.getElementById('skills')?.value.trim() || '',
+                qualification: document.getElementById('qualification')?.value.trim() || '',
+                languages: document.getElementById('languages')?.value.trim() || '',
+                availability: document.getElementById('availability')?.value || '',
+                email: document.getElementById('email')?.value.trim() || '',
+                phone: document.getElementById('phone')?.value.trim() || '',
+                website: document.getElementById('website')?.value.trim() || '',
+                linkedin: document.getElementById('linkedin')?.value.trim() || '',
+                instagram: document.getElementById('instagram')?.value.trim() || '',
+                twitter: document.getElementById('twitter')?.value.trim() || '',
+                youtube: document.getElementById('youtube')?.value.trim() || '',
+                portfolio: document.getElementById('portfolio')?.value.trim() || '',
+                social_media: document.getElementById('social_media')?.value.trim() || '',
+                terms: document.getElementById('terms')?.checked || false
+            };
+
+            // Clean tracking params from URL fields — preserve Google Drive links intact
+            ['profile_photo', 'website', 'linkedin', 'instagram', 'twitter', 'youtube', 'portfolio', 'social_media'].forEach(f => {
+                if (formData[f] && window.ThalamSupabase?.cleanUrl) {
+                    const url = formData[f];
+                    const isGoogleDrive = url.includes('drive.google.com') ||
+                                         url.includes('docs.google.com');
+                    if (!isGoogleDrive) {
+                        formData[f] = window.ThalamSupabase.cleanUrl(url);
+                    }
+                }
+            });
+
+            const submitBtn = e.target.querySelector('.btn-submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            // Auto-sync into Thaalam Admin Inquiries list only (localStorage professional write is handled by supabase-client.js)
+            try {
+                const existingInquiries = JSON.parse(localStorage.getItem('thalam_admin_inquiries') || '[]');
+                existingInquiries.unshift({
+                    id: 'THAL-PRO-' + Math.floor(1000 + Math.random() * 9000),
+                    type: 'Professional Registration',
+                    client_name: formData.fullname,
+                    company: formData.current_organization || 'Independent Practice',
+                    email: formData.email,
+                    phone: formData.phone,
+                    category: formData.category + ' (' + formData.specialization + ')',
+                    budget: 'Verification Queue',
+                    status: 'New Lead',
+                    location: formData.location,
+                    message: `Professional registration for ${formData.fullname} - ${formData.professional_title}`,
+                    created_at: new Date().toISOString()
+                });
+                localStorage.setItem('thalam_admin_inquiries', JSON.stringify(existingInquiries));
+            } catch (storeErr) {
+                console.warn('Storage sync warning:', storeErr);
+            }
+
+            // Submit only to Supabase; professional registration data is not sent to Google Sheets.
+            const supabaseResult = await (async () => {
+                try {
+                    const professionalApi = window.ThalamSupabase && window.ThalamSupabase.professionals;
+                    if (professionalApi && typeof professionalApi.register === 'function') {
+                        return await professionalApi.register(formData);
+                    }
+                } catch (err) {
+                    console.error('[Thaalam] Professional Supabase submission failed:', err);
+                }
+                return { success: false, localOnly: true };
+            })();
+
+            const cloudMessage = supabaseResult && supabaseResult.success && !supabaseResult.localOnly
+                ? ' Your profile was also saved to the database.'
+                : ' Your data was saved to the admin queue for review.';
+            alert('Thank you! Your professional profile has been submitted successfully.' + cloudMessage);
+            e.target.reset();
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Register Profile';
+            }
+        }
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

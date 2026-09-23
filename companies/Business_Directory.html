@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory Table</title>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* Splash Overlay Screen - Cinematic Perplexity Style */
+        .splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(12, 17, 14, 0.4) 0%, rgba(12, 17, 14, 0.2) 50%, rgba(10, 14, 11, 0.65) 100%),
+                url('../images/thaalam_splash.png') center center / cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            /* Slowed down transition duration to 1.8s */
+            transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.8s ease;
+            cursor: pointer;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .splash-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%);
+            pointer-events: none;
+        }
+
+        .splash-overlay.hidden {
+            opacity: 0;
+            transform: scale(1.04);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 24px;
+            animation: splashFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes splashFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Brand Typography */
+        .splash-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
+        }
+
+        .splash-logo-text {
+            font-size: clamp(38px, 6.5vw, 64px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1;
+            text-transform: lowercase;
+        }
+
+        .splash-divider {
+            display: inline-block;
+            width: 1.5px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.75);
+            margin: 0 16px;
+        }
+
+        .splash-suite {
+            font-size: 21px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1;
+        }
+
+        .splash-tagline {
+            font-size: 13.5px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 14px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        @media (max-width: 640px) {
+            .splash-brand {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .splash-divider {
+                display: none;
+            }
+
+            .splash-logo-text {
+                font-size: 32px;
+            }
+
+            .splash-suite {
+                font-size: 16px;
+                letter-spacing: 0.12em;
+            }
+
+            .splash-tagline {
+                font-size: 12px;
+            }
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.92;
+            transform: translateY(-0.5px);
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.18s ease, transform 0.18s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 185px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eee;
+                border-radius: 0;
+                padding: 8px 0;
+                z-index: 1001;
+                transform-origin: top left;
+                animation: fadeInDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 9px 18px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+                transition: all 0.15s ease;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+                padding-left: 21px;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.25s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 8px 20px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08);
+                transform: translateY(-1.5px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 8px 20px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c;
+                border-color: #b91c1c;
+                color: #ffffff !important;
+                transform: translateY(-1.5px);
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.92) translateY(18px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes hintBounce {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Header Banner / Title Section */
+        .page-header {
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 44px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #333;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .page-header p a {
+            color: #111;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* Integrated Search Box & Filter Wrapper */
+        .search-box-wrap {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 0;
+            padding: 4px 6px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .search-box-wrap:focus-within {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+        }
+
+        .btn-toggle-filters {
+            background: transparent;
+            color: #dc2626;
+            border: none;
+            border-right: 1px solid #e0e0e0;
+            padding: 8px 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+            white-space: nowrap;
+        }
+
+        .btn-toggle-filters:hover {
+            background: rgba(220, 38, 38, 0.08);
+            border-radius: 0;
+        }
+
+        .search-box-wrap input {
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            background: transparent;
+            margin-bottom: 0;
+        }
+
+        /* Left Sidebar Drawer Styling */
+        .filters-drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .filters-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filters-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 340px;
+            max-width: 85%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2000;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filters-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h3 {
+            font-size: 18px;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .drawer-close-btn {
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .drawer-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Checkbox Accordion Sections & Dropdown Styles */
+        .checkbox-accordion {
+            border: 1px solid #e5e7eb;
+            border-radius: 0;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .checkbox-accordion summary {
+            padding: 12px 14px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #dc2626;
+            cursor: pointer;
+            background: #fdfaf9;
+            user-select: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .checkbox-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .checkbox-accordion summary::after {
+            content: '▲';
+            font-size: 10px;
+            transition: transform 0.25s ease;
+            transform: rotate(90deg);
+            color: #dc2626;
+        }
+
+        .checkbox-accordion[open]>summary::after {
+            transform: rotate(180deg);
+        }
+
+        .checkbox-group-list {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 380px;
+            overflow-y: auto;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        /* Nested Accordion Sub-Dropdown Styles */
+        .category-nested-accordion {
+            border: 1px solid #fee2e2;
+            border-radius: 0;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            background: #fffdfd;
+        }
+
+        .category-nested-accordion summary {
+            font-weight: 700;
+            font-size: 12px;
+            color: #dc2626;
+            padding: 8px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #fef2f2;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .category-nested-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .category-nested-accordion summary::after {
+            content: '▲';
+            font-size: 9px;
+            transition: transform 0.25s ease;
+            transform: rotate(90deg);
+            color: #dc2626;
+        }
+
+        .category-nested-accordion[open]>summary::after {
+            transform: rotate(180deg);
+        }
+
+        .nested-checkbox-list {
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #ffffff;
+            border-top: 1px solid #fee2e2;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #dc2626;
+            cursor: pointer;
+        }
+
+        .expand-all-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #fef2f2;
+            border: 1px dashed #dc2626;
+            border-radius: 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #dc2626;
+            cursor: pointer;
+        }
+
+        .expand-all-wrap input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #dc2626;
+            cursor: pointer;
+        }
+
+        .btn-reset-filters {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 10px 16px;
+            border-radius: 0;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .btn-reset-filters:hover {
+            background: #dc2626;
+            color: #fff;
+            border-color: #dc2626;
+        }
+
+        .controls-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            gap: 12px;
+        }
+
+        .results-counter {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .results-counter span {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        /* Mobile Scroll Indicator Hint */
+        .mobile-scroll-hint {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #71717a;
+            font-weight: 500;
+            animation: hintBounce 2.4s infinite ease-in-out;
+        }
+
+        /* Table Container - Changed to Rectangle */
+        .container {
+            padding: 10px 1.5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background: white;
+            border-radius: 0 !important;
+            /* Forces rectangular edges */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eef2ef;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            height: 7px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f4f4f5;
+            border-radius: 0;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 0;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        .directory-table {
+            width: 100%;
+            min-width: 800px;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .directory-table th {
+            background: #faf7f2;
+            color: #1a1614;
+            padding: 16px 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            border-bottom: 2px solid #eae2d6;
+            text-align: center;
+        }
+
+        /* Removes Top Corner Radius on Header Cells */
+        .directory-table th:first-child {
+            border-top-left-radius: 0 !important;
+        }
+
+        .directory-table th:last-child {
+            border-top-right-radius: 0 !important;
+        }
+
+        .directory-table td {
+            padding: 16px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .directory-table tbody tr {
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .directory-table tbody tr:hover {
+            background-color: #faf2f3;
+        }
+
+        /* Logo Box Square Borders */
+        .logo-box {
+            width: 46px;
+            height: 46px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0 !important;
+            /* Square logo frames */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .directory-table tbody tr:hover .logo-box {
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .company-name {
+            font-weight: bold;
+            color: #111;
+            font-size: 15px;
+        }
+
+        .sector-badge {
+            display: inline;
+            color: #111;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Button Corners - Changed to Rectangle */
+        .btn-view {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 7px 15px;
+            border-radius: 0 !important;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .btn-view:hover {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.22);
+        }
+
+        .services-cell {
+            min-width: 180px;
+        }
+
+        .services-preview {
+            display: block;
+            max-width: 220px;
+            margin: 0 auto 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-services {
+            padding: 5px 10px;
+            font-size: 11px;
+        }
+
+        .btn-call {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 0 !important;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .btn-call:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 16px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 32px 30px;
+            border-radius: 0;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.25);
+            animation: modalPop 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.22s ease;
+        }
+
+        .close-btn:hover {
+            color: #dc2626;
+            transform: rotate(90deg) scale(1.12);
+        }
+
+        .modal-body h2 {
+            color: #dc2626;
+            margin-bottom: 6px;
+        }
+
+        .modal-body p {
+            color: #444;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .modal-details {
+            margin-bottom: 20px;
+            font-size: 13.5px;
+        }
+
+        .modal-details div {
+            margin-bottom: 8px;
+        }
+
+        .modal-details div:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-details a {
+            color: #dc2626;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .modal-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Social Icons Row */
+        .modal-social-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .modal-social-row strong {
+            font-size: 13.5px;
+            color: #1a291b;
+        }
+
+        .modal-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 0;
+            background: #f4f6f4;
+            border: 1.5px solid #d4ded5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #2b3d2c;
+            text-decoration: none !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal-social-btn svg {
+            width: 17px;
+            height: 17px;
+            display: block;
+            transition: transform 0.2s ease, stroke 0.2s ease;
+        }
+
+        .modal-social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .modal-social-btn.btn-web:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.28);
+        }
+
+        .modal-social-btn.btn-insta:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            border-color: #d6249f;
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(214, 36, 159, 0.32);
+        }
+
+        .modal-social-btn.btn-li:hover {
+            background: #0a66c2;
+            border-color: #0a66c2;
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(10, 102, 194, 0.32);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+
+            .page-header {
+                padding: 40px 16px 20px;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .page-header p {
+                font-size: 14.5px;
+            }
+
+            .mobile-scroll-hint {
+                display: flex;
+            }
+
+            .container {
+                padding: 15px 3% 50px;
+            }
+
+            .btn-reset-filters {
+                align-self: stretch;
+            }
+
+            .controls-meta-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 10px 4%;
+            }
+
+            .modal-content {
+                padding: 24px 18px;
+                margin: 10px;
+            }
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+</head>
+
+<body>
+
+    <!-- Splash Overlay Screen -->
+    <div class="splash-overlay" id="splashScreen" onclick="handleSplashClick(event)">
+        <div class="splash-content" onclick="event.stopPropagation()">
+            <div class="splash-brand">
+                <span class="splash-logo-text">thaalam</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <!-- Page Header Banner -->
+    <div class="page-header">
+        <h1>Business Directory</h1>
+        <p>Explore verified companies, services, founders, contact details, and locations across our community
+            network. To register your company, visit <a href="Launch_Your_Company.html">Launch Business</a>.
+        </p>
+    </div>
+
+    <!-- Left Filter Drawer Overlay & Drawer Container -->
+    <div class="filters-drawer-overlay" id="filtersOverlay" onclick="toggleDrawer(false)"></div>
+    <div class="filters-drawer" id="filtersDrawer">
+        <div class="drawer-header">
+            <h3>Filter Directory</h3>
+            <button class="drawer-close-btn" onclick="toggleDrawer(false)">&times;</button>
+        </div>
+        <div class="drawer-body">
+            <!-- Expand All / Collapse All Checkbox -->
+            <label class="expand-all-wrap">
+                <input type="checkbox" id="expandAllToggle" onchange="toggleExpandAll(this.checked)">
+                Expand All Filter Accordions
+            </label>
+
+            <!-- Industry / Sector Accordion -->
+            <details class="checkbox-accordion" id="industryAccordion">
+                <summary>Industry & Sector</summary>
+                <div class="checkbox-group-list">
+
+                    <!-- 1. Agriculture & Allied Industries -->
+                    <details class="category-nested-accordion">
+                        <summary>Agriculture & Allied Industries</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Agriculture" onchange="filterTable()"> Agriculture</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="AgriTech" onchange="filterTable()"> AgriTech</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Farming & Cultivation" onchange="filterTable()"> Farming &
+                                Cultivation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Organic Farming" onchange="filterTable()"> Organic Farming</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Dairy & Livestock" onchange="filterTable()"> Dairy & Livestock</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Fisheries & Aquaculture" onchange="filterTable()"> Fisheries &
+                                Aquaculture</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Food Processing" onchange="filterTable()"> Food Processing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Agricultural Equipment" onchange="filterTable()"> Agricultural
+                                Equipment</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Agri Consulting" onchange="filterTable()"> Agri Consulting</label>
+                        </div>
+                    </details>
+
+                    <!-- 2. Information Technology & Software -->
+                    <details class="category-nested-accordion">
+                        <summary>Information Technology & Software</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="IT Services" onchange="filterTable()"> IT Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Software Development" onchange="filterTable()"> Software Development</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="SaaS" onchange="filterTable()"> SaaS</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Artificial Intelligence (AI)" onchange="filterTable()"> Artificial
+                                Intelligence (AI)</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Machine Learning" onchange="filterTable()"> Machine Learning</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Data Science & Analytics" onchange="filterTable()"> Data Science &
+                                Analytics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Cloud Computing" onchange="filterTable()"> Cloud Computing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Cybersecurity" onchange="filterTable()"> Cybersecurity</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Blockchain & Web3" onchange="filterTable()"> Blockchain & Web3</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="IoT" onchange="filterTable()"> IoT</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="IT Consulting" onchange="filterTable()"> IT Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Enterprise Software" onchange="filterTable()"> Enterprise Software</label>
+                        </div>
+                    </details>
+
+                    <!-- 3. Electronics & Technology Hardware -->
+                    <details class="category-nested-accordion">
+                        <summary>Electronics & Technology Hardware</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Electronics Manufacturing" onchange="filterTable()"> Electronics
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Semiconductor" onchange="filterTable()"> Semiconductor</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Embedded Systems" onchange="filterTable()"> Embedded Systems</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Hardware Development" onchange="filterTable()"> Hardware Development</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Consumer Electronics" onchange="filterTable()"> Consumer Electronics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Electrical Components" onchange="filterTable()"> Electrical
+                                Components</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Robotics & Automation" onchange="filterTable()"> Robotics &
+                                Automation</label>
+                        </div>
+                    </details>
+
+                    <!-- 4. Banking, Finance & Insurance -->
+                    <details class="category-nested-accordion">
+                        <summary>Banking, Finance & Insurance</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Banking" onchange="filterTable()"> Banking</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Financial Services" onchange="filterTable()"> Financial Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="FinTech" onchange="filterTable()"> FinTech</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Accounting" onchange="filterTable()"> Accounting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Taxation" onchange="filterTable()"> Taxation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Auditing" onchange="filterTable()"> Auditing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Investment Services" onchange="filterTable()"> Investment Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Wealth Management" onchange="filterTable()"> Wealth Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Insurance" onchange="filterTable()"> Insurance</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="NBFC" onchange="filterTable()"> NBFC</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Stock Market Services" onchange="filterTable()"> Stock Market
+                                Services</label>
+                        </div>
+                    </details>
+
+                    <!-- 5. Business & Professional Services -->
+                    <details class="category-nested-accordion">
+                        <summary>Business & Professional Services</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Business Consulting" onchange="filterTable()"> Business Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Management Consulting" onchange="filterTable()"> Management
+                                Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Strategy Consulting" onchange="filterTable()"> Strategy Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Legal Services" onchange="filterTable()"> Legal Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Compliance Services" onchange="filterTable()"> Compliance Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Secretarial Services" onchange="filterTable()"> Secretarial Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Corporate Advisory" onchange="filterTable()"> Corporate Advisory</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Outsourcing Services" onchange="filterTable()"> Outsourcing Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Corporate Training & Coaching" onchange="filterTable()"> Corporate Training & Coaching</label>
+                        </div>
+                    </details>
+
+                    <!-- 6. Manufacturing -->
+                    <details class="category-nested-accordion">
+                        <summary>Manufacturing</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Industrial Manufacturing" onchange="filterTable()"> Industrial
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Heavy & Industrial Machinery" onchange="filterTable()"> Heavy & Industrial Machinery</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Machinery Manufacturing" onchange="filterTable()"> Machinery
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Engineering Products" onchange="filterTable()"> Engineering Products</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Apparel & Fabric Production" onchange="filterTable()"> Apparel & Fabric Production</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Chemical Manufacturing" onchange="filterTable()"> Chemical
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Plastic Manufacturing" onchange="filterTable()"> Plastic
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Metal Manufacturing" onchange="filterTable()"> Metal Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Packaging Industry" onchange="filterTable()"> Packaging Industry</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Consumer Goods Manufacturing" onchange="filterTable()"> Consumer Goods
+                                Manufacturing</label>
+                        </div>
+                    </details>
+
+                    <!-- 7. Automobile & Mobility -->
+                    <details class="category-nested-accordion">
+                        <summary>Automobile & Mobility</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Automobile Manufacturing" onchange="filterTable()"> Automobile
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Electric Vehicles (EV)" onchange="filterTable()"> Electric Vehicles
+                                (EV)</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Auto Components" onchange="filterTable()"> Auto Components</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Automobile Services" onchange="filterTable()"> Automobile Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Vehicle Dealership" onchange="filterTable()"> Vehicle Dealership</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Transportation Solutions" onchange="filterTable()"> Transportation
+                                Solutions</label>
+                        </div>
+                    </details>
+
+                    <!-- 8. Healthcare & Life Sciences -->
+                    <details class="category-nested-accordion">
+                        <summary>Healthcare & Life Sciences</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Hospitals" onchange="filterTable()"> Hospitals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Clinics" onchange="filterTable()"> Clinics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Pharmaceuticals" onchange="filterTable()"> Pharmaceuticals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Biotechnology" onchange="filterTable()"> Biotechnology</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Medical Equipment" onchange="filterTable()"> Medical Equipment</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Diagnostics" onchange="filterTable()"> Diagnostics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Healthcare Technology" onchange="filterTable()"> Healthcare
+                                Technology</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Wellness & Fitness" onchange="filterTable()"> Wellness & Fitness</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Medical Research" onchange="filterTable()"> Medical Research</label>
+                        </div>
+                    </details>
+
+                    <!-- 9. Construction & Infrastructure -->
+                    <details class="category-nested-accordion">
+                        <summary>Construction & Infrastructure</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Construction" onchange="filterTable()"> Construction</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Real Estate Development" onchange="filterTable()"> Real Estate
+                                Development</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Civil Engineering" onchange="filterTable()"> Civil Engineering</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Infrastructure" onchange="filterTable()"> Infrastructure</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Architecture" onchange="filterTable()"> Architecture</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Interior Design" onchange="filterTable()"> Interior Design</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Building Materials" onchange="filterTable()"> Building Materials</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Structural Engineering" onchange="filterTable()"> Structural
+                                Engineering</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Smart City Solutions" onchange="filterTable()"> Smart City Solutions</label>
+                        </div>
+                    </details>
+
+                    <!-- 10. Real Estate & Property -->
+                    <details class="category-nested-accordion">
+                        <summary>Real Estate & Property</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Real Estate" onchange="filterTable()"> Real Estate</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Property Development" onchange="filterTable()"> Property Development</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Property Management" onchange="filterTable()"> Property Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Real Estate Consulting" onchange="filterTable()"> Real Estate
+                                Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Commercial Property" onchange="filterTable()"> Commercial Property</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Residential Property" onchange="filterTable()"> Residential Property</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Land Development" onchange="filterTable()"> Land Development</label>
+                        </div>
+                    </details>
+
+                    <!-- 11. Education & Training -->
+                    <details class="category-nested-accordion">
+                        <summary>Education & Training</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Schools" onchange="filterTable()"> Schools</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Higher Education" onchange="filterTable()"> Higher Education</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="EdTech" onchange="filterTable()"> EdTech</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Coaching Institutes" onchange="filterTable()"> Coaching Institutes</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Skill Development" onchange="filterTable()"> Skill Development</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Corporate Training" onchange="filterTable()"> Corporate Training</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Professional Training" onchange="filterTable()"> Professional
+                                Training</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Online Learning" onchange="filterTable()"> Online Learning</label>
+                        </div>
+                    </details>
+
+                    <!-- 12. Marketing, Media & Advertising -->
+                    <details class="category-nested-accordion">
+                        <summary>Marketing, Media & Advertising</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Digital Marketing" onchange="filterTable()"> Digital Marketing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Advertising" onchange="filterTable()"> Advertising</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Branding" onchange="filterTable()"> Branding</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Public Relations (PR)" onchange="filterTable()"> Public Relations
+                                (PR)</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Social Media Marketing" onchange="filterTable()"> Social Media
+                                Marketing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Content Creation" onchange="filterTable()"> Content Creation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Media Production" onchange="filterTable()"> Media Production</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Market Research" onchange="filterTable()"> Market Research</label>
+                        </div>
+                    </details>
+
+                    <!-- 13. Retail & Consumer Business -->
+                    <details class="category-nested-accordion">
+                        <summary>Retail & Consumer Business</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Retail" onchange="filterTable()"> Retail</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="E-commerce" onchange="filterTable()"> E-commerce</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="FMCG" onchange="filterTable()"> FMCG</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Consumer Products" onchange="filterTable()"> Consumer Products</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Fashion & Lifestyle" onchange="filterTable()"> Fashion & Lifestyle</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Beauty & Personal Care" onchange="filterTable()"> Beauty & Personal
+                                Care</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Jewellery" onchange="filterTable()"> Jewellery</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Luxury Goods" onchange="filterTable()"> Luxury Goods</label>
+                        </div>
+                    </details>
+
+                    <!-- 14. Food & Beverage -->
+                    <details class="category-nested-accordion">
+                        <summary>Food & Beverage</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Restaurants" onchange="filterTable()"> Restaurants</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Food Manufacturing" onchange="filterTable()"> Food Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Food Delivery" onchange="filterTable()"> Food Delivery</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Beverages" onchange="filterTable()"> Beverages</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Catering" onchange="filterTable()"> Catering</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Bakery & Confectionery" onchange="filterTable()"> Bakery &
+                                Confectionery</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Hospitality Food Services" onchange="filterTable()"> Hospitality Food
+                                Services</label>
+                        </div>
+                    </details>
+
+                    <!-- 15. Logistics & Supply Chain -->
+                    <details class="category-nested-accordion">
+                        <summary>Logistics & Supply Chain</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Logistics" onchange="filterTable()"> Logistics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Transportation" onchange="filterTable()"> Transportation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Warehousing" onchange="filterTable()"> Warehousing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Courier Services" onchange="filterTable()"> Courier Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Supply Chain Management" onchange="filterTable()"> Supply Chain
+                                Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Customs & Freight Forwarding" onchange="filterTable()"> Customs & Freight Forwarding</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Freight Services" onchange="filterTable()"> Freight Services</label>
+                        </div>
+                    </details>
+
+                    <!-- 16. Energy & Environment -->
+                    <details class="category-nested-accordion">
+                        <summary>Energy & Environment</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Renewable Energy" onchange="filterTable()"> Renewable Energy</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Solar Energy" onchange="filterTable()"> Solar Energy</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Wind Energy" onchange="filterTable()"> Wind Energy</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Power Generation" onchange="filterTable()"> Power Generation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Electrical Services" onchange="filterTable()"> Electrical Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Waste Management" onchange="filterTable()"> Waste Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Environmental Consulting" onchange="filterTable()"> Environmental
+                                Consulting</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Sustainability" onchange="filterTable()"> Sustainability</label>
+                        </div>
+                    </details>
+
+                    <!-- 17. Chemicals & Materials -->
+                    <details class="category-nested-accordion">
+                        <summary>Chemicals & Materials</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Chemicals" onchange="filterTable()"> Chemicals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Specialty Chemicals" onchange="filterTable()"> Specialty Chemicals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Agrochemicals & Biochemicals" onchange="filterTable()"> Agrochemicals & Biochemicals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Paints & Coatings" onchange="filterTable()"> Paints & Coatings</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Industrial Materials" onchange="filterTable()"> Industrial Materials</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Fertilizers" onchange="filterTable()"> Fertilizers</label>
+                        </div>
+                    </details>
+
+                    <!-- 18. Textile & Apparel -->
+                    <details class="category-nested-accordion">
+                        <summary>Textile & Apparel</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Textile Manufacturing" onchange="filterTable()"> Textile
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Garments" onchange="filterTable()"> Garments</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Fashion Design" onchange="filterTable()"> Fashion Design</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Apparel Export" onchange="filterTable()"> Apparel Export</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Handloom" onchange="filterTable()"> Handloom</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Leather Products" onchange="filterTable()"> Leather Products</label>
+                        </div>
+                    </details>
+
+                    <!-- 19. Travel, Tourism & Hospitality -->
+                    <details class="category-nested-accordion">
+                        <summary>Travel, Tourism & Hospitality</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Hotels" onchange="filterTable()"> Hotels</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Travel Agencies" onchange="filterTable()"> Travel Agencies</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Tourism" onchange="filterTable()"> Tourism</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Resorts" onchange="filterTable()"> Resorts</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Event Management" onchange="filterTable()"> Event Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Hospitality Services" onchange="filterTable()"> Hospitality Services</label>
+                        </div>
+                    </details>
+
+                    <!-- 20. Media & Entertainment -->
+                    <details class="category-nested-accordion">
+                        <summary>Media & Entertainment</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Film Production" onchange="filterTable()"> Film Production</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Television" onchange="filterTable()"> Television</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Music Industry" onchange="filterTable()"> Music Industry</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Gaming" onchange="filterTable()"> Gaming</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Animation" onchange="filterTable()"> Animation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Photography" onchange="filterTable()"> Photography</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Video Production" onchange="filterTable()"> Video Production</label>
+                        </div>
+                    </details>
+
+                    <!-- 21. Telecom & Communication -->
+                    <details class="category-nested-accordion">
+                        <summary>Telecom & Communication</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Telecommunications" onchange="filterTable()"> Telecommunications</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Internet Services" onchange="filterTable()"> Internet Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Networking" onchange="filterTable()"> Networking</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Communication Technology" onchange="filterTable()"> Communication
+                                Technology</label>
+                        </div>
+                    </details>
+
+                    <!-- 22. Defence & Aerospace -->
+                    <details class="category-nested-accordion">
+                        <summary>Defence & Aerospace</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Defence Manufacturing" onchange="filterTable()"> Defence
+                                Manufacturing</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Aerospace" onchange="filterTable()"> Aerospace</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Aviation" onchange="filterTable()"> Aviation</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Drone Technology" onchange="filterTable()"> Drone Technology</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Security Solutions" onchange="filterTable()"> Security Solutions</label>
+                        </div>
+                    </details>
+
+                    <!-- 23. Government & Public Services -->
+                    <details class="category-nested-accordion">
+                        <summary>Government & Public Services</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Government Services" onchange="filterTable()"> Government Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Public Administration" onchange="filterTable()"> Public
+                                Administration</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Municipal Services" onchange="filterTable()"> Municipal Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Social Development" onchange="filterTable()"> Social Development</label>
+                        </div>
+                    </details>
+
+                    <!-- 24. Non-Profit & Social Sector -->
+                    <details class="category-nested-accordion">
+                        <summary>Non-Profit & Social Sector</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="NGO" onchange="filterTable()"> NGO</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Charity Organizations" onchange="filterTable()"> Charity
+                                Organizations</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Social Enterprises" onchange="filterTable()"> Social Enterprises</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Community Development" onchange="filterTable()"> Community
+                                Development</label>
+                        </div>
+                    </details>
+
+                    <!-- 25. Sports & Fitness -->
+                    <details class="category-nested-accordion">
+                        <summary>Sports & Fitness</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Sports Management" onchange="filterTable()"> Sports Management</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Fitness Training" onchange="filterTable()"> Fitness Training</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Sports Equipment" onchange="filterTable()"> Sports Equipment</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Wellness Services" onchange="filterTable()"> Wellness Services</label>
+                        </div>
+                    </details>
+
+                    <!-- 26. Beauty & Lifestyle -->
+                    <details class="category-nested-accordion">
+                        <summary>Beauty & Lifestyle</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Beauty Services" onchange="filterTable()"> Beauty Services</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Salons" onchange="filterTable()"> Salons</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Cosmetics" onchange="filterTable()"> Cosmetics</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Personal Care" onchange="filterTable()"> Personal Care</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Lifestyle Products" onchange="filterTable()"> Lifestyle Products</label>
+                        </div>
+                    </details>
+
+                    <!-- 27. Mining & Natural Resources -->
+                    <details class="category-nested-accordion">
+                        <summary>Mining & Natural Resources</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Mining" onchange="filterTable()"> Mining</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Metals" onchange="filterTable()"> Metals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Minerals" onchange="filterTable()"> Minerals</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Natural Resources" onchange="filterTable()"> Natural Resources</label>
+                        </div>
+                    </details>
+
+                    <!-- 28. Trading & Distribution -->
+                    <details class="category-nested-accordion">
+                        <summary>Trading & Distribution</summary>
+                        <div class="nested-checkbox-list">
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Wholesale Trading" onchange="filterTable()"> Wholesale Trading</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Distribution" onchange="filterTable()"> Distribution</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Import & Export" onchange="filterTable()"> Import & Export</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="B2B Trading" onchange="filterTable()"> B2B Trading</label>
+                            <label class="checkbox-item"><input type="checkbox" class="filter-cb industry-cb"
+                                    value="Supply Networks" onchange="filterTable()"> Supply Networks</label>
+                        </div>
+                    </details>
+
+                </div>
+            </details>
+
+            <!-- Type of Business Accordion -->
+            <details class="checkbox-accordion" id="typeAccordion">
+                <summary>Type of Business</summary>
+                <div class="checkbox-group-list">
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Private Limited Company" onchange="filterTable()"> Private Limited Company</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Public Limited Company" onchange="filterTable()"> Public Limited Company</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb" value="LLP"
+                            onchange="filterTable()"> LLP</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Partnership Firm" onchange="filterTable()"> Partnership Firm</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Sole Proprietorship" onchange="filterTable()"> Sole Proprietorship</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb" value="Startup"
+                            onchange="filterTable()"> Startup</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb" value="MSME Business"
+                            onchange="filterTable()"> MSME Business</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb" value="MNC"
+                            onchange="filterTable()"> MNC</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Government Organization" onchange="filterTable()"> Government Organization</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="NGO / Non-Profit" onchange="filterTable()"> NGO / Non-Profit</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb"
+                            value="Franchise Business" onchange="filterTable()"> Franchise Business</label>
+                    <label class="checkbox-item"><input type="checkbox" class="filter-cb type-cb" value="Other"
+                            onchange="filterTable()"> Other</label>
+                </div>
+            </details>
+
+            <!-- Reset Filters Button -->
+            <button class="btn-reset-filters" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+    </div>
+
+    <!-- Table Container -->
+    <section class="container">
+        <!-- Search & Filter Controls Section -->
+        <div class="search-box-wrap">
+            <button class="btn-toggle-filters" onclick="toggleDrawer(true)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <circle cx="8" cy="6" r="3" fill="#ffffff"></circle>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <circle cx="16" cy="12" r="3" fill="#ffffff"></circle>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                    <circle cx="9" cy="18" r="3" fill="#ffffff"></circle>
+                </svg>
+                Filter
+            </button>
+            <input type="text" id="searchInput" placeholder="Search by name, founder, service, or address..."
+                oninput="filterTable()">
+        </div>
+
+        <div class="controls-meta-bar">
+            <div class="results-counter">
+                Showing <span id="recordCount">0</span> verified entries
+            </div>
+            <div class="mobile-scroll-hint">
+                <span>Swipe table horizontally to explore all business details</span>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="directory-table" id="directoryTable">
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Company Name</th>
+                        <th>Founder</th>
+                        <th>Established</th>
+                        <th>Industry Category</th>
+                        <th>Services / Products</th>
+                        <th>Address</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="emptyStateRow">
+                        <td colspan="8" style="text-align: center; padding: 48px 20px; color: #64748b;">
+                            <div style="font-size: 16px; font-weight: 600; color: #334155; margin-bottom: 6px;">No business listings found</div>
+                            <div style="font-size: 13.5px;">Submit your business via <a href="Launch_Your_Company.html" style="color: #dc2626; font-weight: 600; text-decoration: underline;">Launch Your Company</a> or Admin Panel to populate this directory.</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no-results" id="noResults">No records match your search criteria.</div>
+        </div>
+    </section>
+
+    <!-- Company Detail Modal -->
+    <div class="modal" id="detailsModal" onclick="closeModalOnBackdrop(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <h2 id="modalName">Company Name</h2>
+                <p id="modalDesc">Full detailed description of company offerings and background.</p>
+                <div class="modal-details">
+                    <div><strong>Industry Category:</strong> <span id="modalIndustryCat">-</span></div>
+                    <div><strong>Sector:</strong> <span id="modalSector">-</span></div>
+                    <div><strong>Company Type:</strong> <span id="modalType">Private Limited Company</span></div>
+                    <div><strong>GST Number:</strong> <span id="modalGst">33AAAAA0000A1Z5</span></div>
+                    <div><strong>Contact Email:</strong> <a id="modalEmailLink" href="mailto:"><span
+                                id="modalEmail">contact@domain.com</span></a></div>
+                    <div><strong>Phone:</strong> <a id="modalPhoneLink" href="tel:"><span id="modalPhone">+1
+                                000-000-0000</span></a></div>
+                    <div><strong>Address:</strong> <a id="modalMapLink" href="#" target="_blank">View on Google Maps</a>
+                    </div>
+                    <div><strong>Service Area:</strong> <span id="modalServiceArea">Global</span></div>
+
+                    <div class="modal-social-row">
+                        <strong>Links:</strong>
+                        <a id="modalWeb" href="#" target="_blank" class="modal-social-btn btn-web"
+                            title="Official Website" aria-label="Official Website">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a id="modalInsta" href="#" target="_blank" class="modal-social-btn btn-insta"
+                            title="Instagram Profile" aria-label="Instagram Profile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a id="modalLi" href="#" target="_blank" class="modal-social-btn btn-li"
+                            title="LinkedIn Profile" aria-label="LinkedIn Profile">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <a id="modalCallBtn" href="tel:" class="btn-call"
+                    style="width:100%; text-align:center; display:block; padding:12px; font-size:14px; margin-top: 15px;">Call
+                    Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="servicesModal" onclick="closeServicesModalOnBackdrop(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeServicesModal()">&times;</span>
+            <div class="modal-body">
+                <h2 id="servicesModalName">Services and Products</h2>
+                <p id="servicesModalContent">No services or products listed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Splash, Filter and Modal Logic -->
+    <script>
+        function hideSplash() {
+            const splash = document.getElementById('splashScreen');
+            if (splash && !splash.classList.contains('hidden')) {
+                splash.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+
+        function openDirectory(e) {
+            if (e && e.stopPropagation) e.stopPropagation();
+            hideSplash();
+        }
+
+        function handleSplashClick(e) {
+            openDirectory(e);
+        }
+
+        // Setup scroll & touch dismiss actions
+        document.addEventListener('DOMContentLoaded', function () {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
+                // Prevent scrolling underneath while splash is active
+                document.body.style.overflow = 'hidden';
+
+                let scrollTimeout;
+                // Dismiss splash only on downward scroll, with debounce for smooth feel
+                window.addEventListener('scroll', function () {
+                    if (window.scrollY > 80 && !splash.classList.contains('hidden')) {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(function () {
+                            hideSplash();
+                        }, 400); // Debounce delay
+                    }
+                    // Re-appearing scroll condition removed as requested
+                }, { passive: true });
+
+                // Dismiss splash on wheel scroll down with higher threshold
+                window.addEventListener('wheel', function (e) {
+                    if (!splash.classList.contains('hidden') && e.deltaY > 50) {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(function () {
+                            openDirectory(e);
+                        }, 300);
+                    }
+                }, { passive: true });
+
+                // Dismiss splash on touch drag (mobile swipe)
+                let touchStartY = 0;
+                window.addEventListener('touchstart', function (e) {
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                window.addEventListener('touchmove', function (e) {
+                    const touchEndY = e.touches[0].clientY;
+                    if (!splash.classList.contains('hidden') && touchStartY - touchEndY > 60) {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(function () {
+                            openDirectory(e);
+                        }, 300);
+                    }
+                }, { passive: true });
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            const splash = document.getElementById('splashScreen');
+            if (splash && !splash.classList.contains('hidden') && splash.style.display !== 'none') {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+                    openDirectory(e);
+                }
+            }
+        });
+
+        function toggleDrawer(open) {
+            const drawer = document.getElementById("filtersDrawer");
+            const overlay = document.getElementById("filtersOverlay");
+            if (open) {
+                drawer.classList.add("open");
+                overlay.classList.add("open");
+            } else {
+                drawer.classList.remove("open");
+                overlay.classList.remove("open");
+            }
+        }
+
+        function toggleExpandAll(isExpanded) {
+            const mainAccordions = document.querySelectorAll(".checkbox-accordion");
+            mainAccordions.forEach(acc => {
+                acc.open = isExpanded;
+            });
+            const nestedAccordions = document.querySelectorAll(".category-nested-accordion");
+            nestedAccordions.forEach(acc => {
+                acc.open = isExpanded;
+            });
+        }
+
+        function filterTable() {
+            const query = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+
+            // Get checked industries
+            const selectedIndustries = Array.from(document.querySelectorAll(".industry-cb:checked")).map(cb => cb.value.toLowerCase());
+
+            // Get checked business types
+            const selectedTypes = Array.from(document.querySelectorAll(".type-cb:checked")).map(cb => cb.value.toLowerCase());
+
+            const rows = document.querySelectorAll("#directoryTable tbody tr");
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const rowText = row.innerText.toLowerCase();
+                const sector = (row.getAttribute("data-sector") || "").toLowerCase();
+                const category = (row.getAttribute("data-category") || "").toLowerCase();
+                const type = (row.getAttribute("data-type") || "").toLowerCase();
+
+                const matchesQuery = (!query || rowText.includes(query));
+                const matchesIndustry = (selectedIndustries.length === 0 || selectedIndustries.includes(sector) || selectedIndustries.includes(category));
+                const matchesType = (selectedTypes.length === 0 || selectedTypes.includes(type));
+
+                if (matchesQuery && matchesIndustry && matchesType) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            document.getElementById("recordCount").innerText = visibleCount;
+            document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";
+        }
+
+        function resetFilters() {
+            document.getElementById("searchInput").value = "";
+            document.querySelectorAll(".filter-cb").forEach(cb => cb.checked = false);
+            document.getElementById("expandAllToggle").checked = false;
+            toggleExpandAll(false);
+            filterTable();
+        }
+
+        function openModal(name, industryCat, sector, subCat, desc, companyType, gstNumber, email, phone, serviceArea, address, insta, web, li) {
+            // Basic Info
+            document.getElementById("modalName").innerText = name;
+            document.getElementById("modalDesc").innerText = desc;
+
+            // Taxonomy Details
+            document.getElementById("modalIndustryCat").innerText = industryCat || "N/A";
+            const sectorEl = document.getElementById("modalSector");
+            if (sectorEl) sectorEl.innerText = sector || "N/A";
+
+            // Company Meta
+            document.getElementById("modalType").innerText = companyType;
+            document.getElementById("modalGst").innerText = gstNumber;
+
+            // Contact Info
+            document.getElementById("modalEmail").innerText = email;
+            document.getElementById("modalEmailLink").href = "mailto:" + email;
+
+            document.getElementById("modalPhone").innerText = phone;
+            document.getElementById("modalPhoneLink").href = "tel:" + phone.replace(/[^0-9+]/g, '');
+
+            document.getElementById("modalMapLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+
+            document.getElementById("modalServiceArea").innerText = serviceArea;
+
+            // Helper to check valid URL or content
+            const isValidLink = (val) => Boolean(val && typeof val === 'string' && val.trim() !== '' && val.trim() !== '#' && val.trim().toLowerCase() !== 'n/a' && val.trim().toLowerCase() !== 'null' && val.trim().toLowerCase() !== 'undefined');
+
+            // Links (Auto-hide if not provided)
+            const modalWeb = document.getElementById("modalWeb");
+            const modalInsta = document.getElementById("modalInsta");
+            const modalLi = document.getElementById("modalLi");
+
+            if (isValidLink(web)) {
+                modalWeb.href = web;
+                modalWeb.style.display = "inline-flex";
+            } else {
+                modalWeb.style.display = "none";
+            }
+
+            if (isValidLink(insta)) {
+                modalInsta.href = insta;
+                modalInsta.style.display = "inline-flex";
+            } else {
+                modalInsta.style.display = "none";
+            }
+
+            if (isValidLink(li)) {
+                modalLi.href = li;
+                modalLi.style.display = "inline-flex";
+            } else {
+                modalLi.style.display = "none";
+            }
+
+            // Hide the entire links row if no links exist
+            const socialRow = document.querySelector(".modal-social-row");
+            if (socialRow) {
+                const hasAnyLink = isValidLink(web) || isValidLink(insta) || isValidLink(li);
+                socialRow.style.display = hasAnyLink ? "flex" : "none";
+            }
+
+            // Call button
+            const callBtn = document.getElementById("modalCallBtn");
+            if (callBtn) {
+                if (isValidLink(phone)) {
+                    callBtn.href = "tel:" + phone.replace(/[^0-9+]/g, '');
+                    callBtn.style.display = "inline-flex";
+                } else {
+                    callBtn.style.display = "none";
+                }
+            }
+
+            document.getElementById("detailsModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("detailsModal").style.display = "none";
+        }
+
+        function closeModalOnBackdrop(e) {
+            if (e.target.id === "detailsModal") {
+                closeModal();
+            }
+        }
+
+        function openServicesModal(companyName, services) {
+            document.getElementById("servicesModalName").innerText = companyName + " - Services and Products";
+            document.getElementById("servicesModalContent").innerText = services || "No services or products listed.";
+            document.getElementById("servicesModal").style.display = "flex";
+        }
+
+        function closeServicesModal() {
+            document.getElementById("servicesModal").style.display = "none";
+        }
+
+        function closeServicesModalOnBackdrop(e) {
+            if (e.target.id === "servicesModal") {
+                closeServicesModal();
+            }
+        }
+    </script>
+
+    <!-- Supabase SDK & Database Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.ThalamSupabase && window.ThalamSupabase.businesses) {
+                window.ThalamSupabase.businesses.loadIntoTable();
+            }
+        });
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and local tooling
+node_modules/
+**/node_modules/
+.vscode/
+
+# Logs
+*.log

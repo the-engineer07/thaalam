@@ -1,0 +1,6 @@
+# Redirects & routing rules for static hosting platforms (Netlify, Cloudflare Pages)
+/admin          /admin/index.html   200
+/admin/         /admin/index.html   200
+
+# 404 page fallback
+/*              /404.html           404

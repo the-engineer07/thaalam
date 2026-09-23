@@ -1,0 +1,438 @@
+/**
+ * THAALAM - PROJECT-WIDE RESPONSIVE ENHANCEMENTS
+ * Ensures all forms, grids, tables, cards, and modals render flawlessly on mobile devices.
+ */
+
+/* ==============================================================================
+   1. CONTAINER & LAYOUT SAFETY ( <= 900px )
+   ============================================================================== */
+@media (max-width: 900px) {
+    /* Prevent fixed pixel widths from causing horizontal overflows */
+    .container,
+    .content-wrapper,
+    .main-container,
+    .section-container,
+    .page-container,
+    .hero-container,
+    .footer-container,
+    .form-card,
+    .split-section,
+    .timeline,
+    .partners-grid,
+    .team-grid {
+        max-width: 100% !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Split Sections (e.g. Launch Business, Register, etc.) */
+    .split-section,
+    .launch-split,
+    .register-split {
+        flex-direction: column !important;
+        gap: 28px !important;
+        padding: 20px 4% !important;
+    }
+
+    .why-register-col,
+    .info-col,
+    .form-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Page Header Banners */
+    .page-header {
+        padding: 35px 5% 25px !important;
+        text-align: center !important;
+    }
+
+    .page-header h1 {
+        font-size: clamp(26px, 6vw, 36px) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .page-header p {
+        font-size: 14.5px !important;
+        line-height: 1.6 !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ==============================================================================
+   2. FORMS & INPUTS RESPONSIVENESS ( <= 768px )
+   ============================================================================== */
+@media (max-width: 768px) {
+    /* Form Grids -> Switch to 1 column */
+    .form-grid,
+    .form-row,
+    .input-grid,
+    .fields-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .form-group,
+    .form-group.full-width {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+    }
+
+    /* Input & Button touch targets */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+        width: 100% !important;
+        font-size: 15px !important; /* Prevents iOS auto-zoom */
+        padding: 12px 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .btn-submit,
+    .btn-submit-form,
+    button[type="submit"] {
+        width: 100% !important;
+        min-height: 48px !important;
+        font-size: 15px !important;
+        padding: 13px 20px !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+}
+
+/* ==============================================================================
+   3. GRIDS & CARDS RESPONSIVENESS ( <= 768px )
+   ============================================================================== */
+@media (max-width: 768px) {
+    /* Auto-fit card grids */
+    .steps-grid,
+    .hero-grid,
+    .team-grid,
+    .founder-grid,
+    .partners-grid,
+    .featured-cards,
+    .values-grid,
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Profile & Business Cards */
+    .item-card,
+    .profile-card,
+    .partner-card,
+    .team-card {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Horizontal Table scrolling with visible bar */
+    .table-wrapper {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin: 15px 0 !important;
+        border-radius: 8px !important;
+    }
+
+    table.directory-table {
+        min-width: 650px !important;
+    }
+}
+
+/* ==============================================================================
+   4. MODALS & POPUPS RESPONSIVENESS ( <= 600px )
+   ============================================================================== */
+@media (max-width: 600px) {
+    .modal-card,
+    .access-modal-card,
+    .details-modal-content,
+    .modal-content,
+    .success-modal-card {
+        width: 92vw !important;
+        max-width: 92vw !important;
+        max-height: 88vh !important;
+        margin: 20px auto !important;
+        padding: 24px 18px !important;
+        overflow-y: auto !important;
+    }
+
+    /* Footer layout on mobile phones */
+    .footer-top {
+        flex-direction: column !important;
+        gap: 32px !important;
+    }
+
+    .footer-links-wrap {
+        flex-direction: column !important;
+        gap: 24px !important;
+    }
+
+    .footer-col {
+        width: 100% !important;
+    }
+
+    .newsletter-form {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .newsletter-form input {
+        border-radius: 6px !important;
+        border-right: 1px solid #d9d2c8 !important;
+    }
+
+    .newsletter-form button {
+        border-radius: 6px !important;
+        width: 100% !important;
+        padding: 12px !important;
+    }
+}
+
+/* ==============================================================================
+   5. THAALAM UNIFIED RED COMMUNITY FOOTER
+   ============================================================================== */
+footer.community-footer {
+    background-color: #8b1e1e !important;
+    padding: 60px 4% 40px !important;
+    margin-top: 60px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    display: block !important;
+    text-align: left !important;
+    border-top: none !important;
+}
+
+.custom-footer-card {
+    color: #ffffff !important;
+    position: relative !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.footer-community-section {
+    text-align: center !important;
+    padding-bottom: 50px !important;
+}
+
+.footer-community-section h2 {
+    font-size: 38px !important;
+    font-weight: 600 !important;
+    margin-bottom: 35px !important;
+    letter-spacing: -0.5px !important;
+    color: #ffffff !important;
+}
+
+.social-circles-grid {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 28px !important;
+    flex-wrap: wrap !important;
+}
+
+.social-circle-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: transform 0.25s ease, color 0.25s ease !important;
+}
+
+.social-circle-item:hover {
+    transform: translateY(-4px) !important;
+    color: #ffffff !important;
+}
+
+.circle-icon {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(4px) !important;
+    transition: all 0.25s ease !important;
+}
+
+.social-circle-item:hover .circle-icon {
+    border-color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.circle-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: currentColor !important;
+}
+
+.social-circle-item span {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+}
+
+.footer-card-divider {
+    border: none !important;
+    height: 1px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    margin: 0 0 40px 0 !important;
+}
+
+.footer-main-content {
+    display: grid !important;
+    grid-template-columns: 1.2fr 2fr 48px !important;
+    gap: 40px !important;
+    align-items: start !important;
+    padding-bottom: 40px !important;
+}
+
+.footer-brand-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.footer-brand-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+.footer-brand-logo {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    background-color: #ffffff !important;
+    padding: 2px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.footer-brand-text p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0 0 6px 0 !important;
+}
+
+.footer-nav-links {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px 40px !important;
+}
+
+.footer-nav-links a {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    transition: color 0.2s ease !important;
+}
+
+.footer-nav-links a:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+}
+
+.back-to-top-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    font-size: 18px !important;
+}
+
+.back-to-top-btn:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: #ffffff !important;
+}
+
+.footer-bottom-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-top: 24px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.footer-legal-links {
+    display: flex !important;
+    gap: 20px !important;
+    align-items: center !important;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+.footer-legal-links a:hover {
+    color: #ffffff !important;
+}
+
+@media (max-width: 850px) {
+    .footer-main-content {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .back-to-top-btn {
+        position: absolute !important;
+        right: 0 !important;
+        bottom: 80px !important;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 12px !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-community-section h2 {
+        font-size: 26px !important;
+    }
+
+    .social-circles-grid {
+        gap: 16px !important;
+    }
+
+    .circle-icon {
+        width: 52px !important;
+        height: 52px !important;
+    }
+
+    .circle-icon svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .footer-nav-links {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+}
+

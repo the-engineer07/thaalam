@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Your Company - Thaalam</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --yc-orange: #dc2626;
+            --yc-bg: #ffffff;
+            --yc-text: #222222;
+            --yc-subtext: #828282;
+            --yc-border: #e2e2da;
+            --yc-card-bg: #ffffff;
+            --yc-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--yc-bg);
+            color: var(--yc-text);
+            line-height: 1.5;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header & Navbar Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 4%;
+            background: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: none;
+            box-shadow: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        header.nav-hidden {
+            transform: translateY(-100%);
+            box-shadow: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        @media (min-width: 901px) {
+            nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            nav a,
+            .dropdown-btn {
+                text-decoration: none;
+                color: #2b2b2b;
+                font-weight: 500;
+                font-size: 13.5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                transition: color 0.15s ease;
+            }
+
+            nav a:hover,
+            .dropdown:hover .dropdown-btn {
+                color: #dc2626;
+            }
+
+            /* Dropdown Styling */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #ffffff;
+                min-width: 175px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                border: 1px solid #eeeeee;
+                border-radius: 8px;
+                padding: 6px 0;
+                z-index: 1001;
+            }
+
+            .dropdown-menu a {
+                color: #444;
+                padding: 8px 16px;
+                display: block;
+                font-size: 13px;
+                font-weight: 400;
+                margin: 0;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #fef2f2;
+                color: #dc2626;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .arrow-down {
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-right: 1.8px solid currentColor;
+                border-bottom: 1.8px solid currentColor;
+                transform: rotate(45deg);
+                margin-left: 5px;
+                margin-bottom: 3px;
+                transition: transform 0.2s ease;
+                vertical-align: middle;
+            }
+
+            .dropdown:hover .arrow-down {
+                transform: rotate(-135deg);
+                margin-bottom: -1px;
+            }
+
+            .nav-btn-contact {
+                background: transparent;
+                color: #dc2626 !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-contact:hover {
+                background: rgba(220, 38, 38, 0.08);
+                transform: translateY(-1px);
+            }
+
+            .nav-btn-join {
+                background: #dc2626;
+                color: #ffffff !important;
+                border: 1.5px solid #dc2626;
+                border-radius: 0;
+                padding: 7px 18px;
+                font-size: 13px;
+                font-weight: 600 !important;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-block;
+            }
+
+            .nav-btn-join:hover {
+                background: #b91c1c;
+                border-color: #b91c1c;
+                color: #ffffff !important;
+                transform: translateY(-1px);
+            }
+        }
+
+        /* Container Layout */
+        .main-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* Page Header / Hero Section */
+        .page-header {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 32px 28px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--yc-text);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 15px;
+            color: #555555;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        /* Split Section: Info & Form */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* Left Side: Why Register */
+        .why-card {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 24px;
+            position: sticky;
+            top: 60px;
+        }
+
+        .why-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--yc-orange);
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--yc-bg);
+            padding-bottom: 8px;
+        }
+
+        .why-register-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .why-register-item h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .why-register-item p {
+            font-size: 13px;
+            color: var(--yc-subtext);
+            line-height: 1.4;
+        }
+
+        /* Form Main Area */
+        .form-card {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 28px;
+        }
+
+        .form-category-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            margin: 24px 0 14px 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--yc-border);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-category-title:first-child {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 4px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--yc-border);
+            border-radius: 3px;
+            font-size: 13.5px;
+            outline: none;
+            background: #fafafa;
+            color: #222;
+            transition: all 0.15s ease;
+        }
+
+        input[type="file"] {
+            padding: 6px 10px;
+            background: #ffffff;
+            font-size: 12px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: #ffffff;
+            border-color: var(--yc-orange);
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+        }
+
+        optgroup {
+            font-weight: 700;
+            color: var(--yc-orange);
+            background: #ffffff;
+        }
+
+        option {
+            font-weight: 400;
+            color: #222222;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: var(--yc-orange);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background: #b91c1c;
+        }
+
+        .btn-submit:disabled {
+            background: #828282;
+            cursor: not-allowed;
+        }
+
+        .post-submit-actions {
+            display: none;
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px solid #fecaca;
+            background: #fff7f7;
+        }
+
+        .post-submit-actions.is-visible {
+            display: block;
+        }
+
+        .post-submit-actions h3 {
+            color: #111;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .post-submit-actions p {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .post-submit-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .post-submit-links a {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid var(--yc-orange);
+            color: var(--yc-orange);
+            font-size: 12.5px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .post-submit-links a:first-child {
+            background: var(--yc-orange);
+            color: #fff;
+        }
+
+        /* How It Works Section */
+        .how-it-works-section {
+            background: var(--yc-card-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 32px 28px;
+            margin-top: 20px;
+        }
+
+        .how-it-works-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+        }
+
+        .how-it-works-subtitle {
+            font-size: 13.5px;
+            color: var(--yc-subtext);
+            margin-bottom: 24px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .step-card {
+            background: var(--yc-bg);
+            border: 1px solid var(--yc-border);
+            border-radius: 4px;
+            padding: 18px 14px;
+            text-align: left;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: var(--yc-orange);
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .step-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .step-card p {
+            font-size: 12.5px;
+            color: #555555;
+            line-height: 1.4;
+        }
+
+
+
+        /* Responsive Breakpoints */
+        @media (max-width: 850px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card {
+                position: static;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                background: #f8f8f8;
+                padding: 4px 0;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Mobile Sidebar & Responsive Styles -->
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+    <link rel="stylesheet" href="../css/responsive-pages.css">
+    <link rel="stylesheet" href="../css/splash.css">
+    <link rel="icon" type="image/png" href="../images/logo2.png">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="siteHeader">
+        <a href="../index.html" class="logo">
+            <img src="../images/logo2.png" alt="Thaalam - The Sangam Collective">
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+
+            <!-- Thaalam Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Thaalam <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../thaalam/about.html">About</a>
+                    <a href="../thaalam/meet_our_team.html">Meet Our Team</a>
+                    <a href="../thaalam/trusted_partners.html">Trusted Partners</a>
+                    <a href="../thaalam/our_story.html">Journey</a>
+                </div>
+            </div>
+
+            <!-- Companies Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Companies <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../companies/Business_Directory.html">Find Businesses</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                </div>
+            </div>
+
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+                <button class="dropdown-btn">
+                    Resources <span class="arrow-down"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                </div>
+            </div>
+
+            <a href="../support.html" class="nav-btn-contact">Connect</a>
+            <a href="../join.html#contact" class="nav-btn-join">Join</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Page Header Banner -->
+        <div class="page-header">
+            <h1>Launch Your Company</h1>
+            <p>Register your company, list your business offerings, and connect with partners, clients, and founders
+                across the Thaalam network.</p>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-grid">
+
+            <!-- Left Side Title & "Why Register?" Content -->
+            <div class="why-card">
+                <h2>Why Register?</h2>
+                <div class="why-register-list">
+                    <div class="why-register-item">
+                        <h3>Increase Your Business Visibility</h3>
+                        <p>Create a professional company profile that helps customers, partners, and professionals
+                            discover your business.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Connect with the Business Community</h3>
+                        <p>Build relationships with entrepreneurs, startups, SMEs, and industry experts.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Share Your Business Updates</h3>
+                        <p>Publish company news, product launches, achievements, and business milestones.</p>
+                    </div>
+                    <div class="why-register-item">
+                        <h3>Generate Business Opportunities</h3>
+                        <p>Receive partnership enquiries, collaboration requests, and networking opportunities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="form-card" id="launch-form">
+                <form onsubmit="submitLaunch(event)">
+
+                    <!-- Company Information -->
+                    <div class="form-category-title">Company Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" placeholder="e.g. Apex Innovations" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessCategory">Business Category *</label>
+                            <select id="businessCategory" required onchange="filterIndustryByBusinessCategory()">
+                                <option value="">All Categories (Show All)</option>
+                                <option value="Agriculture & Allied Industries">Agriculture & Allied Industries
+                                </option>
+                                <option value="Information Technology & Software">Information Technology &
+                                    Software</option>
+                                <option value="Electronics & Technology Hardware">Electronics & Technology
+                                    Hardware</option>
+                                <option value="Banking, Finance & Insurance">Banking, Finance & Insurance</option>
+                                <option value="Business & Professional Services">Business & Professional Services
+                                </option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Automobile & Mobility">Automobile & Mobility</option>
+                                <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                                <option value="Construction & Infrastructure">Construction & Infrastructure
+                                </option>
+                                <option value="Real Estate & Property">Real Estate & Property</option>
+                                <option value="Education & Training">Education & Training</option>
+                                <option value="Marketing, Media & Advertising">Marketing, Media & Advertising
+                                </option>
+                                <option value="Retail & Consumer Business">Retail & Consumer Business</option>
+                                <option value="Food & Beverage">Food & Beverage</option>
+                                <option value="Logistics & Supply Chain">Logistics & Supply Chain</option>
+                                <option value="Energy & Environment">Energy & Environment</option>
+                                <option value="Chemicals & Materials">Chemicals & Materials</option>
+                                <option value="Textile & Apparel">Textile & Apparel</option>
+                                <option value="Travel, Tourism & Hospitality">Travel, Tourism & Hospitality
+                                </option>
+                                <option value="Media & Entertainment">Media & Entertainment</option>
+                                <option value="Telecom & Communication">Telecom & Communication</option>
+                                <option value="Defence & Aerospace">Defence & Aerospace</option>
+                                <option value="Government & Public Services">Government & Public Services
+                                </option>
+                                <option value="Non-Profit & Social Sector">Non-Profit & Social Sector</option>
+                                <option value="Sports & Fitness">Sports & Fitness</option>
+                                <option value="Beauty & Lifestyle">Beauty & Lifestyle</option>
+                                <option value="Mining & Natural Resources">Mining & Natural Resources</option>
+                                <option value="Trading & Distribution">Trading & Distribution</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessType">Business Type *</label>
+                            <select id="businessType" required>
+                                <option value="" disabled selected>Select Business Type</option>
+                                <option value="Startup">Startup</option>
+                                <option value="LLP">LLP (Limited Liability Partnership)</option>
+                                <option value="Private Limited Company">Private Limited Company</option>
+                                <option value="Public Limited Company">Public Limited Company</option>
+                                <option value="Partnership Firm">Partnership Firm</option>
+                                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                <option value="MSME Business">MSME Business</option>
+                                <option value="MNC">MNC (Multinational Corporation)</option>
+                                <option value="Government Organization">Government Organization</option>
+                                <option value="NGO / Non-Profit">NGO / Non-Profit</option>
+                                <option value="Franchise Business">Franchise Business</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="industry">Industry Sub-Category / Sector *</label>
+                            <select id="industry" required>
+                                <option value="" disabled selected>Select Sub Category</option>
+
+                                <optgroup label="Agriculture & Allied Industries">
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="AgriTech">AgriTech</option>
+                                    <option value="Farming & Cultivation">Farming & Cultivation</option>
+                                    <option value="Organic Farming">Organic Farming</option>
+                                    <option value="Dairy & Livestock">Dairy & Livestock</option>
+                                    <option value="Fisheries & Aquaculture">Fisheries & Aquaculture</option>
+                                    <option value="Food Processing">Food Processing</option>
+                                    <option value="Agricultural Equipment">Agricultural Equipment</option>
+                                    <option value="Agri Consulting">Agri Consulting</option>
+                                </optgroup>
+
+                                <optgroup label="Information Technology & Software">
+                                    <option value="IT Services">IT Services</option>
+                                    <option value="Software Development">Software Development</option>
+                                    <option value="SaaS">SaaS</option>
+                                    <option value="Artificial Intelligence (AI)">Artificial Intelligence (AI)</option>
+                                    <option value="Machine Learning">Machine Learning</option>
+                                    <option value="Data Science & Analytics">Data Science & Analytics</option>
+                                    <option value="Cloud Computing">Cloud Computing</option>
+                                    <option value="Cybersecurity">Cybersecurity</option>
+                                    <option value="Blockchain & Web3">Blockchain & Web3</option>
+                                    <option value="IoT">IoT</option>
+                                    <option value="IT Consulting">IT Consulting</option>
+                                    <option value="Enterprise Software">Enterprise Software</option>
+                                </optgroup>
+
+                                <optgroup label="Electronics & Technology Hardware">
+                                    <option value="Electronics Manufacturing">Electronics Manufacturing</option>
+                                    <option value="Semiconductor">Semiconductor</option>
+                                    <option value="Embedded Systems">Embedded Systems</option>
+                                    <option value="Hardware Development">Hardware Development</option>
+                                    <option value="Consumer Electronics">Consumer Electronics</option>
+                                    <option value="Electrical Components">Electrical Components</option>
+                                    <option value="Robotics & Automation">Robotics & Automation</option>
+                                </optgroup>
+
+                                <optgroup label="Banking, Finance & Insurance">
+                                    <option value="Banking">Banking</option>
+                                    <option value="Financial Services">Financial Services</option>
+                                    <option value="FinTech">FinTech</option>
+                                    <option value="Accounting">Accounting</option>
+                                    <option value="Taxation">Taxation</option>
+                                    <option value="Auditing">Auditing</option>
+                                    <option value="Investment Services">Investment Services</option>
+                                    <option value="Wealth Management">Wealth Management</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="NBFC">NBFC</option>
+                                    <option value="Stock Market Services">Stock Market Services</option>
+                                </optgroup>
+
+                                <optgroup label="Business & Professional Services">
+                                    <option value="Business Consulting">Business Consulting</option>
+                                    <option value="Management Consulting">Management Consulting</option>
+                                    <option value="Strategy Consulting">Strategy Consulting</option>
+                                    <option value="Legal Services">Legal Services</option>
+                                    <option value="Compliance Services">Compliance Services</option>
+                                    <option value="Secretarial Services">Secretarial Services</option>
+                                    <option value="Corporate Advisory">Corporate Advisory</option>
+                                    <option value="Outsourcing Services">Outsourcing Services</option>
+                                    <option value="Professional Training">Professional Training</option>
+                                </optgroup>
+
+                                <optgroup label="Manufacturing">
+                                    <option value="Industrial Manufacturing">Industrial Manufacturing</option>
+                                    <option value="Automobile Manufacturing">Automobile Manufacturing</option>
+                                    <option value="Machinery Manufacturing">Machinery Manufacturing</option>
+                                    <option value="Engineering Products">Engineering Products</option>
+                                    <option value="Textile Manufacturing">Textile Manufacturing</option>
+                                    <option value="Chemical Manufacturing">Chemical Manufacturing</option>
+                                    <option value="Plastic Manufacturing">Plastic Manufacturing</option>
+                                    <option value="Metal Manufacturing">Metal Manufacturing</option>
+                                    <option value="Packaging Industry">Packaging Industry</option>
+                                    <option value="Consumer Goods Manufacturing">Consumer Goods Manufacturing</option>
+                                </optgroup>
+
+                                <optgroup label="Automobile & Mobility">
+                                    <option value="Automobile Manufacturing">Automobile Manufacturing</option>
+                                    <option value="Electric Vehicles (EV)">Electric Vehicles (EV)</option>
+                                    <option value="Auto Components">Auto Components</option>
+                                    <option value="Automobile Services">Automobile Services</option>
+                                    <option value="Vehicle Dealership">Vehicle Dealership</option>
+                                    <option value="Transportation Solutions">Transportation Solutions</option>
+                                </optgroup>
+
+                                <optgroup label="Healthcare & Life Sciences">
+                                    <option value="Hospitals">Hospitals</option>
+                                    <option value="Clinics">Clinics</option>
+                                    <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                    <option value="Biotechnology">Biotechnology</option>
+                                    <option value="Medical Equipment">Medical Equipment</option>
+                                    <option value="Diagnostics">Diagnostics</option>
+                                    <option value="Healthcare Technology">Healthcare Technology</option>
+                                    <option value="Wellness & Fitness">Wellness & Fitness</option>
+                                    <option value="Medical Research">Medical Research</option>
+                                </optgroup>
+
+                                <optgroup label="Construction & Infrastructure">
+                                    <option value="Construction">Construction</option>
+                                    <option value="Real Estate Development">Real Estate Development</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Infrastructure">Infrastructure</option>
+                                    <option value="Architecture">Architecture</option>
+                                    <option value="Interior Design">Interior Design</option>
+                                    <option value="Building Materials">Building Materials</option>
+                                    <option value="Structural Engineering">Structural Engineering</option>
+                                    <option value="Smart City Solutions">Smart City Solutions</option>
+                                </optgroup>
+
+                                <optgroup label="Real Estate & Property">
+                                    <option value="Real Estate">Real Estate</option>
+                                    <option value="Property Development">Property Development</option>
+                                    <option value="Property Management">Property Management</option>
+                                    <option value="Real Estate Consulting">Real Estate Consulting</option>
+                                    <option value="Commercial Property">Commercial Property</option>
+                                    <option value="Residential Property">Residential Property</option>
+                                    <option value="Land Development">Land Development</option>
+                                </optgroup>
+
+                                <optgroup label="Education & Training">
+                                    <option value="Schools">Schools</option>
+                                    <option value="Higher Education">Higher Education</option>
+                                    <option value="EdTech">EdTech</option>
+                                    <option value="Coaching Institutes">Coaching Institutes</option>
+                                    <option value="Skill Development">Skill Development</option>
+                                    <option value="Corporate Training">Corporate Training</option>
+                                    <option value="Professional Training">Professional Training</option>
+                                    <option value="Online Learning">Online Learning</option>
+                                </optgroup>
+
+                                <optgroup label="Marketing, Media & Advertising">
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                    <option value="Advertising">Advertising</option>
+                                    <option value="Branding">Branding</option>
+                                    <option value="Public Relations (PR)">Public Relations (PR)</option>
+                                    <option value="Social Media Marketing">Social Media Marketing</option>
+                                    <option value="Content Creation">Content Creation</option>
+                                    <option value="Media Production">Media Production</option>
+                                    <option value="Market Research">Market Research</option>
+                                </optgroup>
+
+                                <optgroup label="Retail & Consumer Business">
+                                    <option value="Retail">Retail</option>
+                                    <option value="E-commerce">E-commerce</option>
+                                    <option value="FMCG">FMCG</option>
+                                    <option value="Consumer Products">Consumer Products</option>
+                                    <option value="Fashion & Lifestyle">Fashion & Lifestyle</option>
+                                    <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+                                    <option value="Jewellery">Jewellery</option>
+                                    <option value="Luxury Goods">Luxury Goods</option>
+                                </optgroup>
+
+                                <optgroup label="Food & Beverage">
+                                    <option value="Restaurants">Restaurants</option>
+                                    <option value="Food Manufacturing">Food Manufacturing</option>
+                                    <option value="Food Delivery">Food Delivery</option>
+                                    <option value="Beverages">Beverages</option>
+                                    <option value="Catering">Catering</option>
+                                    <option value="Bakery & Confectionery">Bakery & Confectionery</option>
+                                    <option value="Hospitality Food Services">Hospitality Food Services</option>
+                                </optgroup>
+
+                                <optgroup label="Logistics & Supply Chain">
+                                    <option value="Logistics">Logistics</option>
+                                    <option value="Transportation">Transportation</option>
+                                    <option value="Warehousing">Warehousing</option>
+                                    <option value="Courier Services">Courier Services</option>
+                                    <option value="Supply Chain Management">Supply Chain Management</option>
+                                    <option value="Import & Export">Import & Export</option>
+                                    <option value="Freight Services">Freight Services</option>
+                                </optgroup>
+
+                                <optgroup label="Energy & Environment">
+                                    <option value="Renewable Energy">Renewable Energy</option>
+                                    <option value="Solar Energy">Solar Energy</option>
+                                    <option value="Wind Energy">Wind Energy</option>
+                                    <option value="Power Generation">Power Generation</option>
+                                    <option value="Electrical Services">Electrical Services</option>
+                                    <option value="Waste Management">Waste Management</option>
+                                    <option value="Environmental Consulting">Environmental Consulting</option>
+                                    <option value="Sustainability">Sustainability</option>
+                                </optgroup>
+
+                                <optgroup label="Chemicals & Materials">
+                                    <option value="Chemicals">Chemicals</option>
+                                    <option value="Specialty Chemicals">Specialty Chemicals</option>
+                                    <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                    <option value="Paints & Coatings">Paints & Coatings</option>
+                                    <option value="Industrial Materials">Industrial Materials</option>
+                                    <option value="Fertilizers">Fertilizers</option>
+                                </optgroup>
+
+                                <optgroup label="Textile & Apparel">
+                                    <option value="Textile Manufacturing">Textile Manufacturing</option>
+                                    <option value="Garments">Garments</option>
+                                    <option value="Fashion Design">Fashion Design</option>
+                                    <option value="Apparel Export">Apparel Export</option>
+                                    <option value="Handloom">Handloom</option>
+                                    <option value="Leather Products">Leather Products</option>
+                                </optgroup>
+
+                                <optgroup label="Travel, Tourism & Hospitality">
+                                    <option value="Hotels">Hotels</option>
+                                    <option value="Travel Agencies">Travel Agencies</option>
+                                    <option value="Tourism">Tourism</option>
+                                    <option value="Resorts">Resorts</option>
+                                    <option value="Event Management">Event Management</option>
+                                    <option value="Hospitality Services">Hospitality Services</option>
+                                </optgroup>
+
+                                <optgroup label="Media & Entertainment">
+                                    <option value="Film Production">Film Production</option>
+                                    <option value="Television">Television</option>
+                                    <option value="Music Industry">Music Industry</option>
+                                    <option value="Gaming">Gaming</option>
+                                    <option value="Animation">Animation</option>
+                                    <option value="Photography">Photography</option>
+                                    <option value="Video Production">Video Production</option>
+                                </optgroup>
+
+                                <optgroup label="Telecom & Communication">
+                                    <option value="Telecommunications">Telecommunications</option>
+                                    <option value="Internet Services">Internet Services</option>
+                                    <option value="Networking">Networking</option>
+                                    <option value="Communication Technology">Communication Technology</option>
+                                </optgroup>
+
+                                <optgroup label="Defence & Aerospace">
+                                    <option value="Defence Manufacturing">Defence Manufacturing</option>
+                                    <option value="Aerospace">Aerospace</option>
+                                    <option value="Aviation">Aviation</option>
+                                    <option value="Drone Technology">Drone Technology</option>
+                                    <option value="Security Solutions">Security Solutions</option>
+                                </optgroup>
+
+                                <optgroup label="Government & Public Services">
+                                    <option value="Government Services">Government Services</option>
+                                    <option value="Public Administration">Public Administration</option>
+                                    <option value="Municipal Services">Municipal Services</option>
+                                    <option value="Social Development">Social Development</option>
+                                </optgroup>
+
+                                <optgroup label="Non-Profit & Social Sector">
+                                    <option value="NGO">NGO</option>
+                                    <option value="Charity Organizations">Charity Organizations</option>
+                                    <option value="Social Enterprises">Social Enterprises</option>
+                                    <option value="Community Development">Community Development</option>
+                                </optgroup>
+
+                                <optgroup label="Sports & Fitness">
+                                    <option value="Sports Management">Sports Management</option>
+                                    <option value="Fitness Training">Fitness Training</option>
+                                    <option value="Sports Equipment">Sports Equipment</option>
+                                    <option value="Wellness Services">Wellness Services</option>
+                                </optgroup>
+
+                                <optgroup label="Beauty & Lifestyle">
+                                    <option value="Beauty Services">Beauty Services</option>
+                                    <option value="Salons">Salons</option>
+                                    <option value="Cosmetics">Cosmetics</option>
+                                    <option value="Personal Care">Personal Care</option>
+                                    <option value="Lifestyle Products">Lifestyle Products</option>
+                                </optgroup>
+
+                                <optgroup label="Mining & Natural Resources">
+                                    <option value="Mining">Mining</option>
+                                    <option value="Metals">Metals</option>
+                                    <option value="Minerals">Minerals</option>
+                                    <option value="Natural Resources">Natural Resources</option>
+                                </optgroup>
+
+                                <optgroup label="Trading & Distribution">
+                                    <option value="Wholesale Trading">Wholesale Trading</option>
+                                    <option value="Distribution">Distribution</option>
+                                    <option value="Import & Export">Import & Export</option>
+                                    <option value="B2B Trading">B2B Trading</option>
+                                    <option value="Supply Networks">Supply Networks</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="yearEstablished">Year Established</label>
+                            <input type="number" id="yearEstablished" placeholder="e.g. 2020">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companySize">Company Size</label>
+                            <select id="companySize">
+                                <option value="">Select Size</option>
+                                <option value="1-10">1-10 Employees</option>
+                                <option value="11-50">11-50 Employees</option>
+                                <option value="51-200">51-200 Employees</option>
+                                <option value="201-500">201-500 Employees</option>
+                                <option value="500+">500+ Employees</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gstNumber">GST Number (Optional)</label>
+                            <input type="text" id="gstNumber" placeholder="GST Number">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="cin">CIN (Optional)</label>
+                            <input type="text" id="cin" placeholder="Corporate Identification Number">
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-category-title">Contact Information</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person *</label>
+                            <input type="text" id="contactPerson" placeholder="Full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="designation">Designation *</label>
+                            <input type="text" id="designation" placeholder="e.g. Founder, CEO" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="contact@company.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobileNumber">Mobile Number *</label>
+                            <input type="tel" id="mobileNumber" placeholder="+91 00000 00000" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="whatsappNumber">WhatsApp Number</label>
+                            <input type="tel" id="whatsappNumber" placeholder="+91 00000 00000">
+                        </div>
+                    </div>
+
+                    <!-- Business Location -->
+                    <div class="form-category-title">Business Location</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" placeholder="e.g. India">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" placeholder="e.g. Tamil Nadu">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" placeholder="e.g. Chennai">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pincode">Pincode</label>
+                            <input type="text" id="pincode" placeholder="e.g. 600001">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea id="address" placeholder="Full business address..."></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="googleMapsLink">Google Maps Link (Location URL)</label>
+                            <input type="url" id="googleMapsLink" placeholder="https://maps.google.com/?q=...">
+                        </div>
+                    </div>
+
+                    <!-- Online Presence -->
+                    <div class="form-category-title">Online Presence</div>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" placeholder="https://yourcompany.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" placeholder="LinkedIn Profile URL">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instagram">Instagram</label>
+                            <input type="url" id="instagram" placeholder="Instagram Profile URL">
+                        </div>
+                    </div>
+
+                    <!-- Business Details -->
+                    <div class="form-category-title">Business Details</div>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="productsServices">Products & Services</label>
+                            <textarea id="productsServices"
+                                placeholder="List your key products or services offered..."></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="serviceAreas">Service Areas</label>
+                            <input type="text" id="serviceAreas" placeholder="e.g. Global, India, Regional">
+                        </div>
+                    </div>
+
+                    <!-- Media Links -->
+                    <div class="form-category-title">Logo &amp; Brochure Links</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="companyLogo">Company Logo URL</label>
+                            <input type="url" id="companyLogo" placeholder="https://drive.google.com/... or direct image URL">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyBrochure">Brochure / Catalogue URL (PDF or Drive link)</label>
+                            <input type="url" id="companyBrochure" placeholder="https://drive.google.com/...">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Submit Registration</button>
+                </form>
+
+                <div class="post-submit-actions" id="postSubmitActions" role="status" aria-live="polite">
+                    <h3>Your next business step</h3>
+                    <p>Find trusted professionals who can help with legal, finance, technology, marketing, and other business needs.</p>
+                    <div class="post-submit-links">
+                        <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                        <a href="../companies/Business_Directory.html">Browse Businesses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="how-it-works-section">
+            <h2 class="how-it-works-title">How It Works</h2>
+            <p class="how-it-works-subtitle">Get your business listed and connected with the community in four simple
+                steps.</p>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">STEP 1</span>
+                    <h3>Submit Details</h3>
+                    <p>Fill out the company registration form with your business information, contact details, and brand
+                        assets.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 2</span>
+                    <h3>Verification</h3>
+                    <p>Our onboarding team reviews your details within 24 hours to ensure quality and authenticity.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 3</span>
+                    <h3>Profile Launch</h3>
+                    <p>Once verified, your company profile goes live on the Thaalam Business Directory for maximum
+                        reach.</p>
+                </div>
+
+                <div class="step-card">
+                    <span class="step-number">STEP 4</span>
+                    <h3>Connect & Grow</h3>
+                    <p>Receive direct inquiries, engage with industry peers, and access exclusive community resources.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Width Red Community Footer -->
+    <footer class="community-footer">
+        <div class="custom-footer-card">
+            <!-- Top Social Section -->
+            <div class="footer-community-section">
+                <h2>Join Our Community</h2>
+                <div class="social-circles-grid">
+                    <a href="https://www.linkedin.com/company/thaalamtsc/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.facebook.com/share/18yZFuHcUw/" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.78 5.6c1.1 0 2.25.2 2.25.2v2.47h-1.27c-1.24 0-1.62.77-1.62 1.56V12h2.78l-.44 3h-2.34v6.8c4.56-.93 8-4.96 8-9.8z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.youtube.com/@thaalamtsc" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                            </svg>
+                        </div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://www.instagram.com/thaalam_tsc?stkncDN1NncxcWthazdr" target="_blank" rel="noopener noreferrer" class="social-circle-item">
+                        <div class="circle-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </div>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="footer-card-divider">
+
+            <!-- Middle Navigation Section -->
+            <div class="footer-main-content">
+                <div class="footer-brand-info">
+                    <div class="footer-brand-header">
+                        <img src="../images/logo2.png" alt="Thaalam Logo" class="footer-brand-logo">
+                        <strong style="font-size: 16px;">Thaalam</strong>
+                    </div>
+                    <div class="footer-brand-text">
+                        <p>The Sangam Collective</p>
+                        <p>Empowering entrepreneurs, startups, and professionals across the ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="footer-nav-links">
+                    <a href="../index.html">Homepage</a>
+                    <a href="../resources/Find%20Professionals.html">Find Professionals</a>
+                    <a href="../thaalam/about.html">About Us</a>
+                    <a href="../companies/Launch_Your_Company.html">Launch Business</a>
+                    <a href="../support.html">Contacts</a>
+                    <a href="../resources/Register.html">Register as Professional</a>
+                    <a href="../companies/Business_Directory.html">Business Directory</a>
+                    <a href="../join.html#contact">Join Community</a>
+                </div>
+
+                <a href="#siteHeader" class="back-to-top-btn" title="Back to top">
+                    ↑
+                </a>
+            </div>
+
+            <!-- Bottom Bar Section -->
+            <div class="footer-bottom-bar">
+                <span>© All rights reserved</span>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="../terms.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase SDK & Thalam Database Client — loaded BEFORE inline script so ThalamSupabase is available -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../supabase-client.js"></script>
+
+    <script>
+        // User's deployed Business Registration Google Apps Script Web App URL
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7Ojoox4DM7qjn0k-rfayftnXbOZifV2ajJ3Fw4e_GurogeviBEMNvhW0J63XX_NA/exec";
+
+        // Auto-hide Navbar on Scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+        if (header) {
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40 && currentScroll > lastScrollTop) {
+                    header.classList.add("nav-hidden");
+                } else {
+                    header.classList.remove("nav-hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, { passive: true });
+        }
+
+        function filterIndustryByBusinessCategory() {
+            const categorySelect = document.getElementById("businessCategory");
+            const industrySelect = document.getElementById("industry");
+            const selectedCategory = categorySelect ? categorySelect.value : "";
+
+            if (!industrySelect) return;
+
+            const optgroups = industrySelect.querySelectorAll("optgroup");
+
+            optgroups.forEach(group => {
+                if (!selectedCategory || group.label === selectedCategory) {
+                    group.style.display = "";
+                    group.disabled = false;
+                } else {
+                    group.style.display = "none";
+                    group.disabled = true;
+                }
+            });
+
+            const currentOption = industrySelect.selectedOptions[0];
+            if (currentOption && currentOption.parentElement && currentOption.parentElement.tagName.toLowerCase() === 'optgroup') {
+                if (currentOption.parentElement.disabled) {
+                    industrySelect.value = "";
+                }
+            }
+        }
+
+        async function submitLaunch(event) {
+            event.preventDefault();
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Submitting...";
+
+            // Collect field values by exact HTML ID
+            const formData = {
+                companyName: document.getElementById("companyName")?.value || "",
+                businessCategory: document.getElementById("businessCategory")?.value || "",
+                businessType: document.getElementById("businessType")?.value || "",
+                industry: document.getElementById("industry")?.value || "",
+                industrySubCategory: document.getElementById("industry")?.value || "",
+                yearEstablished: document.getElementById("yearEstablished")?.value || "",
+                companySize: document.getElementById("companySize")?.value || "",
+                gstNumber: document.getElementById("gstNumber")?.value || "",
+                cin: document.getElementById("cin")?.value || "",
+                contactPerson: document.getElementById("contactPerson")?.value || "",
+                designation: document.getElementById("designation")?.value || "",
+                email: document.getElementById("email")?.value || "",
+                mobileNumber: document.getElementById("mobileNumber")?.value || "",
+                whatsappNumber: document.getElementById("whatsappNumber")?.value || "",
+                country: document.getElementById("country")?.value || "",
+                state: document.getElementById("state")?.value || "",
+                city: document.getElementById("city")?.value || "",
+                pincode: document.getElementById("pincode")?.value || "",
+                address: document.getElementById("address")?.value || "",
+                googleMapsLink: document.getElementById("googleMapsLink")?.value || "",
+                website: document.getElementById("website")?.value || "",
+                linkedin: document.getElementById("linkedin")?.value || "",
+                instagram: document.getElementById("instagram")?.value || "",
+                productsServices: document.getElementById("productsServices")?.value || "",
+                serviceAreas: document.getElementById("serviceAreas")?.value || "",
+                companyLogo: document.getElementById("companyLogo")?.value || "",
+                companyBrochure: document.getElementById("companyBrochure")?.value || ""
+            };
+
+            // Clean tracking params from URLs but preserve Google Drive/Docs links intact
+            const urlFields = ['website', 'linkedin', 'instagram', 'googleMapsLink', 'companyLogo', 'companyBrochure'];
+            urlFields.forEach(f => {
+                if (formData[f] && window.ThalamSupabase?.cleanUrl) {
+                    const url = formData[f];
+                    // Don't strip params from Google Drive / Docs / Sheets — they need them
+                    const isGoogleDrive = url.includes('drive.google.com') ||
+                                         url.includes('docs.google.com') ||
+                                         url.includes('sheets.google.com') ||
+                                         url.includes('forms.google.com');
+                    if (!isGoogleDrive) {
+                        formData[f] = window.ThalamSupabase.cleanUrl(url);
+                    }
+                }
+            });
+
+            try {
+                // Auto-sync into Thaalam Admin Business Registration Queue & Inquiries
+                try {
+                    const existingBiz = JSON.parse(localStorage.getItem('thalam_admin_businesses') || '[]');
+                    const newBiz = {
+                        id: 'b-reg-' + Date.now(),
+                        company_name: formData.companyName,
+                        industry_category: formData.businessCategory ? formData.businessCategory.replace(/^\d+\.\s*/, '') : 'General',
+                        category: formData.businessCategory ? formData.businessCategory.replace(/^\d+\.\s*/, '') : 'General',
+                        sector: formData.industry || 'General',
+                        sub_category: formData.industrySubCategory || formData.industry || '',
+                        company_type: formData.businessType || 'Private Limited Company',
+                        founder: formData.contactPerson,
+                        established_year: parseInt(formData.yearEstablished) || new Date().getFullYear(),
+                        gst_number: formData.gstNumber || '',
+                        cin: formData.cin || '',
+                        company_size: formData.companySize || '',
+                        email: formData.email,
+                        phone: formData.mobileNumber,
+                        whatsapp: formData.whatsappNumber || '',
+                        city: formData.city || '',
+                        state: formData.state || '',
+                        pincode: formData.pincode || '',
+                        country: formData.country || '',
+                        service_area: formData.serviceAreas || formData.city || 'Tamil Nadu',
+                        address: [formData.address, formData.city, formData.state, formData.pincode, formData.country].filter(Boolean).join(', '),
+                        website_url: formData.website || '',
+                        maps_url: formData.googleMapsLink || '',
+                        linkedin_url: formData.linkedin || '',
+                        instagram_url: formData.instagram || '',
+                        logo_url: formData.companyLogo || '',
+                        services_products: formData.productsServices || '',
+                        description: formData.productsServices || `${formData.companyName} company launch registration application.`,
+                        is_approved: false,
+                        created_at: new Date().toISOString()
+                    };
+                    existingBiz.unshift(newBiz);
+                    localStorage.setItem('thalam_admin_businesses', JSON.stringify(existingBiz));
+
+                    // Push to Admin Inquiries list
+                    const existingInquiries = JSON.parse(localStorage.getItem('thalam_admin_inquiries') || '[]');
+                    existingInquiries.unshift({
+                        id: 'THAL-LCH-' + Math.floor(1000 + Math.random() * 9000),
+                        type: 'Launch Business',
+                        client_name: formData.contactPerson,
+                        company: formData.companyName,
+                        email: formData.email,
+                        phone: formData.mobileNumber,
+                        category: formData.businessCategory ? formData.businessCategory.replace(/^\d+\.\s*/, '') : 'Company Registration',
+                        budget: 'Standard Verification',
+                        status: 'New Lead',
+                        location: [formData.city, formData.state].filter(Boolean).join(', '),
+                        message: formData.productsServices || `Launch registration for ${formData.companyName}`,
+                        created_at: new Date().toISOString()
+                    });
+                    localStorage.setItem('thalam_admin_inquiries', JSON.stringify(existingInquiries));
+                } catch (storeErr) {
+                    console.warn('Storage sync warning:', storeErr);
+                }
+
+                const category = formData.businessCategory.replace(/^\d+\.\s*/, '') || 'General';
+                const supabasePayload = {
+                    company_name:      formData.companyName,
+                    industry_category: category,
+                    sector:            formData.industry || 'General',
+                    sub_category:      formData.industry || '',
+                    services_products: formData.productsServices || '',
+                    company_type:      formData.businessType || '',
+                    gst_number:        formData.gstNumber || '',
+                    founder:           formData.contactPerson || '',
+                    established_year:  parseInt(formData.yearEstablished, 10) || null,
+                    email:             formData.email || '',
+                    phone:             formData.mobileNumber || '',
+                    service_area:      formData.serviceAreas || formData.city || '',
+                    address:           [formData.address, formData.city, formData.state, formData.pincode, formData.country].filter(Boolean).join(', '),
+                    description:       formData.productsServices || `${formData.companyName} company launch registration.`,
+                    website_url:       formData.website || '',
+                    linkedin_url:      formData.linkedin || '',
+                    instagram_url:     formData.instagram || '',
+                    logo_url:          formData.companyLogo || '',
+                    is_approved:       false
+                };
+
+                let savedToSupabase = false;
+                const supabaseClient = window.ThalamSupabase && window.ThalamSupabase.getSupabase
+                    ? window.ThalamSupabase.getSupabase()
+                    : null;
+
+                let supabaseError = null;
+                if (supabaseClient) {
+                    let existingId = null;
+                    if (formData.email) {
+                        const { data: byEmail } = await supabaseClient
+                            .from('businesses')
+                            .select('id')
+                            .ilike('email', formData.email.trim())
+                            .limit(1);
+                        if (byEmail && byEmail.length > 0) existingId = byEmail[0].id;
+                    }
+                    if (!existingId && formData.companyName) {
+                        const { data: byName } = await supabaseClient
+                            .from('businesses')
+                            .select('id')
+                            .ilike('company_name', formData.companyName.trim())
+                            .limit(1);
+                        if (byName && byName.length > 0) existingId = byName[0].id;
+                    }
+
+                    if (existingId) {
+                        const { error } = await supabaseClient
+                            .from('businesses')
+                            .update(supabasePayload)
+                            .eq('id', existingId);
+                        supabaseError = error || null;
+                    } else {
+                        const { error } = await supabaseClient
+                            .from('businesses')
+                            .insert([supabasePayload])
+                            .select('id')
+                            .single();
+                        supabaseError = error || null;
+                    }
+                    savedToSupabase = !supabaseError;
+                }
+
+                // Send to Google Sheets with explicit aligned field names so headers match
+                try {
+                    // Use append() for keys containing & to avoid URLSearchParams encoding issues
+                    const sheetsPayload = new URLSearchParams();
+                    sheetsPayload.append('Timestamp',                            new Date().toISOString());
+                    sheetsPayload.append('Company Name',                         formData.companyName || '');
+                    sheetsPayload.append('Business Category',                    formData.businessCategory || '');
+                    sheetsPayload.append('Business Type',                        formData.businessType || '');
+                    sheetsPayload.append('Industry & Sector',                    formData.industry || '');
+                    sheetsPayload.append('Industry & Sector - Sub Categories',   formData.industry || '');
+                    sheetsPayload.append('Year Established',                     formData.yearEstablished || '');
+                    sheetsPayload.append('Company Size',                         formData.companySize || '');
+                    sheetsPayload.append('GST Number',                           formData.gstNumber || '');
+                    sheetsPayload.append('CIN',                                  formData.cin || '');
+                    sheetsPayload.append('Contact Person',                       formData.contactPerson || '');
+                    sheetsPayload.append('Designation',                          formData.designation || '');
+                    sheetsPayload.append('Email Address',                        formData.email || '');
+                    sheetsPayload.append('Mobile Number',                        formData.mobileNumber || '');
+                    sheetsPayload.append('WhatsApp Number',                      formData.whatsappNumber || '');
+                    sheetsPayload.append('Country',                              formData.country || '');
+                    sheetsPayload.append('State',                                formData.state || '');
+                    sheetsPayload.append('City',                                 formData.city || '');
+                    sheetsPayload.append('Pincode',                              formData.pincode || '');
+                    sheetsPayload.append('Address',                              formData.address || '');
+                    sheetsPayload.append('Google Maps Link',                     formData.googleMapsLink || '');
+                    sheetsPayload.append('Website',                              formData.website || '');
+                    sheetsPayload.append('LinkedIn',                             formData.linkedin || '');
+                    sheetsPayload.append('Instagram',                            formData.instagram || '');
+                    sheetsPayload.append('Products & Services',                  formData.productsServices || '');
+                    sheetsPayload.append('Service Areas',                        formData.serviceAreas || '');
+                    sheetsPayload.append('Company Logo URL',                     formData.companyLogo || '');
+                    sheetsPayload.append('company logo',                         formData.companyLogo || '');
+                    sheetsPayload.append('Company Brochure URL',                 formData.companyBrochure || '');
+                    sheetsPayload.append('Brochure',                             formData.companyBrochure || '');
+                    sheetsPayload.append('Brochure / Catalogue URL (PDF or Drive link)', formData.companyBrochure || '');
+                    sheetsPayload.append('industry and sub category',            formData.industry || '');
+                    sheetsPayload.append('Industry Sub-Category / Sector *',     formData.industry || '');
+
+                    await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: sheetsPayload.toString()
+                    });
+
+                    if (supabaseError) {
+                        console.warn('[Thaalam] Supabase registration failed; Google Sheets fallback used:', supabaseError.message);
+                    }
+                } catch (sheetsError) {
+                    console.error('[Thaalam] Google Sheets business registration failed via fetch, attempting fallback:', sheetsError);
+                    try {
+                        const iframeName = 'hidden_iframe_' + Date.now();
+                        const iframe = document.createElement('iframe');
+                        iframe.name = iframeName;
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        
+                        const form = document.createElement('form');
+                        form.target = iframeName;
+                        form.action = APPS_SCRIPT_URL;
+                        form.method = 'POST';
+                        form.style.display = 'none';
+                        
+                        for (const [key, value] of sheetsPayload.entries()) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            form.appendChild(input);
+                        }
+                        
+                        document.body.appendChild(form);
+                        form.submit();
+                        
+                        setTimeout(() => {
+                            document.body.removeChild(form);
+                            document.body.removeChild(iframe);
+                        }, 3000);
+                    } catch (fallbackError) {
+                        console.error('[Thaalam] Fallback failed:', fallbackError);
+                        alert("Warning: There was a network issue submitting your data. Please check your internet connection or disable ad blockers, then try again.");
+                        return; // Prevent clearing the form
+                    }
+                }
+
+                alert("Thank you! Your company launch request has been submitted to Thaalam. Our onboarding team will review your application within 24 hours.");
+                event.target.reset();
+                filterIndustryByBusinessCategory();
+                document.getElementById("postSubmitActions")?.classList.add("is-visible");
+            } catch (error) {
+                console.error("Submission Error:", error);
+                alert("Sorry, an unexpected error occurred while processing your application. Please try again later.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit Registration";
+            }
+        }
+    </script>
+
+    <!-- Mobile Sidebar Navigation Controller -->
+    <script src="../js/mobile-nav.js"></script>
+</body>
+
+</html>
