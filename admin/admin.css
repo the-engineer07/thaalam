@@ -126,7 +126,7 @@ body {
 .auth-visual-panel {
     flex: 1.05;
     position: relative;
-    background: url('../images/splash_bg.png') center center / cover no-repeat;
+    background: url('../images/splash_bg.png') center center / cover no-repeat !important;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
