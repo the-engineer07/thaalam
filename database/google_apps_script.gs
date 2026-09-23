@@ -14,6 +14,7 @@
 // ── CONFIGURATION ─────────────────────────────────────────────────────────────
 var SPREADSHEET_ID = "1z97T9tl8vSSgPa_eYBy-LKLo2n01MF0-21KIDkwDOFM"; // ← your Sheet ID
 var SHEET_NAME     = "Business registration";                           // ← your tab name
+var NOTIFICATION_EMAIL = "thaalamtsc@gmail.com";                        // ← admin alert email
 // ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -144,6 +145,38 @@ function doPost(e) {
     }
 
     sheet.appendRow(row);
+
+    // Send email alert to admin
+    try {
+      if (NOTIFICATION_EMAIL) {
+        var compName = normMap["companyname"] || data["Company Name"] || "New Company";
+        var contact  = normMap["contactperson"] || data["Contact Person"] || "-";
+        var email    = normMap["emailaddress"] || normMap["email"] || data["Email Address"] || "-";
+        var phone    = normMap["mobilenumber"] || normMap["phone"] || data["Mobile Number"] || "-";
+        var category = normMap["businesscategory"] || data["Business Category"] || "-";
+        var city     = normMap["city"] || data["City"] || "-";
+
+        var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+        var emailSubject = "New Business Registration: " + compName;
+        var emailBody = "New Business Registration Received on Thaalam Platform:\n\n" +
+          "• Company Name: " + compName + "\n" +
+          "• Contact Person: " + contact + "\n" +
+          "• Email Address: " + email + "\n" +
+          "• Mobile Number: " + phone + "\n" +
+          "• Category: " + category + "\n" +
+          "• City: " + city + "\n" +
+          "• Submission Time: " + new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + "\n\n" +
+          "View full details in the Google Sheet: " + ss.getUrl();
+
+        MailApp.sendEmail({
+          to: NOTIFICATION_EMAIL,
+          subject: emailSubject,
+          body: emailBody
+        });
+      }
+    } catch (mailErr) {
+      Logger.log("Email notification error: " + mailErr.toString());
+    }
 
     return jsonResponse({ status: "success", message: "Business registered successfully" });
 

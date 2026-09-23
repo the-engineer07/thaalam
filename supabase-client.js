@@ -36,7 +36,7 @@ function getSupabase() {
                 headers: { 'x-client-info': 'thalam-web/1.0' }
             },
             db: { schema: 'public' },
-            auth: { persistSession: false }
+            auth: { persistSession: true }
         });
         return _supabaseClient;
     } else {

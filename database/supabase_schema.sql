@@ -133,19 +133,8 @@ BEGIN
     END IF;
 END $$;
 
--- Allow anon (admin panel) to update any business row (approval toggle)
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_policies
-        WHERE schemaname = 'public' AND tablename = 'businesses'
-          AND policyname = 'Anon admin can update businesses'
-    ) THEN
-        CREATE POLICY "Anon admin can update businesses"
-        ON public.businesses FOR UPDATE TO anon
-        USING (TRUE) WITH CHECK (TRUE);
-    END IF;
-END $$;
+-- Explicitly drop insecure anon update policies if they exist
+DROP POLICY IF EXISTS "Anon admin can update businesses" ON public.businesses;
 
 CREATE POLICY "Authenticated users can manage businesses" 
 ON public.businesses FOR ALL 
@@ -170,19 +159,8 @@ BEGIN
     END IF;
 END $$;
 
--- Allow anon (admin panel) to update any professional row (approval toggle)
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_policies
-        WHERE schemaname = 'public' AND tablename = 'professionals'
-          AND policyname = 'Anon admin can update professionals'
-    ) THEN
-        CREATE POLICY "Anon admin can update professionals"
-        ON public.professionals FOR UPDATE TO anon
-        USING (TRUE) WITH CHECK (TRUE);
-    END IF;
-END $$;
+-- Explicitly drop insecure anon update policies if they exist
+DROP POLICY IF EXISTS "Anon admin can update professionals" ON public.professionals;
 
 CREATE POLICY "Authenticated users can manage professionals" 
 ON public.professionals FOR ALL 
@@ -207,19 +185,8 @@ BEGIN
     END IF;
 END $$;
 
--- Allow anon (admin panel) to update any partner row (approval toggle)
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_policies
-        WHERE schemaname = 'public' AND tablename = 'partners'
-          AND policyname = 'Anon admin can update partners'
-    ) THEN
-        CREATE POLICY "Anon admin can update partners"
-        ON public.partners FOR UPDATE TO anon
-        USING (TRUE) WITH CHECK (TRUE);
-    END IF;
-END $$;
+-- Explicitly drop insecure anon update policies if they exist
+DROP POLICY IF EXISTS "Anon admin can update partners" ON public.partners;
 
 CREATE POLICY "Authenticated users can manage partners" 
 ON public.partners FOR ALL 

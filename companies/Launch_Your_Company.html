@@ -1470,84 +1470,81 @@
 
                 let supabaseError = null;
                 if (supabaseClient) {
-                    let existingId = null;
-                    if (formData.email) {
-                        const { data: byEmail } = await supabaseClient
-                            .from('businesses')
-                            .select('id')
-                            .ilike('email', formData.email.trim())
-                            .limit(1);
-                        if (byEmail && byEmail.length > 0) existingId = byEmail[0].id;
-                    }
-                    if (!existingId && formData.companyName) {
-                        const { data: byName } = await supabaseClient
-                            .from('businesses')
-                            .select('id')
-                            .ilike('company_name', formData.companyName.trim())
-                            .limit(1);
-                        if (byName && byName.length > 0) existingId = byName[0].id;
-                    }
+                    try {
+                        let existingId = null;
+                        if (formData.email) {
+                            const { data: byEmail } = await supabaseClient
+                                .from('businesses')
+                                .select('id')
+                                .ilike('email', formData.email.trim())
+                                .limit(1);
+                            if (byEmail && byEmail.length > 0) existingId = byEmail[0].id;
+                        }
+                        if (!existingId && formData.companyName) {
+                            const { data: byName } = await supabaseClient
+                                .from('businesses')
+                                .select('id')
+                                .ilike('company_name', formData.companyName.trim())
+                                .limit(1);
+                            if (byName && byName.length > 0) existingId = byName[0].id;
+                        }
 
-                    if (existingId) {
-                        const { error } = await supabaseClient
-                            .from('businesses')
-                            .update(supabasePayload)
-                            .eq('id', existingId);
-                        supabaseError = error || null;
-                    } else {
-                        const { error } = await supabaseClient
-                            .from('businesses')
-                            .insert([supabasePayload])
-                            .select('id')
-                            .single();
-                        supabaseError = error || null;
+                        if (existingId) {
+                            const { error } = await supabaseClient
+                                .from('businesses')
+                                .update(supabasePayload)
+                                .eq('id', existingId);
+                            supabaseError = error || null;
+                        } else {
+                            const { error } = await supabaseClient
+                                .from('businesses')
+                                .insert([supabasePayload]);
+                            supabaseError = error || null;
+                        }
+                        savedToSupabase = !supabaseError;
+                    } catch (sbEx) {
+                        console.warn('[Thaalam] Supabase non-fatal error:', sbEx);
+                        supabaseError = sbEx;
                     }
-                    savedToSupabase = !supabaseError;
                 }
 
-                // Send to Google Sheets with explicit aligned field names so headers match
+                // Send to Google Sheets with aligned field names
                 try {
-                    // Use append() for keys containing & to avoid URLSearchParams encoding issues
-                    const sheetsPayload = new URLSearchParams();
-                    sheetsPayload.append('Timestamp',                            new Date().toISOString());
-                    sheetsPayload.append('Company Name',                         formData.companyName || '');
-                    sheetsPayload.append('Business Category',                    formData.businessCategory || '');
-                    sheetsPayload.append('Business Type',                        formData.businessType || '');
-                    sheetsPayload.append('Industry & Sector',                    formData.industry || '');
-                    sheetsPayload.append('Industry & Sector - Sub Categories',   formData.industry || '');
-                    sheetsPayload.append('Year Established',                     formData.yearEstablished || '');
-                    sheetsPayload.append('Company Size',                         formData.companySize || '');
-                    sheetsPayload.append('GST Number',                           formData.gstNumber || '');
-                    sheetsPayload.append('CIN',                                  formData.cin || '');
-                    sheetsPayload.append('Contact Person',                       formData.contactPerson || '');
-                    sheetsPayload.append('Designation',                          formData.designation || '');
-                    sheetsPayload.append('Email Address',                        formData.email || '');
-                    sheetsPayload.append('Mobile Number',                        formData.mobileNumber || '');
-                    sheetsPayload.append('WhatsApp Number',                      formData.whatsappNumber || '');
-                    sheetsPayload.append('Country',                              formData.country || '');
-                    sheetsPayload.append('State',                                formData.state || '');
-                    sheetsPayload.append('City',                                 formData.city || '');
-                    sheetsPayload.append('Pincode',                              formData.pincode || '');
-                    sheetsPayload.append('Address',                              formData.address || '');
-                    sheetsPayload.append('Google Maps Link',                     formData.googleMapsLink || '');
-                    sheetsPayload.append('Website',                              formData.website || '');
-                    sheetsPayload.append('LinkedIn',                             formData.linkedin || '');
-                    sheetsPayload.append('Instagram',                            formData.instagram || '');
-                    sheetsPayload.append('Products & Services',                  formData.productsServices || '');
-                    sheetsPayload.append('Service Areas',                        formData.serviceAreas || '');
-                    sheetsPayload.append('Company Logo URL',                     formData.companyLogo || '');
-                    sheetsPayload.append('company logo',                         formData.companyLogo || '');
-                    sheetsPayload.append('Company Brochure URL',                 formData.companyBrochure || '');
-                    sheetsPayload.append('Brochure',                             formData.companyBrochure || '');
-                    sheetsPayload.append('Brochure / Catalogue URL (PDF or Drive link)', formData.companyBrochure || '');
-                    sheetsPayload.append('industry and sub category',            formData.industry || '');
-                    sheetsPayload.append('Industry Sub-Category / Sector *',     formData.industry || '');
+                    const sheetData = {
+                        "Timestamp":                            new Date().toISOString(),
+                        "Company Name":                         formData.companyName || '',
+                        "Business Category":                    formData.businessCategory || '',
+                        "Business Type":                        formData.businessType || '',
+                        "Industry & Sector - Sub Categories":   formData.industry || '',
+                        "Year Established":                     formData.yearEstablished || '',
+                        "Company Size":                         formData.companySize || '',
+                        "GST Number":                           formData.gstNumber || '',
+                        "CIN":                                  formData.cin || '',
+                        "Contact Person":                       formData.contactPerson || '',
+                        "Designation":                          formData.designation || '',
+                        "Email Address":                        formData.email || '',
+                        "Mobile Number":                        formData.mobileNumber || '',
+                        "WhatsApp Number":                      formData.whatsappNumber || '',
+                        "Country":                              formData.country || '',
+                        "State":                                formData.state || '',
+                        "City":                                 formData.city || '',
+                        "Pincode":                              formData.pincode || '',
+                        "Address":                              formData.address || '',
+                        "Google Maps Link":                     formData.googleMapsLink || '',
+                        "Website":                              formData.website || '',
+                        "LinkedIn":                             formData.linkedin || '',
+                        "Instagram":                            formData.instagram || '',
+                        "Products & Services":                  formData.productsServices || '',
+                        "Service Areas":                        formData.serviceAreas || '',
+                        "Company Logo URL":                     formData.companyLogo || '',
+                        "Company Brochure URL":                 formData.companyBrochure || ''
+                    };
 
                     await fetch(APPS_SCRIPT_URL, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: sheetsPayload.toString()
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(sheetData)
                     });
 
                     if (supabaseError) {

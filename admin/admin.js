@@ -295,27 +295,33 @@
     // ==============================================================================
     // 4. AUTHENTICATION & SECURITY FLOW
     // ==============================================================================
-    function checkExistingAuth() {
-        const stored = sessionStorage.getItem(SESSION_KEY);
-        if (!stored) {
-            state.authenticated = false;
-            state.currentUser = null;
-            showLoginModal();
-            return;
-        }
+    async function checkExistingAuth() {
+        const client = window.ThalamSupabase && window.ThalamSupabase.getSupabase
+            ? window.ThalamSupabase.getSupabase()
+            : null;
 
-        try {
-            const user = JSON.parse(stored);
-            if (user && user.email) {
-                state.authenticated = true;
-                state.currentUser = user;
-                showAdminApp();
-                return;
+        if (client) {
+            try {
+                const { data, error } = await client.auth.getSession();
+                if (!error && data && data.session && data.session.user) {
+                    const user = {
+                        id: data.session.user.id,
+                        email: data.session.user.email,
+                        name: data.session.user.user_metadata?.full_name || data.session.user.email.split('@')[0],
+                        role: 'Authorized Operations Admin'
+                    };
+                    state.authenticated = true;
+                    state.currentUser = user;
+                    sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+                    showAdminApp();
+                    return;
+                }
+            } catch (authErr) {
+                console.warn('[Thaalam Admin] Session check error:', authErr);
             }
-        } catch (err) {
-            sessionStorage.removeItem(SESSION_KEY);
         }
 
+        sessionStorage.removeItem(SESSION_KEY);
         state.authenticated = false;
         state.currentUser = null;
         showLoginModal();
@@ -1915,24 +1921,6 @@
         const loginForm = document.getElementById('adminLoginForm') || document.getElementById('loginForm');
         if (loginForm) loginForm.addEventListener('submit', handleLoginSubmit);
 
-        // Demo login button
-        const demoBtn = document.getElementById('demoAutoLoginBtn');
-        if (demoBtn) {
-            demoBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                quickDemoLogin();
-            });
-        }
-
-        // Google login button
-        const googleBtn = document.getElementById('googleLoginBtn');
-        if (googleBtn) {
-            googleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                showToast('Use the Supabase administrator login for secure publishing.', 'error');
-            });
-        }
-
         // Password visibility toggle
         const passToggle = document.getElementById('passwordToggleBtn');
         if (passToggle) {
@@ -2005,15 +1993,15 @@
 
     }
 
-    function initAdmin() {
+    async function initAdmin() {
         console.log('[Thaalam Admin] Initializing master portal controller...');
         loadSavedData();
-        checkExistingAuth();
         setupEventListeners();
-        refreshDashboard();
-        syncWithSupabase();
-
-
+        await checkExistingAuth();
+        if (state.authenticated) {
+            refreshDashboard();
+            syncWithSupabase();
+        }
         console.log('[Thaalam Admin] Controller initialized successfully.');
     }
 
